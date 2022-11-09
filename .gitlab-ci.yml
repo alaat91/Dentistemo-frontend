@@ -1,5 +1,6 @@
-# CI for frontend, built in Yarn.
+image: node:latest
 
+# CI for frontend, built in Yarn.
 stages:          # List of stages for jobs, and their order of execution
   - build
 
