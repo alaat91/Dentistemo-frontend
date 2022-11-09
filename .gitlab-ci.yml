@@ -9,6 +9,5 @@ build-job:       # This job runs in the build stage, which runs first.
   tags: 
     - docker
   script:
-    - npm i -g yarn
     - yarn
     - yarn build
