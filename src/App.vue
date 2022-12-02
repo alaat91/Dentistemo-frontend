@@ -11,20 +11,10 @@ export default {
   setup() {
     const loader = new Loader({ apiKey: MAP_API_KEY })
     const mapDiv = ref(null)
-    // HTML code example that should include data of clincs from database that
-    // should be loaded onMounted
-    const clinics = [
-      '<h3> name of clinic </h3>' +
-        '<div>maybe some description</div>' +
-        '<button onclick="AFunction()">Button that takes you to the booking page of the specific clinic</button>',
 
-      '<h3> name of another clinic </h3>' +
-        '<div>another description</div>' +
-        '<button onclick="AnotherFunction()">Button that takes you to the booking page of the specific clinic</button>',
-    ]
-
-    // hardcoded cordinates for clinics, should request data from database and put here
-    var cords = [
+    // HTML code example and cordinates for clinics, data for clincs should come
+    // from database that should be loaded onMounted
+    var clinics = [
       {
         LatLng: [
           {
@@ -32,6 +22,10 @@ export default {
             lng: 11.9876431,
           },
         ],
+        Text:
+          '<h3> name of clinic </h3>' +
+          '<div> maybe some description </div>' +
+          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
       },
       {
         LatLng: [
@@ -40,6 +34,10 @@ export default {
             lng: 11.9876431,
           },
         ],
+        Text:
+          '<h3> name of another clinic </h3>' +
+          '<div>another description</div>' +
+          '<button onclick="AFunction()">Button that takes you to the booking page of the specific clinic</button>',
       },
     ]
     let map = ref(null)
@@ -50,14 +48,30 @@ export default {
       map.value = new google.maps.Map(mapDiv.value, {
         center: { lat: 57.7098281, lng: 11.9776431 },
         zoom: 13,
+        mapId: '400e49ec652bde74',
       })
       const infoWindow = new google.maps.InfoWindow()
+
+      // One of the different kinds of marker that can be found at
+      // google.maps.SymbolPath
+      const symbolPathMarker = {
+        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+        fillColor: 'blue',
+        scale: 6,
+      }
+
       // creates custom markers, will be used later for showing all the different clinics
-      for (var i = 0; i < cords.length; i++) {
+      const marker = new google.maps.Marker({
+        position: { lat: 57.7098281, lng: 11.9776431 },
+        map: map.value,
+        title: 'ttestt',
+        icon: symbolPathMarker,
+      })
+      for (var i = 0; i < clinics.length; i++) {
         const marker = new google.maps.Marker({
-          position: cords[i].LatLng[0],
+          position: clinics[i].LatLng[0],
           map: map.value,
-          title: clinics[i],
+          title: clinics[i].Text,
         })
         // Shows the title of the marker via a infoWindow when you click on the marker
         marker.addListener('click', () => {
@@ -75,6 +89,6 @@ export default {
 <style scoped>
 #map {
   width: 100%;
-  height: 80vh;
+  height: 70vh;
 }
 </style>
