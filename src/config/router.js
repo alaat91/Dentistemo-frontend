@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Map from './components/Map.vue'
-import Timeslot from './views/Timeslot.vue'
-import SignUp from './views/SignUp.vue'
+import Map from '../components/Map.vue'
+import Timeslot from '../views/Timeslot.vue'
+import SignUp from '../views/SignUp.vue'
 
 Vue.use(Router)
 

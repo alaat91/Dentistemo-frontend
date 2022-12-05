@@ -41,6 +41,7 @@
     
     <script>
     export default {
+        name: 'Signup',
         data: function(){
     return {
         form: {
@@ -53,7 +54,20 @@
         confirmPassword: ''
       }
     }
-        }
+        },
+        methods: {
+    submitHandler: async function (e) {
+      e.preventDefault()
+      try {
+        await Api.post('auth/signup', this.form)
+        this.$vToastify.success('Account created successfully')
+        this.$router.push('/login')
+      } catch (error) {
+        const errors = error.response.data.errors
+        errors.forEach((error) => this.$vToastify.error(error))
+      }
+    }
+  }
         
     }
     </script>
