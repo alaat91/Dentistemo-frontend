@@ -1,12 +1,12 @@
 image: node:latest
 
 # CI for frontend, built in Yarn.
-stages:          # List of stages for jobs, and their order of execution
+stages: # List of stages for jobs, and their order of execution
   - build
 
-build-job:       # This job runs in the build stage, which runs first.
+build-job: # This job runs in the build stage, which runs first.
   stage: build
-  tags: 
+  tags:
     - docker
   script:
     - yarn
