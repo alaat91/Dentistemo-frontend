@@ -59,8 +59,7 @@
     submitHandler: async function (e) {
       e.preventDefault()
       try {
-        await Api.post('auth/signup', this.form)
-        this.$vToastify.success('Account created successfully')
+        await Api.post('/auth/signup', this.form)
         this.$router.push('/login')
       } catch (error) {
         const errors = error.response.data.errors
