@@ -87,8 +87,16 @@ export default {
 </script>
 
 <style scoped>
+html {
+  height: 100%;
+}
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 #map {
-  width: 100%;
+  width: 50%;
   height: 70vh;
 }
 </style>
