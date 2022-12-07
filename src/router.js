@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Map from './components/Map.vue'
 import Timeslot from './views/Timeslot.vue'
 import HomePage from './components/HomePage.vue'
+import Profile from './views/Profile.vue'
 
 Vue.use(Router)
 
@@ -19,5 +20,11 @@ export default new Router({
       name: 'timeslot',
       component: Timeslot,
     },
+    {
+      path: '/profiles',
+      name: 'profile',
+      component: Profile,
+
+    }
   ],
 })
