@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Map from './components/Map.vue'
 import Timeslot from './views/Timeslot.vue'
+import HomePage from './components/HomePage.vue'
 
 Vue.use(Router)
 
@@ -11,16 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Map,
+      component: HomePage,
     },
     {
       path: '/timeslots',
       name: 'timeslot',
       component: Timeslot,
-
-    }
-
-
-
+    },
   ],
 })
