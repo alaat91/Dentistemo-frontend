@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Map from './components/Map.vue'
 import Timeslot from './views/Timeslot.vue'
 import Login from './views/Login.vue'
+import HomePage from './components/HomePage.vue'
+import Profile from './views/Profile.vue'
+import ConfirmBookingPage from './views/ConfirmBookingPage.vue'
 
 Vue.use(Router)
 
@@ -12,18 +14,27 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Map,
+      component: HomePage,
     },
     {
-      path: '/timeslots',
+      path: '/timeslot',
       name: 'timeslot',
       component: Timeslot,
-
     },
      {
       path: '/login',
       name: 'login',
       component: Login
-     } 
+     }, 
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+    },
+    {
+      path: '/confimBooking',
+      name: 'confirm',
+      component: ConfirmBookingPage,
+    },
   ],
 })
