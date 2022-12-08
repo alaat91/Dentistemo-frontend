@@ -83,6 +83,7 @@ export default {
     onSubmit(event) {
       event.preventDefault()
       alert(JSON.stringify(this.form))
+      console.log(this.form, this.time)
     },
     onCancel() {
       // Reset our form values
@@ -91,7 +92,7 @@ export default {
 
       // Trick to reset/clear native browser form validation state
       this.show = false
-      this.$router.push('/timeslots')
+      this.$router.push('/timeslot')
       this.$nextTick(() => {
         this.show = true
       })

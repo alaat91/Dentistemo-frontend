@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Timeslot from '../views/Timeslot.vue'
 import SignUp from '../views/SignUp.vue'
 import Login from '../views/Login.vue'
-import HomePage from '../components/HomePage.vue'
+import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
 
@@ -18,7 +18,12 @@ export default new Router({
       component: HomePage,
     },
     {
-      path: '/timeslot',
+      path: '/clinic',
+      name: 'timeslot',
+      component: Timeslot,
+    },
+    {
+      path: '/clinic/:clinicId',
       name: 'timeslot',
       component: Timeslot,
     },
