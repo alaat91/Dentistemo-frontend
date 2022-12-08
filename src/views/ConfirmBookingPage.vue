@@ -5,7 +5,8 @@
     <h2>Your booking details:</h2>
     <div>
       <p>
-        You have booked time at {{ booking.clinic }} at {{ booking.address }}
+        You are making an appointment at {{ booking.clinic }} at
+        {{ booking.address }}
       </p>
       <p>Welcome to us at {{ booking.data }} at {{ booking.time }}</p>
     </div>
@@ -70,7 +71,7 @@ export default {
         },
         {
           text: 'TimeSlots',
-          href: '/timeslots',
+          href: '/clinic',
         },
         {
           text: 'Confirmation',
