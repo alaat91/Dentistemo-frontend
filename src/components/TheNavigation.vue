@@ -1,7 +1,7 @@
 <template>
   <nav>
     <div class="topnav" id="myTopnav">
-      <a href="#profile">Profile</a>
+      <router-link to="/profile">Profile</router-link>
       <a href="#notification">Notification</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
