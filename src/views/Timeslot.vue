@@ -5,37 +5,80 @@
     <h1>Timeslot</h1>
     <h4>Please select a booking day and time from below-</h4>
 
-    <!-- A simple button -->
-    <button>Back</button>
+    <div>
+  <b-button-toolbar key-nav aria-label="Toolbar with button groups">
+    <b-button-group class="mx-1">
+    </b-button-group>
+    <b-button-group class="mx-1">
+    <b-row>
+    <b-col>
+      <b-button>&lsaquo;</b-button>
+      </b-col>
+    <b-col>
+      <b-button>Monday</b-button>
+      </b-col>
+      <b-col>
+      <b-button>Tuesday</b-button>
+      </b-col>
+      <b-col>
+      <b-button>Wednesday</b-button>
+      </b-col>
+      <b-col>
+      <b-button>Thursday</b-button>
+      </b-col>
+      <b-col>
+      <b-button>Friday</b-button>
+      </b-col>
+      <b-col>
+      <b-button>&rsaquo;</b-button>
+      </b-col>
+    </b-row>
+     
+    </b-button-group>
+    <b-button-group class="mx-1">
+    </b-button-group>
+  </b-button-toolbar>
+</div>
 
-    <!-- Implementation of Month view for the user      -->
-    <label for="start">Start date:</label>
 
-    <input
-      type="date"
-      id="start"
-      name="trip-start"
-      value="2018-07-22"
-      min="2018-01-01"
-      max="2018-12-31"
-    />
+<!--TODO: Implement Grid -->
+<div>
+  <b-dropdown id="dropdown-dropright" dropright text="Drop-Right" variant="primary" class="m-2">
+    <b-dropdown-item href="#">Book this timeslot</b-dropdown-item>
+  </b-dropdown>
+</div>
 
-    <!-- Implementation of week and time view for the user     -->
-    <label for="meeting-time">Choose a time for your appointment:</label>
+<b-col
+  v-for="timeslot in timeslots"
+  v-bind:key="timeslot._id">
+<TimeslotItem
+  v-bind:timeslot="timeslot"
+/>
+</b-col>
+  
 
-    <input
-      type="datetime-local"
-      id="meeting-time"
-      name="meeting-time"
-      value="2018-06-12T19:30"
-      min="2018-06-07T00:00"
-      max="2018-06-14T00:00"
-    />
+ <!-- A simple button 
+    <button>Back</button> -->
+
   </div>
 </template>
 
 <script>
-export default {}
+
+import TimeslotItem from '../components/TimeslotItem.vue'
+export default {
+  components: {
+    TimeslotItem
+  },
+
+  //Api.get('/ROUT TO BOOKING BACKEND').then((response) => {
+
+data() {
+    return {
+      timeslots: [],
+    }
+  }
+}
 </script>
 
 <style scoped>
