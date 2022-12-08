@@ -22,18 +22,17 @@ export default new Router({
       path: '/timeslot',
       name: 'timeslot',
       component: Timeslot,
-
     },
     {
       path: '/signup',
       name: 'signup',
       component: SignUp,
     },
-     {
+    {
       path: '/login',
       name: 'login',
-      component: Login
-     }, 
+      component: Login,
+    },
     {
       path: '/profile',
       name: 'profile',
