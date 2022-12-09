@@ -1,51 +1,58 @@
 <template>
-  <form>
+  <form @submit.prevent="submitHandler">
     <div>
       <label>firstName</label>
-      <input type="firstName" v-model="firstName" placeholder="FirstNAme" />
+      <input
+        type="firstName"
+        v-model="form.firstName"
+        placeholder="FirstNAme"
+      />
     </div>
 
     <div>
       <label>lasttName</label>
-      <input type="lastName" v-model="lastName" placeholder="LastName" />
+      <input type="lastName" v-model="form.lastName" placeholder="LastName" />
     </div>
 
     <div>
       <label>SSN</label>
-      <input type="SSN" v-model="SSN" placeholder="SSN" />
+      <input type="SSN" v-model="form.SSN" placeholder="SSN" />
     </div>
 
     <div>
       <label>phoneNumber</label>
       <input
         type="phoneNumber"
-        v-model="phoneNumber"
+        v-model="form.phoneNumber"
         placeholder="PhoneNumber"
       />
     </div>
 
     <div>
       <label>email</label>
-      <input type="email" v-model="email" placeholder="Email" />
+      <input type="email" v-model="form.email" placeholder="Email" />
     </div>
 
     <div>
       <label>password</label>
-      <input type="password" v-model="password" placeholder="Password" />
+      <input type="password" v-model="form.password" placeholder="Password" />
     </div>
 
     <div>
       <label>confirmPassword</label>
       <input
-        type="confirmPassword"
-        v-model="confirmPassword"
+        type="password"
+        v-model="form.confirmPassword"
         placeholder="ConfirmPassword"
       />
     </div>
+    <button type="submit">Create Account</button>
   </form>
 </template>
 
 <script>
+import { API } from '../config/api'
+
 export default {
   name: 'Signup',
   data: function () {
@@ -63,13 +70,12 @@ export default {
   },
   methods: {
     submitHandler: async function (e) {
-      e.preventDefault()
       try {
-        await Api.post('/auth/signup', this.form)
-        this.$router.push('/login')
+        const res = await API.post('/auth/signup', this.form)
+        localStorage.setItem('token', res.data.token)
+        this.$router.push('/')
       } catch (error) {
-        const errors = error.response.data.errors
-        errors.forEach((error) => console.error(error))
+        console.error(error)
       }
     },
   },
