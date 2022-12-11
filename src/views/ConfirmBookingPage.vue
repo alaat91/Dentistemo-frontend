@@ -93,7 +93,7 @@ export default {
 
       // Trick to reset/clear native browser form validation state
       this.show = false
-      this.$router.push('/timeslot')
+      this.$router.push('/clinic')
       this.$nextTick(() => {
         this.show = true
       })

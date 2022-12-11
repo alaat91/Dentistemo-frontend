@@ -4,6 +4,7 @@
       <the-navigation></the-navigation>
     </header>
     <main>
+      <b-breadcrumb :items="items"></b-breadcrumb>
       <div class="map-container">
         <Map />
       </div>
@@ -107,6 +108,20 @@ export default {
             thursday: '10:00-18:00',
             friday: '10:00-18:00',
           },
+        },
+      ],
+      items: [
+        {
+          text: 'Home',
+          active: true,
+        },
+        {
+          text: 'TimeSlots',
+          href: '/clinic',
+        },
+        {
+          text: 'Confirmation',
+          href: '/confimBooking',
         },
       ],
     }

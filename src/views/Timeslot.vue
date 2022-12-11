@@ -2,6 +2,8 @@
 
 <template>
   <div>
+    <the-navigation></the-navigation>
+    <b-breadcrumb :items="items"></b-breadcrumb>
     <h1>Timeslot</h1>
     <h4>Please select a booking day and time from below-</h4>
 
@@ -60,10 +62,12 @@
 </template>
 
 <script>
+import TheNavigation from '../components/TheNavigation.vue'
 import TimeslotItem from '../components/TimeslotItem.vue'
 export default {
   components: {
     TimeslotItem,
+    TheNavigation,
   },
 
   //Api.get('/ROUT TO BOOKING BACKEND').then((response) => {
@@ -71,6 +75,20 @@ export default {
   data() {
     return {
       timeslots: [],
+      items: [
+        {
+          text: 'Home',
+          href: '/',
+        },
+        {
+          text: 'TimeSlots',
+          active: true,
+        },
+        {
+          text: 'Confirmation',
+          href: '/confimBooking',
+        },
+      ],
     }
   },
 }
