@@ -38,6 +38,16 @@
   </b-col>
     </b-row>
     <!-- Add input form --> 
+        <b-row>
+        <b-col cols="4">
+      </b-col>
+  <b-col cols="4">
+    <label for="emailLabel" class="name">Email</label>
+    <input type="email" class="form-control" id="emailLabel" placeholder="">
+   <!--<button type="submit" class="btn btn-success">Edit</button> --> <!--   -->
+   <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
+  </b-col>
+        </b-row>
 
 </form>
 </div>
