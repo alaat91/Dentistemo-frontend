@@ -13,6 +13,21 @@
  <input id="file" type="file" onchange="loadFile(event)"/>
  <img src="https://static.wikia.nocookie.net/the-villainess-is-a-marionette/images/3/37/Kayena_Hill_%28Present%29.png" id="output" width="200" />
 </div>
+
+<div class="info">
+<form>
+  <b-row class="lg-12">
+      <b-col cols="4">
+      </b-col>
+    <b-col cols="3">
+      <label for="firstNameLabel" class="name">First Name</label>
+      <input type="text" class="form-control" id="nameLabel" placeholder="">
+       <button type="submit" class="btn btn-success" >Edit</button> 
+    </b-col>
+    </b-row>
+    <!-- Add input form --> 
+</form>
+</div>
 </div>
 </template>
 
