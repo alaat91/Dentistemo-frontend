@@ -84,7 +84,6 @@ export default {
     onSubmit(event) {
       event.preventDefault()
       alert(JSON.stringify(this.form))
-      console.log(this.form, this.time)
     },
     onCancel() {
       // Reset our form values
