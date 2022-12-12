@@ -69,11 +69,17 @@
   </b-col>
    </b-row>
 
+
+  <b-row>
  <b-col cols="4">
       </b-col>
   <b-col cols="4">
   <button type="submit" class="btn btn-primary" id="backButton">Go back</button>
   </b-col>
+   <b-col col="4">
+    <button type="submit" class="btn btn-primary" id="logoutButton">Log out</button>
+  </b-col>
+  </b-row>
   <!-- Add code here-->
 
 </form>
