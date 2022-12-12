@@ -46,6 +46,9 @@
     <input type="email" class="form-control" id="emailLabel" placeholder="">
    <!--<button type="submit" class="btn btn-success">Edit</button> --> <!--   -->
    <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
+    <b-modal id="modal-2" title="Enter new email">
+      <input class="form-control" id="changename">
+  </b-modal>
   </b-col>
         </b-row>
 
