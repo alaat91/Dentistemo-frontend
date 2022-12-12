@@ -111,6 +111,9 @@ export default {
   position: static;
   background-color: lightskyblue ;
 }
+.name{
+  font-weight: bold;
+}
 
 label {
   display: block;
