@@ -114,6 +114,10 @@ export default {
 .name{
   font-weight: bold;
 }
+#buttonEdit{
+  margin-bottom: 20px;
+
+}
 
 label {
   display: block;
