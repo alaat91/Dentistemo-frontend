@@ -22,7 +22,10 @@
     <b-col cols="3">
       <label for="firstNameLabel" class="name">First Name</label>
       <input type="text" class="form-control" id="nameLabel" placeholder="">
-       <button type="submit" class="btn btn-success" >Edit</button> 
+       <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
+        <b-modal id="modal-0" title="Enter new first name">
+      <input class="form-control" id="changename">
+  </b-modal>
     </b-col>
     </b-row>
     <b-row >
@@ -47,7 +50,7 @@
    <!--<button type="submit" class="btn btn-success">Edit</button> --> <!--   -->
    <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
     <b-modal id="modal-2" title="Enter new email">
-      <input class="form-control" id="changename">
+      <input type="email" class="form-control" id="changename">
   </b-modal>
   </b-col>
         </b-row>
@@ -64,7 +67,7 @@
     <div> Enter old password </div>
       <input class="form-control"   type="password" id="changename">
       <div> Enter new password </div>
-      <input class="form-control"  type="password" id="changename1">
+      <input class="form-control"  type="password" id="changename1" required> 
   </b-modal>
   </b-col>
    </b-row>
