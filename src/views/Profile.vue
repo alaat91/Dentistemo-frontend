@@ -60,10 +60,15 @@
     <label for="passwordLabel" class="name">Password</label>
     <input type="password" class="form-control" id="passwordLabel" placeholder="">
    <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success">Edit</b-button>
-<!-- Add code here-->
+<b-modal id="modal-3" title="Change password">
+    <div> Enter old password </div>
+      <input class="form-control"   type="password" id="changename">
+      <div> Enter new password </div>
+      <input class="form-control"  type="password" id="changename1">
+  </b-modal>
   </b-col>
    </b-row>
-
+<!-- Add code here-->
 
 </form>
 </div>
