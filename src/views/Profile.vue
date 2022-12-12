@@ -68,7 +68,13 @@
   </b-modal>
   </b-col>
    </b-row>
-<!-- Add code here-->
+
+ <b-col cols="4">
+      </b-col>
+  <b-col cols="4">
+  <button type="submit" class="btn btn-primary" id="backButton">Go back</button>
+  </b-col>
+  <!-- Add code here-->
 
 </form>
 </div>
