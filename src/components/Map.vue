@@ -18,8 +18,8 @@ export default {
       {
         LatLng: [
           {
-            lat: 57.7198281,
-            lng: 11.9876431,
+            lat: 57.707619,
+            lng: 11.969388,
           },
         ],
         Text:
@@ -30,14 +30,38 @@ export default {
       {
         LatLng: [
           {
-            lat: 57.7098281,
-            lng: 11.9876431,
+            lat: 57.685255,
+            lng: 11.942625,
           },
         ],
         Text:
           '<h3> name of another clinic </h3>' +
           '<div>another description</div>' +
           '<button onclick="AFunction()">Button that takes you to the booking page of the specific clinic</button>',
+      },
+      {
+        LatLng: [
+          {
+            lat: 57.709872,
+            lng: 11.940386,
+          },
+        ],
+        Text:
+          '<h3> name of clinic </h3>' +
+          '<div> maybe some description </div>' +
+          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
+      },
+      {
+        LatLng: [
+          {
+            lat: 57.694723,
+            lng: 11.991153,
+          },
+        ],
+        Text:
+          '<h3> name of clinic </h3>' +
+          '<div> maybe some description </div>' +
+          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
       },
     ]
     let map = ref(null)

@@ -4,7 +4,6 @@
 
 <script>
 export default {
-  name: 'clinics',
   //props: ['clinicName', 'clinicsAddress', 'clinicsOwner'],
 }
 </script>

@@ -4,19 +4,32 @@
       <the-navigation></the-navigation>
     </header>
     <main>
+      <b-breadcrumb :items="items"></b-breadcrumb>
       <div class="map-container">
         <Map />
       </div>
-      <section></section>
+      <section>
+        <ul>
+          <h4>Available Clinics</h4>
+          <clinics-list
+            v-for="dentist in dentists"
+            :key="dentist.id"
+            :clinicId="dentist.id"
+            :clinicName="dentist.name"
+          ></clinics-list>
+        </ul>
+      </section>
     </main>
   </div>
 </template>
 
 <script>
-import Map from './Map.vue'
-import TheNavigation from './TheNavigation.vue'
+import ClinicsList from '../components/ClinicsList.vue'
+//import ClinicsList from '../components/ClinicsList.vue'
+import Map from '../components/Map.vue'
+import TheNavigation from '../components/TheNavigation.vue'
 export default {
-  components: { Map, TheNavigation },
+  components: { Map, TheNavigation, ClinicsList },
   data() {
     return {
       dentists: [
@@ -97,6 +110,25 @@ export default {
           },
         },
       ],
+      items: [
+        {
+          text: 'Home',
+          active: true,
+        },
+        {
+          text: 'TimeSlots',
+          href: '/clinic',
+        },
+        {
+          text: 'Confirmation',
+          href: '/confimBooking',
+        },
+      ],
+    }
+  },
+  provide() {
+    return {
+      dentists: this.dentists,
     }
   },
 }

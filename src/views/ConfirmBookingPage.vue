@@ -5,7 +5,8 @@
     <h2>Your booking details:</h2>
     <div>
       <p>
-        You have booked time at {{ booking.clinic }} at {{ booking.address }}
+        You are making an appointment at {{ booking.clinic }} at
+        {{ booking.address }}
       </p>
       <p>Welcome to us at {{ booking.data }} at {{ booking.time }}</p>
     </div>
@@ -70,7 +71,7 @@ export default {
         },
         {
           text: 'TimeSlots',
-          href: '/timeslots',
+          href: '/clinic',
         },
         {
           text: 'Confirmation',
@@ -83,6 +84,7 @@ export default {
     onSubmit(event) {
       event.preventDefault()
       alert(JSON.stringify(this.form))
+      console.log(this.form, this.time)
     },
     onCancel() {
       // Reset our form values
@@ -91,7 +93,7 @@ export default {
 
       // Trick to reset/clear native browser form validation state
       this.show = false
-      this.$router.push('/timeslots')
+      this.$router.push('/clinic')
       this.$nextTick(() => {
         this.show = true
       })
