@@ -80,8 +80,6 @@
     <button type="submit" class="btn btn-primary" id="logoutButton">Log out</button>
   </b-col>
   </b-row>
-  <!-- Add code here-->
-
 </form>
 </div>
 </div>
@@ -104,6 +102,15 @@ export default {
 
 
 <style scoped>
+.header {
+  font-family: sans-serif;
+  text-align: center;
+  text-shadow: 4px 4px 8px white;
+  font-weight: bold;
+  padding-left: 3px;
+  position: static;
+  background-color: lightskyblue ;
+}
 
 label {
   display: block;
