@@ -37,7 +37,7 @@
   </b-modal>
   </b-col>
     </b-row>
-    <!-- Add input form --> 
+    
         <b-row>
         <b-col cols="4">
       </b-col>
@@ -51,6 +51,19 @@
   </b-modal>
   </b-col>
         </b-row>
+    <!-- Add input form --> 
+     <b-row>
+          <b-col cols="4"> 
+          </b-col>
+  <b-col cols="4">
+
+    <label for="passwordLabel" class="name">Password</label>
+    <input type="password" class="form-control" id="passwordLabel" placeholder="">
+   <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success">Edit</b-button>
+<!-- Add code here-->
+  </b-col>
+   </b-row>
+
 
 </form>
 </div>
