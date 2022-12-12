@@ -1,18 +1,21 @@
 <template>
-  <form>
+  <form @submit.prevent="submitHandler">
     <div>
       <label>email</label>
-      <input type="email" v-model="email" placeholder="Email" />
+      <input type="email" v-model="form.email" placeholder="Email" />
     </div>
 
     <div>
       <label>password</label>
-      <input type="password" v-model="password" placeholder="Password" />
+      <input type="password" v-model="form.password" placeholder="Password" />
     </div>
+    <button type="submit">Login</button>
   </form>
 </template>
 
 <script>
+import { API } from '../config/api'
+
 export default {
   name: 'Login',
   data: function () {
@@ -25,13 +28,12 @@ export default {
   },
   methods: {
     submitHandler: async function (e) {
-      e.preventDefault()
       try {
-        await Api.post('/auth/login', this.form)
+        const res = await API.post('/auth/login', this.form)
+        localStorage.setItem('token', res.data.token)
         this.$router.push('/')
       } catch (error) {
-        const errors = error.response.data.errors
-        errors.forEach((error) => console.error(error))
+        console.log(error)
       }
     },
   },
