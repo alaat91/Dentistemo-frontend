@@ -32,6 +32,9 @@
       <label for="lastNameLabel" class="name">Last Name</label>
       <input  type="text" class="form-control" id="lastNameLabel" placeholder="">
     <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
+     <b-modal id="modal-1" title="Enter new last name">
+      <input class="form-control" id="changename">
+  </b-modal>
   </b-col>
     </b-row>
     <!-- Add input form --> 
