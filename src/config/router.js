@@ -6,6 +6,7 @@ import Login from '../views/Login.vue'
 import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
+import Landing from '../views/Landing.vue'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/confimBooking',
       name: 'confirm',
       component: ConfirmBookingPage,
+    },
+    {
+      path: '/landing',
+      name: 'landing',
+      component: Landing,
     },
   ],
 })
