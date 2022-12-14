@@ -12,56 +12,81 @@
   </div>
 
     <div>
-      <b-button-toolbar key-nav aria-label="Toolbar with button groups">
-        <b-button-group class="mx-1"> </b-button-group>
-        <b-button-group class="mx-1">
-          <b-row>
-            <b-col>
-              <b-button>&lsaquo;</b-button>
-            </b-col>
-            <b-col>
-              <b-button>Monday</b-button>
-            </b-col>
-            <b-col>
-              <b-button>Tuesday</b-button>
-            </b-col>
-            <b-col>
-              <b-button>Wednesday</b-button>
-            </b-col>
-            <b-col>
-              <b-button>Thursday</b-button>
-            </b-col>
-            <b-col>
-              <b-button>Friday</b-button>
-            </b-col>
-            <b-col>
-              <b-button>&rsaquo;</b-button>
-            </b-col>
-          </b-row>
-        </b-button-group>
-        <b-button-group class="mx-1"> </b-button-group>
-      </b-button-toolbar>
-    </div>
-
-    <!--TODO: Implement Grid -->
-    <div>
-      <b-dropdown
-        id="dropdown-dropright"
-        dropright
-        text="Drop-Right"
-        variant="primary"
-        class="m-2"
-      >
-        <b-dropdown-item href="#">Book this timeslot</b-dropdown-item>
-      </b-dropdown>
+      <b-row cols="12" id="toprow">
+        <b-col cols="1">
+          <b-button>&lsaquo;</b-button>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Monday</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Tuesday</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Wednesday</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Thursday</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Friday</div>
+        </b-col>
+        <b-col cols="1">
+          <b-button>&rsaquo;</b-button>
+        </b-col>
+      </b-row>
     </div>
 
     <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
       <TimeslotItem v-bind:timeslot="timeslot" />
     </b-col>
 
-    <!-- A simple button 
-    <button>Back</button> -->
+    <b-row cols="12">
+      <!-- This b-col is only used to help with alignment-->
+      <b-col cols="1"> </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <!-- This b-col is only used to help with alignment-->
+      <b-col cols="1"> </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -108,6 +133,20 @@ label {
   font: 1rem 'Fira Sans', sans-serif;
 }
 
+#toprow {
+  background-color: lightblue;
+}
+.timeslot {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 220px;
+  max-width: 220px;
+  /* Setting the size + Setting the max size means all 
+  timeslots are the same size and not relative to it's content */
+}
+.Daylabel {
+  font-weight: bold;
+}
 input,
 label {
   margin: 0.4rem 0;
