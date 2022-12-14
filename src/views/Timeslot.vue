@@ -41,24 +41,44 @@
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark">10:00-10:30 </b-button>
-        <b-button pill variant="outline-dark">10:30-11:00 </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark">10:00-10:30 </b-button>
-        <b-button pill variant="outline-dark">10:30-11:00 </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark">10:00-10:30 </b-button>
-        <b-button pill variant="outline-dark">10:30-11:00 </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark">10:00-10:30 </b-button>
-        <b-button pill variant="outline-dark">10:30-11:00 </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark">10:00-10:30 </b-button>
-        <b-button pill variant="outline-dark">10:30-11:00 </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
       </b-col>
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
@@ -109,7 +129,14 @@ label {
 #toprow {
   background-color: lightblue;
 }
-
+.timeslot {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 220px;
+  max-width: 220px;
+  /* Setting the size + Setting the max size means all 
+  timeslots are the same size and not relative to it's content */
+}
 input,
 label {
   margin: 0.4rem 0;
