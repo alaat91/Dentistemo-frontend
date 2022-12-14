@@ -5,7 +5,6 @@
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
     <h1>Timeslot</h1>
-    <h4>Please select a booking date and time from below-</h4>
     <div>
     <label for="example-datepicker">Choose a date</label>
     <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
