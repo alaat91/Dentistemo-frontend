@@ -13,19 +13,19 @@
           <b-button>&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <div>Monday</div>
+          <div class="Daylabel">Monday</div>
         </b-col>
         <b-col cols="2">
-          <div>Tuesday</div>
+          <div class="Daylabel">Tuesday</div>
         </b-col>
         <b-col cols="2">
-          <div>Wednesday</div>
+          <div class="Daylabel">Wednesday</div>
         </b-col>
         <b-col cols="2">
-          <div>Thursday</div>
+          <div class="Daylabel">Thursday</div>
         </b-col>
         <b-col cols="2">
-          <div>Friday</div>
+          <div class="Daylabel">Friday</div>
         </b-col>
         <b-col cols="1">
           <b-button>&rsaquo;</b-button>
@@ -136,6 +136,9 @@ label {
   max-width: 220px;
   /* Setting the size + Setting the max size means all 
   timeslots are the same size and not relative to it's content */
+}
+.Daylabel {
+  font-weight: bold;
 }
 input,
 label {
