@@ -72,6 +72,8 @@ export default {
       map.value = new google.maps.Map(mapDiv.value, {
         center: { lat: 57.7098281, lng: 11.9776431 },
         zoom: 13,
+        streetViewControl: false,
+        fullscreenControl: false,
         mapId: '400e49ec652bde74',
       })
       const infoWindow = new google.maps.InfoWindow()
