@@ -11,7 +11,7 @@
  <span>Change Image</span>
  </label>
  <input id="file" type="file" onchange="loadFile(event)"/>
- <img src="https://static.wikia.nocookie.net/the-villainess-is-a-marionette/images/3/37/Kayena_Hill_%28Present%29.png" id="output" width="200" />
+ <img src="" id="output" width="200" />
 </div>
 
 <div class="info">
@@ -72,14 +72,16 @@
   </b-col>
    </b-row>
 
-
-  <b-row>
+ <b-row>
  <b-col cols="4">
       </b-col>
-  <b-col cols="4">
+  <b-col cols="2">
   <button type="submit" class="btn btn-primary" id="backButton">Go back</button>
   </b-col>
-   <b-col col="4">
+  <b-col cols="2">
+  <button type="submit" class="btn btn-danger" id="deleteButton">Delete</button>
+  </b-col>
+   <b-col col="2">
     <button type="submit" class="btn btn-primary" id="logoutButton">Log out</button>
   </b-col>
   </b-row>
