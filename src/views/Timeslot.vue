@@ -17,10 +17,12 @@
     <div>
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button>&lsaquo;</b-button>
+          <b-button @click="lastWeek(currentWeek[0])">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <div>Monday</div>
+          <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
+
+          <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Tuesday</div>
@@ -35,7 +37,7 @@
           <div class="Daylabel">Friday</div>
         </b-col>
         <b-col cols="1">
-          <b-button>&rsaquo;</b-button>
+          <b-button @click="nextWeek(currentWeek[0])">&rsaquo;</b-button>
         </b-col>
       </b-row>
     </div>
@@ -120,11 +122,31 @@ export default {
       }
       return dates
     },
+    nextWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return (this.currentWeek = dates)
+    },
+
+    lastWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() + 6) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return (this.currentWeek = dates)
+    },
   },
   data() {
     return {
       currentWeek: [],
-      currentDate: [],
       timeslots: [],
       items: [
         {
