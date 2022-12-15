@@ -15,13 +15,14 @@
     </div>
 
     <div>
+      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
         <b-col cols="1">
           <b-button @click="lastWeek(currentWeek[0])">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
           <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
-
+          <!--TODO: Add the date of each weekday below the weekday div-->
           <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
         </b-col>
         <b-col cols="2">
@@ -49,6 +50,7 @@
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
+      <!-- TODO: Remove dummy data and import timeslots from backend-->
       <b-col cols="2">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
