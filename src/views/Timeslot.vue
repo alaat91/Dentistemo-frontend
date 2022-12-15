@@ -50,7 +50,7 @@
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
-      <!-- TODO: Remove dummy data and import timeslots from backend-->
+      <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
@@ -110,6 +110,8 @@ export default {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
+
+    // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
   },
 
   methods: {
