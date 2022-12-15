@@ -22,7 +22,6 @@
         </b-col>
         <b-col cols="2">
           <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
-          <!--TODO: Add the date of each weekday below the weekday div-->
           <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
         </b-col>
         <b-col cols="2">
@@ -43,6 +42,27 @@
       </b-row>
     </div>
 
+    <div>
+      <b-row cols="12">
+        <b-col cols="1"> </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">{{ this.currentDates[0] }}</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">{{ this.currentDates[1] }}</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">{{ this.currentDates[2] }}</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">{{ this.currentDates[3] }}</div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">{{ this.currentDates[4] }}</div>
+        </b-col>
+        <b-col cols="1"> </b-col>
+      </b-row>
+    </div>
     <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
       <TimeslotItem v-bind:timeslot="timeslot" />
     </b-col>
@@ -110,7 +130,6 @@ export default {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
-
     // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
   },
 
@@ -120,9 +139,16 @@ export default {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
       )
+      this.currentDates[0] = firstDay.getDate
       const dates = [firstDay]
+      var str = firstDay.toDateString().substring(8, 10)
+      console.log(str)
+      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+        str = dates[i].toDateString().substring(8, 10)
+        console.log(str)
+        this.currentDates[i] = str
       }
       return dates
     },
@@ -132,8 +158,12 @@ export default {
         date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
+      var str = firstDay.toDateString().substring(8, 10)
+      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+        str = dates[i].toDateString().substring(8, 10)
+        this.currentDates[i] = str
       }
       return (this.currentWeek = dates)
     },
@@ -143,8 +173,12 @@ export default {
         date.getTime() - (date.getDay() + 6) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
+      var str = firstDay.toDateString().substring(8, 10)
+      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+        str = dates[i].toDateString().substring(8, 10)
+        this.currentDates[i] = str
       }
       return (this.currentWeek = dates)
     },
@@ -152,6 +186,7 @@ export default {
   data() {
     return {
       currentWeek: [],
+      currentDates: [],
       timeslots: [],
       items: [
         {
