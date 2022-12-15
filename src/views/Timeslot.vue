@@ -6,13 +6,12 @@
     <b-breadcrumb :items="items"></b-breadcrumb>
     <h1>Timeslot</h1>
     <h4>Please select a booking date and time from below-</h4>
+    <!-- Month view -->
     <div>
-      <label for="example-datepicker">Choose a date</label>
-      <b-form-datepicker
-        id="example-datepicker"
-        class="mb-2"
-      ></b-form-datepicker>
-    </div>
+    <b-form-datepicker v-model="value" :date-disabled-fn="dateDisabled" locale="en">
+    </b-form-datepicker>
+  </div>
+
 
     <div>
       <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
@@ -148,6 +147,15 @@ export default {
       }
       return (this.currentWeek = dates)
     },
+    dateDisabled(ymd, date) {
+        // Disables weekends (Sunday = `0`, Saturday = `6`) and
+        // disables days that fall on the for example 13th of the month
+        const weekday = date.getDay()
+        const day = date.getDate()
+        // Returns `true` if the date should be disabled   // || day === 13 
+        return weekday === 0 || weekday === 6  
+      },
+
   },
   data() {
     return {
@@ -167,6 +175,7 @@ export default {
           href: '/confimBooking',
         },
       ],
+      value: '',
     }
   },
 }
