@@ -7,9 +7,12 @@
     <h1>Timeslot</h1>
     <h4>Please select a booking date and time from below-</h4>
     <div>
-    <label for="example-datepicker">Choose a date</label>
-    <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
-  </div>
+      <label for="example-datepicker">Choose a date</label>
+      <b-form-datepicker
+        id="example-datepicker"
+        class="mb-2"
+      ></b-form-datepicker>
+    </div>
 
     <div>
       <b-row cols="12" id="toprow">
@@ -17,7 +20,7 @@
           <b-button>&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">Monday</div>
+          <div>Monday</div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Tuesday</div>
@@ -99,10 +102,29 @@ export default {
     TheNavigation,
   },
 
-  //Api.get('/ROUT TO BOOKING BACKEND').then((response) => {
+  mounted() {
+    // new Date() creates a date object that stores the date and time
+    // of the moment the Date object was created
+    this.currentWeek = this.getWeek(new Date())
+  },
 
+  methods: {
+    // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
+    getWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return dates
+    },
+  },
   data() {
     return {
+      currentWeek: [],
+      currentDate: [],
       timeslots: [],
       items: [
         {
@@ -116,9 +138,6 @@ export default {
         {
           text: 'Confirmation',
           href: '/confimBooking',
-        },
-        {
-          value: ''
         },
       ],
     }
