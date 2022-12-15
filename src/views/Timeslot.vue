@@ -7,17 +7,23 @@
     <h1>Timeslot</h1>
     <h4>Please select a booking date and time from below-</h4>
     <div>
-    <label for="example-datepicker">Choose a date</label>
-    <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
-  </div>
+      <label for="example-datepicker">Choose a date</label>
+      <b-form-datepicker
+        id="example-datepicker"
+        class="mb-2"
+      ></b-form-datepicker>
+    </div>
 
     <div>
+      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button>&lsaquo;</b-button>
+          <b-button @click="lastWeek(currentWeek[0])">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">Monday</div>
+          <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
+          <!--TODO: Add the date of each weekday below the weekday div-->
+          <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Tuesday</div>
@@ -32,7 +38,7 @@
           <div class="Daylabel">Friday</div>
         </b-col>
         <b-col cols="1">
-          <b-button>&rsaquo;</b-button>
+          <b-button @click="nextWeek(currentWeek[0])">&rsaquo;</b-button>
         </b-col>
       </b-row>
     </div>
@@ -44,6 +50,7 @@
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
+      <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
@@ -99,10 +106,52 @@ export default {
     TheNavigation,
   },
 
-  //Api.get('/ROUT TO BOOKING BACKEND').then((response) => {
+  mounted() {
+    // new Date() creates a date object that stores the date and time
+    // of the moment the Date object was created
+    this.currentWeek = this.getWeek(new Date())
 
+    // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
+  },
+
+  methods: {
+    // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
+    getWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return dates
+    },
+    // TODO: Improve logic of nextWeek and lastWeek as there are unnecessary steps
+    nextWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return (this.currentWeek = dates)
+    },
+
+    lastWeek(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() + 6) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      return (this.currentWeek = dates)
+    },
+  },
   data() {
     return {
+      currentWeek: [],
       timeslots: [],
       items: [
         {
@@ -116,9 +165,6 @@ export default {
         {
           text: 'Confirmation',
           href: '/confimBooking',
-        },
-        {
-          value: ''
         },
       ],
     }
