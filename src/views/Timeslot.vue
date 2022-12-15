@@ -7,10 +7,12 @@
     <h1>Timeslot</h1>
     <h4>Please select a booking date and time from below-</h4>
     <div>
-      <label for="example-datepicker">Choose a date</label>
+      <label>Choose a date</label>
       <b-form-datepicker
-        id="example-datepicker"
         class="mb-2"
+        value-as-date
+        @input="calendarChange(calendarDate)"
+        v-model="calendarDate"
       ></b-form-datepicker>
     </div>
 
@@ -142,17 +144,16 @@ export default {
       this.currentDates[0] = firstDay.getDate
       const dates = [firstDay]
       var str = firstDay.toDateString().substring(8, 10)
-      console.log(str)
       this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
         str = dates[i].toDateString().substring(8, 10)
-        console.log(str)
         this.currentDates[i] = str
       }
       return dates
     },
-    // TODO: Improve logic of nextWeek and lastWeek as there are unnecessary steps
+    // TODO: Improve logic of nextWeek, lastWeek and calendarChange
+    // as there are unnecessary steps that can be removed
     nextWeek(date) {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
@@ -182,12 +183,28 @@ export default {
       }
       return (this.currentWeek = dates)
     },
+    calendarChange(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
+      )
+      this.currentDates[0] = firstDay.getDate
+      const dates = [firstDay]
+      var str = firstDay.toDateString().substring(8, 10)
+      this.currentDates[0] = str
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+        str = dates[i].toDateString().substring(8, 10)
+        this.currentDates[i] = str
+      }
+      this.currentWeek = dates
+    },
   },
   data() {
     return {
       currentWeek: [],
       currentDates: [],
       timeslots: [],
+      calendarDate: new Date(),
       items: [
         {
           text: 'Home',
