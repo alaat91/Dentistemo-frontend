@@ -126,6 +126,7 @@ export default {
       }
       return dates
     },
+    // TODO: Improve logic of nextWeek and lastWeek as there are unnecessary steps
     nextWeek(date) {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
