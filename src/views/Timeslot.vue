@@ -20,7 +20,7 @@
       <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button @click="lastWeek(currentWeek[0])">&lsaquo;</b-button>
+          <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
           <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
@@ -39,7 +39,7 @@
           <div class="Daylabel">Friday</div>
         </b-col>
         <b-col cols="1">
-          <b-button @click="nextWeek(currentWeek[0])">&rsaquo;</b-button>
+          <b-button @click="nextWeek()">&rsaquo;</b-button>
         </b-col>
       </b-row>
     </div>
@@ -154,9 +154,10 @@ export default {
     },
     // TODO: Improve logic of nextWeek, lastWeek and calendarChange
     // as there are unnecessary steps that can be removed
-    nextWeek(date) {
+    nextWeek() {
       const firstDay = new Date(
-        date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
+        this.currentWeek[0].getTime() -
+          (this.currentWeek[0].getDay() - 8) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
       var str = firstDay.toDateString().substring(8, 10)
@@ -166,12 +167,13 @@ export default {
         str = dates[i].toDateString().substring(8, 10)
         this.currentDates[i] = str
       }
-      return (this.currentWeek = dates)
+      this.currentWeek = dates
     },
 
-    lastWeek(date) {
+    lastWeek() {
       const firstDay = new Date(
-        date.getTime() - (date.getDay() + 6) * 24 * 60 * 60 * 1000
+        this.currentWeek[0].getTime() -
+          (this.currentWeek[0].getDay() + 6) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
       var str = firstDay.toDateString().substring(8, 10)
@@ -181,13 +183,12 @@ export default {
         str = dates[i].toDateString().substring(8, 10)
         this.currentDates[i] = str
       }
-      return (this.currentWeek = dates)
+      this.currentWeek = dates
     },
     calendarChange(date) {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
       )
-      this.currentDates[0] = firstDay.getDate
       const dates = [firstDay]
       var str = firstDay.toDateString().substring(8, 10)
       this.currentDates[0] = str
