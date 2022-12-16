@@ -52,27 +52,27 @@
         <b-col cols="1"> </b-col>
         <b-col cols="2">
           <div class="Daylabel">
-            {{ currentWeek[0].getDate() }}
+            {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">
-            {{ currentWeek[1].getDate() }}
+            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">
-            {{ currentWeek[2].getDate() }}
+            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">
-            {{ currentWeek[3].getDate() }}
+            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">
-            {{ currentWeek[4].getDate() }}
+            {{ currentWeek[4] ? currentWeek[4].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="1"> </b-col>
