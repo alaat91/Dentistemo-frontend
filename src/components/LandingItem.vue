@@ -4,7 +4,10 @@
       <h6 id="sub-header">"A good life starts with good teeth"-Dr.Shariq</h6>
       <b-row>
              <router-link to="/login" class="login">Login</router-link>
-           </b-row>
+     </b-row>
+     <b-row>
+             <router-link to="/signup" class="signup">Signup</router-link>
+     </b-row>
     </div>
 </template>
 
