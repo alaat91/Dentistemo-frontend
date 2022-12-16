@@ -14,7 +14,7 @@
         value-as-date
         @input="calendarChange(calendarDate)"
         v-model="calendarDate"
-        :date-disabled-fn="dateDisabled" 
+        :date-disabled-fn="dateDisabled"
         locale="en"
       ></b-form-datepicker>
     </div>
@@ -27,7 +27,7 @@
         </b-col>
         <b-col cols="2">
           <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
-          <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
+          <div class="Daylabel">Monday</div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Tuesday</div>
@@ -51,19 +51,29 @@
       <b-row cols="12" id="toprow">
         <b-col cols="1"> </b-col>
         <b-col cols="2">
-          <div class="Daylabel">{{ this.currentDates[0] }}</div>
+          <div class="Daylabel">
+            {{ currentWeek[0].getDate() }}
+          </div>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">{{ this.currentDates[1] }}</div>
+          <div class="Daylabel">
+            {{ currentWeek[1].getDate() }}
+          </div>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">{{ this.currentDates[2] }}</div>
+          <div class="Daylabel">
+            {{ currentWeek[2].getDate() }}
+          </div>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">{{ this.currentDates[3] }}</div>
+          <div class="Daylabel">
+            {{ currentWeek[3].getDate() }}
+          </div>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">{{ this.currentDates[4] }}</div>
+          <div class="Daylabel">
+            {{ currentWeek[4].getDate() }}
+          </div>
         </b-col>
         <b-col cols="1"> </b-col>
       </b-row>
@@ -144,14 +154,9 @@ export default {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
       )
-      this.currentDates[0] = firstDay.getDate
       const dates = [firstDay]
-      var str = firstDay.toDateString().substring(8, 10)
-      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
-        str = dates[i].toDateString().substring(8, 10)
-        this.currentDates[i] = str
       }
       return dates
     },
@@ -163,12 +168,8 @@ export default {
           (this.currentWeek[0].getDay() - 8) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
-      var str = firstDay.toDateString().substring(8, 10)
-      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
-        str = dates[i].toDateString().substring(8, 10)
-        this.currentDates[i] = str
       }
       this.currentWeek = dates
     },
@@ -179,12 +180,8 @@ export default {
           (this.currentWeek[0].getDay() + 6) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
-      var str = firstDay.toDateString().substring(8, 10)
-      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
-        str = dates[i].toDateString().substring(8, 10)
-        this.currentDates[i] = str
       }
       this.currentWeek = dates
     },
@@ -193,29 +190,23 @@ export default {
         date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
-      var str = firstDay.toDateString().substring(8, 10)
-      this.currentDates[0] = str
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
-        str = dates[i].toDateString().substring(8, 10)
-        this.currentDates[i] = str
       }
       this.currentWeek = dates
     },
     dateDisabled(ymd, date) {
-        // Disables weekends (Sunday = `0`, Saturday = `6`) and
-        // disables days that fall on the for example 13th of the month
-        const weekday = date.getDay()
-        const day = date.getDate()
-        // Returns `true` if the date should be disabled   // || day === 13 
-        return weekday === 0 || weekday === 6  
-      },
-
+      // Disables weekends (Sunday = `0`, Saturday = `6`) and
+      // disables days that fall on the for example 13th of the month
+      const weekday = date.getDay()
+      const day = date.getDate()
+      // Returns `true` if the date should be disabled   // || day === 13
+      return weekday === 0 || weekday === 6
+    },
   },
   data() {
     return {
       currentWeek: [],
-      currentDates: [],
       timeslots: [],
       calendarDate: new Date(),
       items: [
