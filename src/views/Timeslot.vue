@@ -18,7 +18,13 @@
         locale="en"
       ></b-form-datepicker>
     </div>
-
+    <b-row>
+      <div id="dateRange">
+        {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}-{{
+          currentWeek[4] ? currentWeek[4].getDate() : 0
+        }}
+      </div>
+    </b-row>
     <div>
       <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
@@ -26,7 +32,6 @@
           <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
           <div class="Daylabel">Monday</div>
         </b-col>
         <b-col cols="2">
@@ -239,12 +244,17 @@ label {
 #toprow {
   background-color: lightblue;
 }
+#dateRange {
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
 .timeslot {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 220px;
   max-width: 220px;
-  /* Setting the size + Setting the max size means all 
+  /* Setting the size + Setting the max size means all
   timeslots are the same size and not relative to it's content */
 }
 .Daylabel {
