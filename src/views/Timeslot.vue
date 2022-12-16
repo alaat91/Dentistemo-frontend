@@ -8,21 +8,31 @@
     <h4>Please select a booking date and time from below-</h4>
     <!-- Month view -->
     <div>
-    <b-form-datepicker v-model="value" :date-disabled-fn="dateDisabled" locale="en">
-    </b-form-datepicker>
-  </div>
-
-
+      <label>Choose a date</label>
+      <b-form-datepicker
+        class="mb-2"
+        value-as-date
+        @input="calendarChange(calendarDate)"
+        v-model="calendarDate"
+        :date-disabled-fn="dateDisabled"
+        locale="en"
+      ></b-form-datepicker>
+    </div>
+    <b-row>
+      <div id="dateRange">
+        {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}-{{
+          currentWeek[4] ? currentWeek[4].getDate() : 0
+        }}
+      </div>
+    </b-row>
     <div>
       <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button @click="lastWeek(currentWeek[0])">&lsaquo;</b-button>
+          <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
-          <!-- {{ currentWeek[0] }} is for testing to see if the array gets updated-->
-          <!--TODO: Add the date of each weekday below the weekday div-->
-          <div class="Daylabel">Monday {{ currentWeek[0] }}</div>
+          <div class="Daylabel">Monday</div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Tuesday</div>
@@ -37,11 +47,42 @@
           <div class="Daylabel">Friday</div>
         </b-col>
         <b-col cols="1">
-          <b-button @click="nextWeek(currentWeek[0])">&rsaquo;</b-button>
+          <b-button @click="nextWeek()">&rsaquo;</b-button>
         </b-col>
       </b-row>
     </div>
 
+    <div>
+      <b-row cols="12" id="toprow">
+        <b-col cols="1"> </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">
+            {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">
+            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">
+            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">
+            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">
+            {{ currentWeek[4] ? currentWeek[4].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="1"> </b-col>
+      </b-row>
+    </div>
     <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
       <TimeslotItem v-bind:timeslot="timeslot" />
     </b-col>
@@ -109,7 +150,6 @@ export default {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
-
     // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
   },
 
@@ -125,42 +165,55 @@ export default {
       }
       return dates
     },
-    // TODO: Improve logic of nextWeek and lastWeek as there are unnecessary steps
-    nextWeek(date) {
+    // TODO: Improve logic of nextWeek, lastWeek and calendarChange
+    // as there are unnecessary steps that can be removed
+    nextWeek() {
       const firstDay = new Date(
-        date.getTime() - (date.getDay() - 8) * 24 * 60 * 60 * 1000
+        this.currentWeek[0].getTime() -
+          (this.currentWeek[0].getDay() - 8) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
       }
-      return (this.currentWeek = dates)
+      this.currentWeek = dates
     },
 
-    lastWeek(date) {
+    lastWeek() {
       const firstDay = new Date(
-        date.getTime() - (date.getDay() + 6) * 24 * 60 * 60 * 1000
+        this.currentWeek[0].getTime() -
+          (this.currentWeek[0].getDay() + 6) * 24 * 60 * 60 * 1000
       )
       const dates = [firstDay]
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
       }
-      return (this.currentWeek = dates)
+      this.currentWeek = dates
+    },
+    calendarChange(date) {
+      const firstDay = new Date(
+        date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
+      )
+      const dates = [firstDay]
+      for (let i = 1; i < 5; i++) {
+        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      }
+      this.currentWeek = dates
     },
     dateDisabled(ymd, date) {
-        // Disables weekends (Sunday = `0`, Saturday = `6`) and
-        // disables days that fall on the for example 13th of the month
-        const weekday = date.getDay()
-        const day = date.getDate()
-        // Returns `true` if the date should be disabled   // || day === 13 
-        return weekday === 0 || weekday === 6  
-      },
-
+      // Disables weekends (Sunday = `0`, Saturday = `6`) and
+      // disables days that fall on the for example 13th of the month
+      const weekday = date.getDay()
+      const day = date.getDate()
+      // Returns `true` if the date should be disabled   // || day === 13
+      return weekday === 0 || weekday === 6
+    },
   },
   data() {
     return {
       currentWeek: [],
       timeslots: [],
+      calendarDate: new Date(),
       items: [
         {
           text: 'Home',
@@ -191,12 +244,17 @@ label {
 #toprow {
   background-color: lightblue;
 }
+#dateRange {
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
 .timeslot {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 220px;
   max-width: 220px;
-  /* Setting the size + Setting the max size means all 
+  /* Setting the size + Setting the max size means all
   timeslots are the same size and not relative to it's content */
 }
 .Daylabel {
