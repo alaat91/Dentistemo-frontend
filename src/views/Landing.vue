@@ -1,7 +1,7 @@
 <template>
 <body>
 <div>
-   
+  <b-img src="https://static.showit.co/1200/NVyu1HUlT1i7YcsOdIg2Sg/84619/fmc-dental-clinic-background.png" class="min-vh-100"  fluid-grow alt="Responsive image"></b-img>
 </div>
 </body>
 </template>
