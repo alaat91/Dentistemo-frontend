@@ -1,8 +1,10 @@
 <template>
 <body>
-<div class="container">
-   <h1>Welcome to Dentistemo</h1>
+   <b-container fluid class="container1">
+<div>
+  <b-img src="https://static.showit.co/1200/NVyu1HUlT1i7YcsOdIg2Sg/84619/fmc-dental-clinic-background.png" class="min-vh-100"  fluid-grow alt="Responsive image"></b-img>
 </div>
+   </b-container>
 </body>
 </template>
 
@@ -15,8 +17,8 @@
    height: 100%;
   
 }
-.body{
-   background-image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1768&q=80";
-   padding-bottom: 100%;
+.min-vh-100{
+  opacity: 0.9;
+  
 }
 </style>
