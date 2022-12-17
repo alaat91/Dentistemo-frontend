@@ -15,6 +15,7 @@
         @input="calendarChange(calendarDate)"
         v-model="calendarDate"
         :date-disabled-fn="dateDisabled"
+        start-weekday="1"
         locale="en"
       ></b-form-datepicker>
     </div>
