@@ -33,4 +33,40 @@ export default {}
   font-style: italic;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-image:linear-gradient(to right, blue ,dodgerblue, skyblue);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+   padding: 14px 16px; 
+  text-decoration: none;
+  font-size: 19px;
+}
+
+.topnav a:hover {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: gray;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+  }
+
 </style>
