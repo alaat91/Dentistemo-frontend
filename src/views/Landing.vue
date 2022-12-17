@@ -1,7 +1,7 @@
 <template>
 <body>
-<div class="container">
-   <h1>Welcome to Dentistemo</h1>
+<div>
+   
 </div>
 </body>
 </template>
