@@ -19,6 +19,6 @@
 }
 .min-vh-100{
   opacity: 0.9;
-  
+  object-fit: cover;
 }
 </style>
