@@ -14,83 +14,109 @@
  <img src="../assets/profile.png" id="output" width="200" />
 </div>
 
-<div class="info">
-<form>
-  <b-row class="lg-12">
-      <b-col cols="4">
-      </b-col>
-    <b-col cols="3">
-      <label for="firstNameLabel" class="name">First Name</label>
-      <input type="text" class="form-control" id="nameLabel" placeholder="">
-       <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
-        <b-modal id="modal-0" title="Enter new first name">
-      <input class="form-control" id="changename">
-  </b-modal>
-    </b-col>
-    </b-row>
-    <b-row >
-      <b-col cols="4">
-      </b-col>
-    <b-col cols="3">
-      <label for="lastNameLabel" class="name">Last Name</label>
-      <input  type="text" class="form-control" id="lastNameLabel" placeholder="">
-    <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
-     <b-modal id="modal-1" title="Enter new last name">
-      <input class="form-control" id="changename">
-  </b-modal>
-  </b-col>
-    </b-row>
-    
-        <b-row>
-        <b-col cols="4">
-      </b-col>
-  <b-col cols="4">
-    <label for="emailLabel" class="name">Email</label>
-    <input type="email" class="form-control" id="emailLabel" placeholder="">
-   <!--<button type="submit" class="btn btn-success">Edit</button> --> <!--   -->
-   <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
-    <b-modal id="modal-2" title="Enter new email">
-      <input type="email" class="form-control" id="changename">
-  </b-modal>
-  </b-col>
-        </b-row>
-    <!-- Add input form --> 
-     <b-row>
-          <b-col cols="4"> 
+    <div class="info">
+      <form>
+        <b-row class="lg-12">
+          <b-col cols="4"> </b-col>
+          <b-col cols="3">
+            <label for="firstNameLabel" class="name">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nameLabel"
+              placeholder=""
+            />
+            <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
+            <b-modal id="modal-0" title="Enter new first name">
+              <input class="form-control" id="changename" />
+            </b-modal>
           </b-col>
-  <b-col cols="4">
+        </b-row>
+        <b-row>
+          <b-col cols="4"> </b-col>
+          <b-col cols="3">
+            <label for="lastNameLabel" class="name">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastNameLabel"
+              placeholder=""
+            />
+            <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
+            <b-modal id="modal-1" title="Enter new last name">
+              <input class="form-control" id="changename" />
+            </b-modal>
+          </b-col>
+        </b-row>
 
-    <label for="passwordLabel" class="name">Password</label>
-    <input type="password" class="form-control" id="passwordLabel" placeholder="">
-   <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success">Edit</b-button>
-<b-modal id="modal-3" title="Change password">
-    <div> Enter old password </div>
-      <input class="form-control"   type="password" id="changename">
-      <div> Enter new password </div>
-      <input class="form-control"  type="password" id="changename1" required> 
-  </b-modal>
-  </b-col>
-   </b-row>
+        <b-row>
+          <b-col cols="4"> </b-col>
+          <b-col cols="4">
+            <label for="emailLabel" class="name">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailLabel"
+              placeholder=""
+            />
+            <!--<button type="submit" class="btn btn-success">Edit</button> -->
+            <!--   -->
+            <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
+            <b-modal id="modal-2" title="Enter new email">
+              <input type="email" class="form-control" id="changename" />
+            </b-modal>
+          </b-col>
+        </b-row>
+        <!-- Add input form -->
+        <b-row>
+          <b-col cols="4"> </b-col>
+          <b-col cols="4">
+            <label for="passwordLabel" class="name">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordLabel"
+              placeholder=""
+            />
+            <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success"
+              >Edit</b-button
+            >
+            <b-modal id="modal-3" title="Change password">
+              <div>Enter old password</div>
+              <input class="form-control" type="password" id="changename" />
+              <div>Enter new password</div>
+              <input
+                class="form-control"
+                type="password"
+                id="changename1"
+                required
+              />
+            </b-modal>
+          </b-col>
+        </b-row>
 
- <b-row>
- <b-col cols="4">
-      </b-col>
-  <b-col cols="2">
-  <button type="submit" class="btn btn-primary" id="backButton">Go back</button>
-  </b-col>
-  <b-col cols="2">
-  <button type="submit" class="btn btn-danger" id="deleteButton">Delete</button>
-  </b-col>
-   <b-col col="2">
-    <button type="submit" class="btn btn-primary" id="logoutButton">Log out</button>
-  </b-col>
-  </b-row>
-</form>
-</div>
-</div>
+        <b-row>
+          <b-col cols="4"> </b-col>
+          <b-col cols="2">
+            <button type="submit" class="btn btn-primary" id="backButton">
+              Go back
+            </button>
+          </b-col>
+          <b-col cols="2">
+            <button type="submit" class="btn btn-danger" id="deleteButton">
+              Delete
+            </button>
+          </b-col>
+          <b-col col="2">
+            <button type="submit" class="btn btn-primary" id="logoutButton">
+              Log out
+            </button>
+          </b-col>
+        </b-row>
+      </form>
+    </div>
+  </div>
 </template>
-
-
 
 <script>
 export default {
@@ -99,12 +125,8 @@ export default {
       User: '',
     }
   },
-
 }
-
 </script>
-
-
 
 <style scoped>
 .header {
@@ -114,14 +136,13 @@ export default {
   font-weight: bold;
   padding-left: 3px;
   position: static;
-  background-color: lightskyblue ;
+  background-color: lightskyblue;
 }
-.name{
+.name {
   font-weight: bold;
 }
-#buttonEdit{
+#buttonEdit {
   margin-bottom: 20px;
-
 }
 
 label {
@@ -130,58 +151,58 @@ label {
 }
 input,
 label {
- margin: .4rem 0;
+  margin: 0.4rem 0;
 }
 .profile-pic {
- color: transparent;
- transition: all 0.3s ease;
- display: flex;
- justify-content: center;
- align-items: center;
- position: relative;
- transition: all 0.3s ease;
+  color: transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
 }
 .profile-pic input {
- display: none;
+  display: none;
 }
 .profile-pic img {
- position: absolute;
- object-fit: cover;
- width: 165px;
- height: 165px;
- box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
- border-radius: 100px;
- z-index: 0;
+  position: absolute;
+  object-fit: cover;
+  width: 165px;
+  height: 165px;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
+  border-radius: 100px;
+  z-index: 0;
 }
 .profile-pic .-label {
- cursor: pointer;
- height: 165px;
- width: 165px;
+  cursor: pointer;
+  height: 165px;
+  width: 165px;
 }
 .profile-pic:hover .-label {
- display: flex;
- justify-content: center;
- align-items: center;
- background-color: rgba(0, 0, 0, 0.8);
- z-index: 10000;
- color: #FAFAFA;
- transition: background-color 0.2s ease-in-out;
- border-radius: 100px;
- margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 10000;
+  color: #fafafa;
+  transition: background-color 0.2s ease-in-out;
+  border-radius: 100px;
+  margin-bottom: 0;
 }
 .profile-pic span {
- display: inline-flex;
- padding: 0.2em;
- height: 2em;
+  display: inline-flex;
+  padding: 0.2em;
+  height: 2em;
 }
 body {
- height: 100vh;
- background-color: #191815;
- display: flex;
- justify-content: center;
- align-items: center;
+  height: 100vh;
+  background-color: #191815;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 body a:hover {
- text-decoration: none;
+  text-decoration: none;
 }
 </style>
