@@ -1,51 +1,60 @@
 <template>
   <form @submit.prevent="submitHandler">
     <div>
-      <label>firstName</label>
+      <label>First Name</label>
       <input
         type="firstName"
         v-model="form.firstName"
-        placeholder="FirstNAme"
+        placeholder="Enter first name here"
       />
     </div>
 
     <div>
-      <label>lasttName</label>
-      <input type="lastName" v-model="form.lastName" placeholder="LastName" />
+      <label>Last Name</label>
+      <input
+        type="lastName"
+        v-model="form.lastName"
+        placeholder="Enter last name here"
+      />
     </div>
 
     <div>
       <label>SSN</label>
-      <input type="SSN" v-model="form.SSN" placeholder="SSN" />
+      <input type="SSN" v-model="form.SSN" placeholder="Enter SSN here" />
     </div>
 
     <div>
-      <label>phoneNumber</label>
+      <label>Email</label>
+      <input type="email" v-model="form.email" placeholder="Enter email here" />
+    </div>
+
+    <div>
+      <label>Password</label>
       <input
-        type="phoneNumber"
-        v-model="form.phoneNumber"
-        placeholder="PhoneNumber"
+        type="password"
+        v-model="form.password"
+        placeholder="Enter new password here"
       />
     </div>
 
     <div>
-      <label>email</label>
-      <input type="email" v-model="form.email" placeholder="Email" />
-    </div>
-
-    <div>
-      <label>password</label>
-      <input type="password" v-model="form.password" placeholder="Password" />
-    </div>
-
-    <div>
-      <label>confirmPassword</label>
+      <label>Confirm Password</label>
       <input
         type="password"
         v-model="form.confirmPassword"
-        placeholder="ConfirmPassword"
+        placeholder="Confirm new password here"
       />
     </div>
+
+    <div>
+      <label>Phone Number</label>
+      <input
+        type="phoneNumber"
+        v-model="form.phoneNumber"
+        placeholder="Enter your phone number here"
+      />
+    </div>
+
     <button type="submit">Create Account</button>
   </form>
 </template>
@@ -61,16 +70,18 @@ export default {
         firstName: '',
         lastName: '',
         SSN: '',
-        phoneNumber: '',
         email: '',
         password: '',
         confirmPassword: '',
+        phoneNumber: '',
       },
     }
   },
+
   methods: {
     submitHandler: async function (e) {
       try {
+        console.log(this.form)
         const res = await API.post('/auth/signup', this.form)
         localStorage.setItem('token', res.data.token)
         this.$router.push('/')
