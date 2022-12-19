@@ -11,7 +11,7 @@
  <span>Change Image</span>
  </label>
  <input id="file" type="file" onchange="loadFile(event)"/>
- <img src="" id="output" width="200" />
+ <img src="../assets/profile.png" id="output" width="200" />
 </div>
 
 <div class="info">
