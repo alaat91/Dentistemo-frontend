@@ -3,5 +3,10 @@
     "jsx": "preserve",
     "target": "ES5"
   },
+  "vueCompilerOptions": {
+    "extensions": [
+      ".vue"
+    ]
+  },
   "include": ["./src/**/*"]
 }
