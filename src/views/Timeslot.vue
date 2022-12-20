@@ -29,62 +29,45 @@
         }}
       </div>
     </b-row>
+
     <div>
-      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
-      <b-row cols="12" id="toprow">
+      <b-row cols="12" class="toprow">
         <b-col cols="1">
           <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Monday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Tuesday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Wednesday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Thursday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Friday</div>
-        </b-col>
-        <b-col cols="1">
-          <b-button @click="nextWeek()">&rsaquo;</b-button>
-        </b-col>
-      </b-row>
-    </div>
-
-    <div>
-      <b-row cols="12" id="toprow">
-        <b-col cols="1"> </b-col>
-        <b-col cols="2">
           <div class="Daylabel">
             {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Tuesday</div>
           <div class="Daylabel">
             {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Wednesday</div>
+          <div class="Daylabel">
+            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
+          </div>
+        </b-col>
+        <b-col cols="2">
+          <div class="Daylabel">Thursday</div>
           <div class="Daylabel">
             {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
-          <div class="Daylabel">
-            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
-          </div>
-        </b-col>
-        <b-col cols="2">
+          <div class="Daylabel">Friday</div>
           <div class="Daylabel">
             {{ currentWeek[4] ? currentWeek[4].getDate() : 0 }}
           </div>
         </b-col>
-        <b-col cols="1"> </b-col>
+        <b-col cols="1">
+          <b-button @click="nextWeek()">&rsaquo;</b-button>
+        </b-col>
       </b-row>
     </div>
     <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
