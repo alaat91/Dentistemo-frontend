@@ -1,48 +1,105 @@
 <template>
   <div>
-    <b-form
-      class="col-12 col-md-4"
-      @submit.prevent="login"
-      @reset="onReset"
-      v-if="show"
-    >
-      <b-form-group id="input-group-1" label="Email" label-for="input-1">
-        <b-form-input
-          id="input-1"
-          v-model="form.email"
-          type="email"
-          placeholder="Enter your email"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-form-group
-        id="input-group-2"
-        label="Password"
-        input
-        label-for="input-2"
-      >
-        <b-form-input
-          type="password"
-          id="input-2"
-          v-model="form.password"
-          placeholder="Enter your password"
-          required
-        ></b-form-input>
-      </b-form-group>
-
-      <b-button
-        class="loginbtn"
-        @click.prevent="login"
-        type="submit"
-        pill
-        variant="primary"
-        >Login</b-button
-      >
-      <b-button class="resetbtn" type="reset" pill variant="outline-danger"
-        >Reset</b-button>
-
-    </b-form>
+    <!-- Header -->
+    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
+      <b-container>
+        <div class="header-body text-center mb-7">
+          <b-row class="justify-content-center">
+            <b-col xl="5" lg="6" md="8" class="px-5">
+              <h1 class="text-black">DENTEETHTIMO!</h1>
+            </b-col>
+          </b-row>
+        </div>
+      </b-container>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg
+          x="0"
+          y="0"
+          viewBox="0 0 2560 100"
+          preserveAspectRatio="none"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon
+            class="fill-default"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
+    </div>
+    <!-- Page content -->
+    <b-container class="mt--8 pb-5">
+      <b-row class="justify-content-center">
+        <b-col lg="5" md="7">
+          <b-card no-body class="bg-secondary border-0 mb-0">
+            <b-card-header class="bg-signin pb-5">
+              <div class="text-black text-center mt-2 mb-3">
+                <small>Sign in with</small>
+              </div>
+              <div class="btn-wrapper text-center">
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"
+                    ><img src="../assets/github.svg"
+                  /></span>
+                  <span class="btn-inner--text">Github</span>
+                </a>
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"
+                    ><img src="../assets/google.svg"
+                  /></span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </b-card-header>
+            <b-card-body class="px-lg-5 py-lg-5">
+              <div class="text-center text-black mb-4">
+                <small>Or sign in with credentials</small>
+              </div>
+              <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+                <b-input
+                  alternative
+                  class="mb-3"
+                  name="Email"
+                  :rules="{ required: true, email: true }"
+                  prepend-icon="ni ni-email-83"
+                  placeholder="Email"
+                  v-model="model.email"
+                >
+                </b-input>
+                <b-input
+                  alternative
+                  class="mb-3"
+                  name="Password"
+                  :rules="{ required: true, min: 6 }"
+                  prepend-icon="ni ni-lock-circle-open"
+                  type="password"
+                  placeholder="Password"
+                  v-model="model.password"
+                >
+                </b-input>
+                <div class="text-center" @click.prevent="onSubmit">
+                  <b-button variant="outline-primary" native-type="submit" class="my-4"
+                    >Sign in</b-button
+                  >
+                </div>
+              </b-form>
+            </b-card-body>
+          </b-card>
+          <b-row class="mt-3">
+            <b-col cols="6">
+              <router-link to="/" class="text-left"
+                ><small>Forgot password?</small></router-link
+              >
+            </b-col>
+            <b-col cols="12" class="text-right">
+              <router-link to="/signup" class="text-right"
+                ><small>Create new account</small></router-link
+              >
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
@@ -50,65 +107,53 @@
 import { API } from '../config/api'
 
 export default {
-  name: 'Login',
   data() {
     return {
-      selected: '',
-      form: {
+      model: {
         email: '',
-        password: ''
+        password: '',
       },
-
-      show: true
     }
   },
-
   methods: {
-    login: async function (e) {
+    async onSubmit() {
       try {
-        const res = await API.post('/auth/login', this.form)
-        localStorage.setItem('token', res.data.token)
-        this.$router.push('/')
+        API.post('/auth/login', this.model).then((response) => {
+          const userID = response.data._id
+          if (userID != null) {
+            localStorage.setItem('token', response.data.token)
+            this.$router.push('/')
+          } else {
+            alert('Invalid Credentials!')
+          }
+        })
       } catch (error) {
+        alert('catching dem errors')
         console.log(error)
       }
     },
-
-    onReset(event) {
-      event.preventDefault()
-      // Reset our form values
-      this.form.email = ''
-      this.form.password = ''
-      // Trick to reset/clear native browser form validation state
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
-    }
   },
 }
 </script>
 
 <style scoped>
-.col-12 {
+.header {
   padding-top: 2%;
   background-color: #76c1ff;
   margin: 0 auto;
-  width: 80%;
+  width: 95%;
   margin-top: 2%;
   margin-bottom: 2%;
+  border-style: hidden;
 }
-.col-md-4 {
-  width: 50%;
+.bg-signin {
+  background-color: #d9ff3f;
+  border-style: solid;
 }
-.loginbtn {
-  margin-right: 1%;
-  margin-bottom: 2%;
-  margin-top: 2%;
-}
-.resetbtn {
-  margin-left: 1%;
-  margin-bottom: 2%;
-  margin-top: 2%;
+.px-lg-5 {
+  background-color: #ff76ff;
+  border-style: solid;
+  border-bottom-left-radius: 1%;
+  border-bottom-right-radius: 1%;
 }
 </style>
