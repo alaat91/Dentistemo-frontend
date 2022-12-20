@@ -10,6 +10,9 @@
     <div>
       <label>Choose a date</label>
       <b-form-datepicker
+        dropright
+        header-tag=""
+        size="sm"
         class="mb-2"
         value-as-date
         @input="calendarChange(calendarDate)"
