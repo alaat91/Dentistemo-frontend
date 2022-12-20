@@ -1,18 +1,18 @@
 <template>
-<div class="container-fluid">
- <h1 class="header"> Profile </h1>
- <!-- User information inputs-->
- <!--TODO: create input component for reuse + Implement Grid + create upload image functionality-->
-<!-- Implementation for the profile picture upload for the user -->
-<!-- TODO: Transfer image to asset + ADD js code for pic upload -->
-<div class="profile-pic">
- <label class="-label" for="file">
- <span class="glyphicon glyphicon-camera"></span>
- <span>Change Image</span>
- </label>
- <input id="file" type="file" onchange="loadFile(event)"/>
- <img src="../assets/profile.png" id="output" width="200" />
-</div>
+  <div class="container-fluid">
+    <h1 class="header">Profile</h1>
+    <!-- User information inputs-->
+    <!--TODO: create input component for reuse + Implement Grid + create upload image functionality-->
+    <!-- Implementation for the profile picture upload for the user -->
+    <!-- TODO: Transfer image to asset + ADD js code for pic upload -->
+    <div class="profile-pic">
+      <label class="-label" for="file">
+        <span class="glyphicon glyphicon-camera"></span>
+        <span>Change Image</span>
+      </label>
+      <input id="file" type="file" onchange="loadFile(event)" />
+      <img src="../assets/profile.png" id="output" width="200" />
+    </div>
 
     <div class="info">
       <form>
