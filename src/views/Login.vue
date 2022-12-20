@@ -39,13 +39,13 @@
               <div class="btn-wrapper text-center">
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"
-                    ><img src="img/icons/common/github.svg"
+                    ><img src="../assets/github.svg"
                   /></span>
                   <span class="btn-inner--text">Github</span>
                 </a>
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"
-                    ><img src="img/icons/common/google.svg"
+                    ><img src="../assets/google.svg"
                   /></span>
                   <span class="btn-inner--text">Google</span>
                 </a>
