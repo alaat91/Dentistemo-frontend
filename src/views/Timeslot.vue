@@ -78,7 +78,7 @@
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
       <!-- TODO: Remove dummy data and show timeslots from backend-->
-      <b-col cols="2">
+      <b-col cols="2" class="timeslotCol">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
         </b-button>
@@ -94,7 +94,7 @@
           >10:30-11:00
         </b-button>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="timeslotCol">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
         </b-button>
@@ -110,7 +110,7 @@
           >10:30-11:00
         </b-button>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="timeslotCol">
         <b-button pill variant="outline-dark" class="timeslot"
           >10:00-10:30
         </b-button>
@@ -228,24 +228,61 @@ label {
   font: 1rem 'Fira Sans', sans-serif;
 }
 
-#toprow {
+.toprow {
   background-color: lightblue;
+}
+.mb-2 {
+  font-size: 13px;
+}
+#lowertop {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #dateRange {
   background-color: lightblue;
   text-align: center;
   font-weight: bold;
 }
+@media screen and (max-width: 1500px) {
+  .timeslot {
+    width: 220px;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .timeslot {
+    width: 160px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .timeslot {
+    width: 115px;
+  }
+}
+
 .timeslot {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 220px;
-  max-width: 220px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  max-width: 215px;
+  position: relative;
+
   /* Setting the size + Setting the max size means all
   timeslots are the same size and not relative to it's content */
 }
+.timeslotCol {
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColRight {
+  border-right-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColLeft {
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
 .Daylabel {
   font-weight: bold;
+  text-align: center;
 }
 input,
 label {
