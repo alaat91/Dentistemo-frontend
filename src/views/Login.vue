@@ -92,7 +92,7 @@
               >
             </b-col>
             <b-col cols="12" class="text-right">
-              <router-link to="/signup" class="text-right"
+              <router-link to="/register" class="text-right"
                 ><small>Create new account</small></router-link
               >
             </b-col>
