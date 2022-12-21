@@ -21,7 +21,6 @@ export default {}
 
 <style scoped>
 #header{
-    text-shadow: 4px 4px 12px white;
     font-size: 60px;
      text-align: center;
     
@@ -40,7 +39,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-image:linear-gradient(to right, blue ,dodgerblue, skyblue);
+  background-image:linear-gradient(to right, dodgerblue, skyblue, lightskyblue);
 }
 
 .topnav a {
