@@ -15,6 +15,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'landing',
+      component: Landing,
+    },
+    {
+      path: '/home',
       name: 'home',
       component: HomePage,
     },
@@ -48,10 +53,6 @@ export default new Router({
       name: 'confirm',
       component: ConfirmBookingPage,
     },
-    {
-      path: '/landing',
-      name: 'landing',
-      component: Landing,
-    },
+    
   ],
 })
