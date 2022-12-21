@@ -101,12 +101,14 @@
               id="phoneLabel"
               placeholder=""
             />
-            <b-button v-b-modal.modal-4 id="buttonEdit" class="btn btn-success"
-              >Edit</b-button
-            >
-             </b-col>
+             <b-button v-b-modal.modal-4 class="btn btn-success">Edit</b-button>
+            <b-modal id="modal-4" title="Enter new phone number">
+              <input type="phone-number" class="form-control" id="changename" />
+             </b-modal>
+           </b-col>
         </b-row>
 
+        <b-row></b-row>
         <b-row>
           <b-col cols="4"> </b-col>
           <b-col cols="2">
