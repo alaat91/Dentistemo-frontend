@@ -1,12 +1,12 @@
 <template>
 <div>
     <div class="topnav" id="myTopnav">
-      <h1 id="header">Welcome to Dentistemo</h1>
+      <h1 id="header">Welcome to Dentistimo</h1>
       <b-row>
              <router-link :to="{name:'login'}" class="login">Login</router-link>
      </b-row>
      <b-row>
-             <router-link :to="{name:'register'}" class="signup">Signup</router-link>
+             <router-link :to="{name:'register'}" class="signup">Register</router-link>
      </b-row>
     </div>
   <div style="padding-left: 16px"></div>
