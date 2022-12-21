@@ -6,10 +6,9 @@
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-white">Create an account</h1>
+              <h1 class="text-black">Create an account.</h1>
               <p class="text-lead text-white">
-                Use these awesome forms to login or create new account in your
-                project for free.
+                Dentistimo - your local dentist provider.
               </p>
             </b-col>
           </b-row>
@@ -57,7 +56,7 @@
               </div>
             </b-card-header>
             <b-card-body class="px-lg-5 py-lg-5">
-              <div class="text-center text-black mb-4">
+              <div class="text-center text-white mb-4">
                 <small>Or sign up with credentials</small>
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
@@ -140,14 +139,6 @@
                   v-model="model.phoneNumber"
                 >
                 </b-input>
-                <div class="text-black font-italic">
-                  <small
-                    >password strength:
-                    <span class="text-success font-weight-700"
-                      >strong</span
-                    ></small
-                  >
-                </div>
                 <div class="text-center" @click.prevent="onSubmit">
                   <b-button type="submit" variant="success" class="mt-4"
                     >Create account</b-button
@@ -156,6 +147,13 @@
               </b-form>
             </b-card-body>
           </b-card>
+          <b-row class="mt-3">
+            <b-col cols="6">
+              <router-link to="/login" class="text-left"
+                ><small>Login</small></router-link
+              >
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
     </b-container>
@@ -164,7 +162,6 @@
 
 <script>
 import { API } from '../config/api'
-
 
 export default {
   name: 'register',
@@ -177,54 +174,49 @@ export default {
         email: '',
         password: '',
         confirmPassword: '',
-        phoneNumber: ''
+        phoneNumber: '',
       },
     }
   },
   methods: {
     async onSubmit() {
       try {
-        alert('testing frontend')
-      setTimeout(function () {
-        window.location.reload()
-      }, 0)
-      API.post('auth/signup', {
-        firstName: this.model.firstName,
-        lastName: this.model.lastName,
-        email: this.model.email,
-        SSN: this.model.ssn,
-        password: this.model.password,
-        confirmPassword: this.model.confirmPassword,
-        phoneNumber: this.model.phoneNumber,
-      }).then((response) => {
-        alert(response.data)
-        const userID = response.data._id
-          if (userID != null) { //TODO implement proper response in gateway/auth
+        API.post('auth/signup', {
+          firstName: this.model.firstName,
+          lastName: this.model.lastName,
+          email: this.model.email,
+          SSN: this.model.ssn,
+          password: this.model.password,
+          confirmPassword: this.model.confirmPassword,
+          phoneNumber: this.model.phoneNumber,
+        }).then((response) => {
+          const userID = response.data
+          if (userID._id != null ) {
+            //TODO implement proper response in gateway/auth
             alert('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
             this.$router.push('/profile')
           } else {
             alert('All input is required!')
           }
-      })
+        })
       } catch (error) {
         alert('catching dem errors')
         console.log(error)
       }
     },
-
   },
 }
 </script>
 <style scoped>
-.header{
+.header {
   background-color: #76c1ff;
 }
 .bg-oauth {
-  background-color: #CCF381;
+  background-color: #ccf381;
 }
 .px-lg-5 {
-  background-color: #4831D4;
+  background-color: #4831d4;
 }
 .mt--8 {
   padding-top: 5%;

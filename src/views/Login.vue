@@ -86,11 +86,6 @@
             </b-card-body>
           </b-card>
           <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link to="/" class="text-left"
-                ><small>Forgot password?</small></router-link
-              >
-            </b-col>
             <b-col cols="12" class="text-right">
               <router-link to="/register" class="text-right"
                 ><small>Create new account</small></router-link
