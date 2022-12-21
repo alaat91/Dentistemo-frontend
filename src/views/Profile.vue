@@ -112,10 +112,13 @@
         <b-row>
           <b-col cols="4"> </b-col>
           <b-col cols="2">
+            <router-link :to="{name: 'home'}">
             <button type="submit" class="btn btn-primary" id="backButton">
               Go back
             </button>
+            </router-link>
           </b-col>
+         
           <b-col cols="2">
             <button type="submit" class="btn btn-danger" id="deleteButton">
               Delete
