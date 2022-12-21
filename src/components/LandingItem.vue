@@ -4,10 +4,10 @@
       <h1 id="header">Welcome to Dentistemo</h1>
       <h6 id="sub-header">"A good life starts with good teeth"-Dr.Shariq</h6>
       <b-row>
-             <router-link to="/login" class="login">Login</router-link>
+             <router-link :to="{name:'login'}" class="login">Login</router-link>
      </b-row>
      <b-row>
-             <router-link to="/signup" class="signup">Signup</router-link>
+             <router-link :to="{name:'register'}" class="signup">Signup</router-link>
      </b-row>
     </div>
   <div style="padding-left: 16px"></div>
