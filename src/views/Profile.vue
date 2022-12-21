@@ -96,7 +96,7 @@
           <b-col cols="4">
             <label for="phoneLabel" class="name">Phone Number</label>
             <input
-              type="phone-number"
+              type="number"
               class="form-control"
               id="phoneLabel"
               placeholder=""
