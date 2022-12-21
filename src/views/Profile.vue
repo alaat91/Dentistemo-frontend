@@ -74,9 +74,7 @@
               id="passwordLabel"
               placeholder=""
             />
-            <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success"
-              >Edit</b-button
-            >
+            <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success">Edit</b-button>
             <b-modal id="modal-3" title="Change password">
               <div>Enter old password</div>
               <input class="form-control" type="password" id="changename" />
@@ -210,5 +208,10 @@ body {
 }
 body a:hover {
   text-decoration: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>
