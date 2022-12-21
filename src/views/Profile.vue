@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <h1 class="header">Profile</h1>
-    <!-- User information inputs-->
+
     <div class="profile-pic">
       <label class="-label" for="file">
         <span class="glyphicon glyphicon-camera"></span>
@@ -108,7 +108,7 @@
            </b-col>
         </b-row>
 
-        <b-row></b-row>
+        <br />
         <b-row>
           <b-col cols="4"> </b-col>
           <b-col cols="2">
