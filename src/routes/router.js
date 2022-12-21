@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Timeslot from '../views/Timeslot.vue'
-import SignUp from '../views/SignUp.vue'
+import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
@@ -29,9 +29,9 @@ export default new Router({
       component: Timeslot,
     },
     {
-      path: '/signup',
-      name: 'signup',
-      component: SignUp,
+      path: '/register',
+      name: 'register',
+      component: Register,
     },
     {
       path: '/login',
