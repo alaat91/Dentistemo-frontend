@@ -10,6 +10,19 @@ import Landing from '../views/Landing.vue'
 
 Vue.use(Router)
 
+function guardMyroute(to, from, next) {
+  let isAuthenticated = false
+  if (localStorage.getItem('token')) {
+    isAuthenticated = true
+  }
+
+  if (isAuthenticated) {
+    next()
+  } else {
+    next('/login')
+  }
+}
+
 export default new Router({
   mode: 'history',
   routes: [
@@ -22,16 +35,19 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: HomePage,
+      beforeEnter: guardMyroute
     },
     {
       path: '/clinic',
       name: 'timeslot',
       component: Timeslot,
+      beforeEnter: guardMyroute
     },
     {
       path: '/clinic/:clinicId',
       name: 'timeslot',
       component: Timeslot,
+      beforeEnter: guardMyroute
     },
     {
       path: '/register',
@@ -47,12 +63,13 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
+      beforeEnter: guardMyroute
     },
     {
       path: '/confimBooking',
       name: 'confirm',
       component: ConfirmBookingPage,
+      beforeEnter: guardMyroute
     },
-    
   ],
 })
