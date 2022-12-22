@@ -210,10 +210,10 @@ export default {
           text: 'TimeSlots',
           active: true,
         },
-        {
-          text: 'Confirmation',
-          href: '/confimBooking',
-        },
+        // {
+        //   text: 'Confirmation',
+        //   href: '/confimBooking',
+        // },
       ],
       value: '',
     }

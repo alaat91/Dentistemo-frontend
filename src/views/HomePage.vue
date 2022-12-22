@@ -34,18 +34,18 @@ export default {
     return {
       clinics: [],
       items: [
-        {
-          text: 'Home',
-          active: true,
-        },
-        {
-          text: 'TimeSlots',
-          href: '/clinic',
-        },
-        {
-          text: 'Confirmation',
-          href: '/confimBooking',
-        },
+        // {
+        //   text: 'Home',
+        //   active: true,
+        // },
+        // {
+        //   text: 'TimeSlots',
+        //   href: '/clinic',
+        // },
+        // {
+        //   text: 'Confirmation',
+        //   href: '/confimBooking',
+        // },
       ],
     }
   },
