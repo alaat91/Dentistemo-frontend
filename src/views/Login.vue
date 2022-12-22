@@ -122,7 +122,8 @@ export default {
           const userID = response.data._id
           if (userID != null) {
             localStorage.setItem('token', response.data.token)
-            this.$router.push('/home')
+            localStorage.setItem('LoggedUser', JSON.stringify(userID))
+            this.$router.push(`profile/${userID}`)
           } else {
             alert('Invalid Credentials!')
           }

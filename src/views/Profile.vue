@@ -158,7 +158,7 @@
 import { API } from '../config/api'
 
 export default {
-  name: 'register',
+  name: 'users',
   data() {
     return {
       model: {
@@ -172,6 +172,27 @@ export default {
       },
     }
   },
+
+  mounted() {
+    const userId = localStorage.getItem('LoggedUser')
+    const userID = userId.slice(1, -1)
+    alert(userID)
+    API.get(`users/profile/${userID}`)
+      .then((response) => {
+        this.model.firstName = response.data.firstName,
+        this.model.lastName = response.data.lastName,
+        this.model.ssn = response.data.SSN,
+        this.model.email = response.data.email,
+        this.model.phoneNumber = response.data.phoneNumber
+      })
+      .catch((error) => {
+        alert(error)
+        alert('catch error line 189')
+        this.users = ['nothing here']
+        console.log(error)
+      })
+  },
+
   methods: {
     async onSubmit() {
       try {
@@ -185,7 +206,7 @@ export default {
           phoneNumber: this.model.phoneNumber,
         }).then((response) => {
           const userID = response.data
-          if (userID._id != null ) {
+          if (userID._id != null) {
             //TODO implement proper response in gateway/auth
             alert('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
@@ -202,9 +223,10 @@ export default {
   },
 }
 </script>
+
 <style scoped>
 .header {
-  background-color: #89ABE3FF;
+  background-color: #89abe3ff;
   padding-top: 2%;
 }
 .bg-oauth {
