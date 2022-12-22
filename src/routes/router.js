@@ -18,11 +18,11 @@ export default new Router({
       name: 'home',
       component: HomePage,
     },
-    {
-      path: '/clinic',
-      name: 'timeslot',
-      component: Timeslot,
-    },
+    // {
+    //   path: '/clinic',
+    //   name: 'timeslot',
+    //   component: Timeslot,
+    // },
     {
       path: '/clinic/:clinicId',
       name: 'timeslot',
