@@ -33,7 +33,7 @@
         <b-col lg="5" md="7">
           <b-card no-body class="bg-secondary border-0 mb-0">
             <b-card-header class="bg-signin pb-5">
-              <div class="text-black text-center mt-2 mb-3">
+              <div class="text-white text-center mt-2 mb-3">
                 <small>Sign in with</small>
               </div>
               <div class="btn-wrapper text-center">
@@ -142,11 +142,11 @@ export default {
   border-style: hidden;
 }
 .bg-signin {
-  background-color: #d9ff3f;
+  background-color: #2F3C7E;
   border-style: solid;
 }
 .px-lg-5 {
-  background-color: #ff76ff;
+  background-color: #FBEAEB;
   border-style: solid;
   border-bottom-left-radius: 1%;
   border-bottom-right-radius: 1%;
