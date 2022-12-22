@@ -134,10 +134,7 @@ export default {
 <style scoped>
 .header {
   padding-top: 2%;
-  background-color: #76c1ff;
-  margin: 0 auto;
-  width: 95%;
-  margin-top: 2%;
+  background-color: #89ABE3FF;
   margin-bottom: 2%;
   border-style: hidden;
 }

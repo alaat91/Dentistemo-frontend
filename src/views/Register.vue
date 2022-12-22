@@ -210,7 +210,7 @@ export default {
 </script>
 <style scoped>
 .header {
-  background-color: #76c1ff;
+  background-color: #89ABE3FF;
 }
 .bg-oauth {
   background-color: #ccf381;
