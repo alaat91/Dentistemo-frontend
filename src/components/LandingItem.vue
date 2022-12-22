@@ -1,13 +1,12 @@
 <template>
 <div>
     <div class="topnav" id="myTopnav">
-      <h1 id="header">Welcome to Dentistemo</h1>
-      <h6 id="sub-header">"A good life starts with good teeth"-Dr.Shariq</h6>
+      <h1 id="header">Welcome to Dentistimo</h1>
       <b-row>
-             <router-link to="/login" class="login">Login</router-link>
+             <router-link :to="{name:'login'}" class="login">Login</router-link>
      </b-row>
      <b-row>
-             <router-link to="/signup" class="signup">Signup</router-link>
+             <router-link :to="{name:'register'}" class="signup">Register</router-link>
      </b-row>
     </div>
   <div style="padding-left: 16px"></div>
@@ -22,7 +21,6 @@ export default {}
 
 <style scoped>
 #header{
-    text-shadow: 4px 4px 12px white;
     font-size: 60px;
      text-align: center;
     
@@ -41,7 +39,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-image:linear-gradient(to right, blue ,dodgerblue, skyblue);
+  background-image:linear-gradient(to right, dodgerblue, skyblue, lightskyblue);
 }
 
 .topnav a {

@@ -6,7 +6,7 @@
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
-      <h1>Dentistemo</h1>
+      <h1>Dentistimo</h1>
     </div>
 
     <div style="padding-left: 16px"></div>
