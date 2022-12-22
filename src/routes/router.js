@@ -65,6 +65,12 @@ export default new Router({
       beforeEnter: guardMyroute,
     },
     {
+      path: '/profile/:userID',
+      name: 'profile',
+      component: Profile,
+      beforeEnter: guardMyroute
+    },
+    {
       path: '/confimBooking',
       name: 'confirm',
       component: ConfirmBookingPage,

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- Header -->
+    <!-- Header
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container>
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">DENTEETHTIMO!</h1>
+              <h1 class="text-black">Login</h1>
             </b-col>
           </b-row>
         </div>
@@ -26,14 +26,14 @@
           ></polygon>
         </svg>
       </div>
-    </div>
+    </div> -->
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
         <b-col lg="5" md="7">
           <b-card no-body class="bg-secondary border-0 mb-0">
             <b-card-header class="bg-signin pb-5">
-              <div class="text-black text-center mt-2 mb-3">
+              <div class="text-white text-center mt-2 mb-3">
                 <small>Sign in with</small>
               </div>
               <div class="btn-wrapper text-center">
@@ -41,13 +41,13 @@
                   <span class="btn-inner--icon"
                     ><img src="../assets/github.svg"
                   /></span>
-                  <span class="btn-inner--text">Github</span>
+                  <span class="btn-inner--text text-white">Github</span>
                 </a>
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"
                     ><img src="../assets/google.svg"
                   /></span>
-                  <span class="btn-inner--text">Google</span>
+                  <span class="btn-inner--text text-white">Google</span>
                 </a>
               </div>
             </b-card-header>
@@ -91,6 +91,11 @@
                 ><small>Create new account</small></router-link
               >
             </b-col>
+            <b-col cols="12" class="text-right">
+              <router-link to="/home" class="text-right"
+                ><small>Home</small></router-link
+              >
+            </b-col>
           </b-row>
         </b-col>
       </b-row>
@@ -117,7 +122,8 @@ export default {
           const userID = response.data._id
           if (userID != null) {
             localStorage.setItem('token', response.data.token)
-            this.$router.push('/home')
+            localStorage.setItem('LoggedUser', JSON.stringify(userID))
+            this.$router.push(`profile/${userID}`)
           } else {
             alert('Invalid Credentials!')
           }
@@ -134,19 +140,19 @@ export default {
 <style scoped>
 .header {
   padding-top: 2%;
-  background-color: #76c1ff;
-  margin: 0 auto;
-  width: 95%;
-  margin-top: 2%;
+  background-color: #89ABE3FF;
   margin-bottom: 2%;
   border-style: hidden;
 }
+.mt--8 {
+  padding-top: 10%;
+}
 .bg-signin {
-  background-color: #d9ff3f;
+  background-color: #2F3C7E;
   border-style: solid;
 }
 .px-lg-5 {
-  background-color: #ff76ff;
+  background-color: #FBEAEB;
   border-style: solid;
   border-bottom-left-radius: 1%;
   border-bottom-right-radius: 1%;
