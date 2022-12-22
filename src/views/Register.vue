@@ -7,9 +7,6 @@
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
               <h1 class="text-black">Create an account.</h1>
-              <p class="text-lead text-white">
-                Dentistimo - your local dentist provider.
-              </p>
             </b-col>
           </b-row>
         </div>
@@ -196,6 +193,8 @@ export default {
             alert('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
             this.$router.push('/profile')
+          } else if (userID === 'Email is already taken') {
+            alert('Email is already taken!')
           } else {
             alert('All input is required!')
           }
@@ -211,6 +210,7 @@ export default {
 <style scoped>
 .header {
   background-color: #89ABE3FF;
+  padding-top: 2%;
 }
 .bg-oauth {
   background-color: #ccf381;

@@ -1,217 +1,219 @@
 <template>
-  <div class="container-fluid">
-    <h1 class="header">Profile</h1>
-
-    <div class="profile-pic">
-      <label class="-label" for="file">
-        <span class="glyphicon glyphicon-camera"></span>
-        <span>Change Image</span>
-      </label>
-      <input id="file" type="file" onchange="loadFile(event)" />
-      <img src="../assets/profile.png" id="output" width="200" />
+  <div>
+    <!-- Header -->
+    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
+      <b-container class="container">
+        <div class="header-body text-center mb-7">
+          <b-row class="justify-content-center">
+            <b-col xl="5" lg="6" md="8" class="px-5">
+              <h1 class="text-black">Profile</h1>
+            </b-col>
+          </b-row>
+        </div>
+      </b-container>
+      <div class="separator separator-bottom separator-skew zindex-100">
+        <svg
+          x="0"
+          y="0"
+          viewBox="0 0 2560 100"
+          preserveAspectRatio="none"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon
+            class="fill-default"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
+      </div>
     </div>
+    <!-- Page content -->
+    <b-container class="mt--8 pb-5">
+      <!-- Table -->
+      <b-row class="justify-content-center">
+        <b-col lg="6" md="8">
+          <b-card no-body class="bg-secondary border-0">
+            <b-card-header class="bg-oauth pb-5">
+              <div class="text-black text-center mt-2 mb-4">
+                <small>Your credentials</small>
+              </div>
+              <div class="text-center">
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"
+                    ><img src="../assets/google.svg"
+                  /></span>
+                  <span class="btn-inner--text text-black">Google</span>
+                </a>
+              </div>
+            </b-card-header>
+            <b-card-body class="px-lg-5 py-lg-5">
+              <div class="text-center text-white mb-4">
+                <small>Below you can edit your profile.</small>
+              </div>
+              <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-hat-3"
+                  placeholder="First Name"
+                  name="firstName"
+                  :rules="{ required: true }"
+                  v-model="model.firstName"
+                >
+                </b-input>
 
-    <div class="info">
-      <form>
-        <b-row class="lg-12">
-          <b-col cols="4"> </b-col>
-          <b-col cols="3">
-            <label for="firstNameLabel" class="name">First Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nameLabel"
-              placeholder=""
-            />
-            <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
-            <b-modal id="modal-0" title="Enter new first name">
-              <input class="form-control" id="changename" />
-            </b-modal>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col cols="4"> </b-col>
-          <b-col cols="3">
-            <label for="lastNameLabel" class="name">Last Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="lastNameLabel"
-              placeholder=""
-            />
-            <b-button v-b-modal.modal-1 class="btn btn-success">Edit</b-button>
-            <b-modal id="modal-1" title="Enter new last name">
-              <input class="form-control" id="changename" />
-            </b-modal>
-          </b-col>
-        </b-row>
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-hat-3"
+                  placeholder="Last Name"
+                  name="lastName"
+                  :rules="{ required: true }"
+                  v-model="model.lastName"
+                >
+                </b-input>
 
-        <b-row>
-          <b-col cols="4"> </b-col>
-          <b-col cols="4">
-            <label for="emailLabel" class="name">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              id="emailLabel"
-              placeholder=""
-            />
-            
-            <b-button v-b-modal.modal-2 class="btn btn-success">Edit</b-button>
-            <b-modal id="modal-2" title="Enter new email">
-              <input type="email" class="form-control" id="changename" />
-            </b-modal>
-          </b-col>
-        </b-row>
-        
-        <b-row>
-          <b-col cols="4"> </b-col>
-          <b-col cols="4">
-            <label for="passwordLabel" class="name">Password</label>
-            <input
-              type="password"
-              class="form-control"
-              id="passwordLabel"
-              placeholder=""
-            />
-            <b-button v-b-modal.modal-3 id="buttonEdit" class="btn btn-success">Edit</b-button>
-            <b-modal id="modal-3" title="Change password">
-              <div>Enter old password</div>
-              <input class="form-control" type="password" id="changename" />
-              <div>Enter new password</div>
-              <input
-                class="form-control"
-                type="password"
-                id="changename1"
-                required
-              />
-            </b-modal>
-          </b-col>
-        </b-row>
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-hat-3"
+                  placeholder="Social Security Number"
+                  name="ssn"
+                  :rules="{ required: true }"
+                  v-model="model.ssn"
+                >
+                </b-input>
 
-         <b-row>
-          <b-col cols="4"> </b-col>
-          <b-col cols="4">
-            <label for="phoneLabel" class="name">Phone Number</label>
-            <input
-              type="number"
-              class="form-control"
-              id="phoneLabel"
-              placeholder=""
-            />
-             <b-button v-b-modal.modal-4 class="btn btn-success">Edit</b-button>
-            <b-modal id="modal-4" title="Enter new phone number">
-              <input type="phone-number" class="form-control" id="changename" />
-             </b-modal>
-           </b-col>
-        </b-row>
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-email-83"
+                  placeholder="Email"
+                  name="Email"
+                  :rules="{ required: true, email: true }"
+                  v-model="model.email"
+                >
+                </b-input>
 
-        <br />
-        <b-row>
-          <b-col cols="4"> </b-col>
-          <b-col cols="2">
-            <router-link :to="{name: 'home'}">
-            <button type="submit" class="btn btn-primary" id="backButton">
-              Go back
-            </button>
-            </router-link>
-          </b-col>
-         
-          <b-col cols="2">
-            <button type="submit" class="btn btn-danger" id="deleteButton">
-              Delete
-            </button>
-          </b-col>
-          <b-col col="2">
-            <button type="submit" class="btn btn-primary" id="logoutButton">
-              Log out
-            </button>
-          </b-col>
-        </b-row>
-      </form>
-    </div>
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-lock-circle-open"
+                  placeholder="Password"
+                  type="password"
+                  name="Password"
+                  :rules="{ required: true, min: 6 }"
+                  v-model="model.password"
+                >
+                </b-input>
+
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-lock-circle-open"
+                  placeholder="Confirm Password"
+                  type="password"
+                  name="confirmPassword"
+                  :rules="{ required: true, min: 6 }"
+                  v-model="model.confirmPassword"
+                >
+                </b-input>
+
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-lock-circle-open"
+                  placeholder="Phone Number"
+                  type="phoneNumber"
+                  name="phoneNumber"
+                  :rules="{ required: true, min: 6 }"
+                  v-model="model.phoneNumber"
+                >
+                </b-input>
+                <div class="text-center" @click.prevent="onSubmit">
+                  <b-button class="btn-save" type="submit" variant="success"
+                    >Save</b-button
+                  >
+                  <b-button class="btn-delete" type="submit" variant="danger"
+                    >Delete</b-button
+                  >
+                </div>
+              </b-form>
+            </b-card-body>
+          </b-card>
+          <b-row class="mt-3">
+            <b-col cols="6">
+              <router-link to="/home" class="text-left"
+                ><small>Home</small></router-link
+              >
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import { API } from '../config/api'
+
 export default {
+  name: 'register',
   data() {
     return {
-      User: '',
+      model: {
+        firstName: '',
+        lastName: '',
+        ssn: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+      },
     }
+  },
+  methods: {
+    async onSubmit() {
+      try {
+        API.post('auth/signup', {
+          firstName: this.model.firstName,
+          lastName: this.model.lastName,
+          email: this.model.email,
+          SSN: this.model.ssn,
+          password: this.model.password,
+          confirmPassword: this.model.confirmPassword,
+          phoneNumber: this.model.phoneNumber,
+        }).then((response) => {
+          const userID = response.data
+          if (userID._id != null ) {
+            //TODO implement proper response in gateway/auth
+            alert('Your new account has been registered!')
+            localStorage.setItem('token', response.data.token)
+            this.$router.push('/profile')
+          } else {
+            alert('All input is required!')
+          }
+        })
+      } catch (error) {
+        alert('catching dem errors')
+        console.log(error)
+      }
+    },
   },
 }
 </script>
-
 <style scoped>
 .header {
-  font-family: sans-serif;
-  text-align: center;
-  text-shadow: 4px 4px 8px white;
-  font-weight: bold;
-  padding-left: 3px;
-  position: static;
-  background-color: lightskyblue;
+  background-color: #89ABE3FF;
+  padding-top: 2%;
 }
-.name {
-  font-weight: bold;
+.bg-oauth {
+  background-color: #cccccc;
 }
-#buttonEdit {
-  margin-bottom: 20px;
+.px-lg-5 {
+  background-color: #0f135885;
 }
-
-label {
-  display: block;
-  font: 1rem 'Fira Sans', sans-serif;
-}
-input,
-label {
-  margin: 0.4rem 0;
-}
-.profile-pic {
-  color: transparent;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  transition: all 0.3s ease;
-}
-.profile-pic input {
-  display: none;
-}
-.profile-pic img {
-  position: absolute;
-  object-fit: cover;
-  width: 165px;
-  height: 165px;
-  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.35);
-  border-radius: 100px;
-  z-index: 0;
-}
-.profile-pic .-label {
-  cursor: pointer;
-  height: 165px;
-  width: 165px;
-}
-.profile-pic span {
-  display: inline-flex;
-  padding: 0.2em;
-  height: 2em;
-}
-body {
-  height: 100vh;
-  background-color: #191815;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body a:hover {
-  text-decoration: none;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.mt--8 {
+  padding-top: 5%;
 }
 </style>

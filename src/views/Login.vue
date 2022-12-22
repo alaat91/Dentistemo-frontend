@@ -1,12 +1,12 @@
 <template>
   <div>
-    <!-- Header -->
+    <!-- Header
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container>
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">DENTEETHTIMO!</h1>
+              <h1 class="text-black">Login</h1>
             </b-col>
           </b-row>
         </div>
@@ -26,7 +26,7 @@
           ></polygon>
         </svg>
       </div>
-    </div>
+    </div> -->
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
@@ -41,13 +41,13 @@
                   <span class="btn-inner--icon"
                     ><img src="../assets/github.svg"
                   /></span>
-                  <span class="btn-inner--text">Github</span>
+                  <span class="btn-inner--text text-white">Github</span>
                 </a>
                 <a href="#" class="btn btn-neutral btn-icon">
                   <span class="btn-inner--icon"
                     ><img src="../assets/google.svg"
                   /></span>
-                  <span class="btn-inner--text">Google</span>
+                  <span class="btn-inner--text text-white">Google</span>
                 </a>
               </div>
             </b-card-header>
@@ -89,6 +89,11 @@
             <b-col cols="12" class="text-right">
               <router-link to="/register" class="text-right"
                 ><small>Create new account</small></router-link
+              >
+            </b-col>
+            <b-col cols="12" class="text-right">
+              <router-link to="/home" class="text-right"
+                ><small>Home</small></router-link
               >
             </b-col>
           </b-row>
@@ -137,6 +142,9 @@ export default {
   background-color: #89ABE3FF;
   margin-bottom: 2%;
   border-style: hidden;
+}
+.mt--8 {
+  padding-top: 10%;
 }
 .bg-signin {
   background-color: #2F3C7E;
