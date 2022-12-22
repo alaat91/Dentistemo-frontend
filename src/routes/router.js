@@ -7,6 +7,7 @@ import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
 import Landing from '../views/Landing.vue'
+import Notification from '../views/Notification.vue'
 
 Vue.use(Router)
 
@@ -74,6 +75,12 @@ export default new Router({
       path: '/confimBooking',
       name: 'confirm',
       component: ConfirmBookingPage,
+      beforeEnter: guardMyroute,
+    },
+    {
+      path: '/notification',
+      name: 'notification',
+      component: Notification,
       beforeEnter: guardMyroute,
     },
   ],
