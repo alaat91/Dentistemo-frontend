@@ -146,7 +146,7 @@
           </b-card>
           <b-row class="mt-3">
             <b-col cols="6">
-              <router-link to="/login" class="text-left"
+              <router-link :to="{name:'login'}" class="text-left"
                 ><small>Login</small></router-link
               >
             </b-col>
