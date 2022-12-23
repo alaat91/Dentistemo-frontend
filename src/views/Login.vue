@@ -92,7 +92,7 @@
               >
             </b-col>
             <b-col cols="12" class="text-right">
-              <router-link to="/home" class="text-right"
+              <router-link :to="{name:'home'}" class="text-right"
                 ><small>Home</small></router-link
               >
             </b-col>
