@@ -28,14 +28,12 @@
       </div>
     </div>
     <!-- Page content -->
-    <b-container class="mt--8 pb-">
-      <!-- Table -->
+    <b-overlay class="mt--8">
       <b-row class="justify-content-center">
         <b-col lg="6" md="8">
           <b-card no-body class="bg-secondary border-0">
-
-            <b-card-body class="px-lg-5 py-lg-5">
-              <div class="text-center text-white mb-4">
+            <b-card-body class="px-sm-5 py-lg-5">
+              <div class="text-center text-black mb-4">
                 <small>Edit your profile here.</small>
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
@@ -134,7 +132,7 @@
           </b-row>
         </b-col>
       </b-row>
-    </b-container>
+    </b-overlay>
   </div>
 </template>
 
@@ -188,7 +186,7 @@ export default {
           SSN: this.model.ssn,
           email: this.model.email,
           password: this.model.password,
-          phoneNumber: this.model.phoneNumber 
+          phoneNumber: this.model.phoneNumber,
         }).then((response) => {
           const userID = response.data
           if (userID != null) {
@@ -212,10 +210,12 @@ export default {
   background-color: #89abe3ff;
   padding-top: 2%;
 }
-.px-lg-5 {
-  background-color: #363636;
+.px-sm-5 {
+  background-image: url(../assets/perfect-smile2.png);
 }
 .mt--8 {
+  background-image: url(../assets/neon.png);
   padding-top: 5%;
+  opacity: 25;
 }
 </style>
