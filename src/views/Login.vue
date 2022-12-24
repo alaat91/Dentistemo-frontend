@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-div">
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
@@ -119,6 +119,9 @@ export default {
   background-color: #89abe3ff;
   margin-bottom: 2%;
   border-style: hidden;
+}
+.main-div {
+  background-image: url(../assets/neon-city.png);
 }
 .mt--8 {
   padding-top: 10%;
