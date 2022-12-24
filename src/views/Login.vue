@@ -1,32 +1,5 @@
 <template>
   <div>
-    <!-- Header
-    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
-      <b-container>
-        <div class="header-body text-center mb-7">
-          <b-row class="justify-content-center">
-            <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">Login</h1>
-            </b-col>
-          </b-row>
-        </div>
-      </b-container>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg
-          x="0"
-          y="0"
-          viewBox="0 0 2560 100"
-          preserveAspectRatio="none"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polygon
-            class="fill-default"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-    </div> -->
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
@@ -78,8 +51,11 @@
                 >
                 </b-input>
                 <div class="text-center" @click.prevent="onSubmit">
-                  <b-button variant="outline-primary" native-type="submit" class="my-4"
-                    >Sign in</b-button
+                  <b-button
+                    variant="outline-primary"
+                    native-type="submit"
+                    class="my-4"
+                    >Login</b-button
                   >
                 </div>
               </b-form>
@@ -92,7 +68,7 @@
               >
             </b-col>
             <b-col cols="12" class="text-right">
-              <router-link :to="{name:'home'}" class="text-right"
+              <router-link :to="{ name: 'home' }" class="text-right"
                 ><small>Home</small></router-link
               >
             </b-col>
@@ -140,7 +116,7 @@ export default {
 <style scoped>
 .header {
   padding-top: 2%;
-  background-color: #89ABE3FF;
+  background-color: #89abe3ff;
   margin-bottom: 2%;
   border-style: hidden;
 }
@@ -148,11 +124,11 @@ export default {
   padding-top: 10%;
 }
 .bg-signin {
-  background-color: #2F3C7E;
+  background-color: #2f3c7e;
   border-style: solid;
 }
 .px-lg-5 {
-  background-color: #FBEAEB;
+  background-color: #fbeaeb;
   border-style: solid;
   border-bottom-left-radius: 1%;
   border-bottom-right-radius: 1%;

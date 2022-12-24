@@ -6,7 +6,7 @@
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">Profile</h1>
+              <h1 class="text-black">Your Profile.</h1>
             </b-col>
           </b-row>
         </div>
@@ -28,27 +28,15 @@
       </div>
     </div>
     <!-- Page content -->
-    <b-container class="mt--8 pb-5">
+    <b-container class="mt--8 pb-">
       <!-- Table -->
       <b-row class="justify-content-center">
         <b-col lg="6" md="8">
           <b-card no-body class="bg-secondary border-0">
-            <b-card-header class="bg-oauth pb-5">
-              <div class="text-black text-center mt-2 mb-4">
-                <small>Your credentials</small>
-              </div>
-              <div class="text-center">
-                <a href="#" class="btn btn-neutral btn-icon">
-                  <span class="btn-inner--icon"
-                    ><img src="../assets/google.svg"
-                  /></span>
-                  <span class="btn-inner--text text-black">Google</span>
-                </a>
-              </div>
-            </b-card-header>
+
             <b-card-body class="px-lg-5 py-lg-5">
               <div class="text-center text-white mb-4">
-                <small>Below you can edit your profile.</small>
+                <small>Edit your profile here.</small>
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
@@ -111,18 +99,6 @@
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
-                  placeholder="Confirm Password"
-                  type="password"
-                  name="confirmPassword"
-                  :rules="{ required: true, min: 6 }"
-                  v-model="model.confirmPassword"
-                >
-                </b-input>
-
-                <b-input
-                  alternative
-                  class="mb-3"
-                  prepend-icon="ni ni-lock-circle-open"
                   placeholder="Phone Number"
                   type="phoneNumber"
                   name="phoneNumber"
@@ -130,11 +106,19 @@
                   v-model="model.phoneNumber"
                 >
                 </b-input>
-                <div class="text-center" @click.prevent="onSubmit">
-                  <b-button class="btn-save" type="submit" variant="success"
+                <div class="text-center">
+                  <b-button
+                    class="btn-save"
+                    @click.prevent="onSave"
+                    type="submit"
+                    variant="success"
                     >Save</b-button
                   >
-                  <b-button class="btn-delete" type="submit" variant="danger"
+                  <b-button
+                    class="btn-delete"
+                    @click.prevent="onDelete"
+                    type="delete"
+                    variant="danger"
                     >Delete</b-button
                   >
                 </div>
@@ -143,7 +127,7 @@
           </b-card>
           <b-row class="mt-3">
             <b-col cols="6">
-              <router-link :to="{name:'home'}" class="text-left"
+              <router-link :to="{ name: 'home' }" class="text-left"
                 ><small>Home</small></router-link
               >
             </b-col>
@@ -155,6 +139,7 @@
 </template>
 
 <script>
+import { onMounted } from 'vue'
 import { API } from '../config/api'
 
 export default {
@@ -167,7 +152,6 @@ export default {
         ssn: '',
         email: '',
         password: '',
-        confirmPassword: '',
         phoneNumber: '',
       },
     }
@@ -176,41 +160,40 @@ export default {
   mounted() {
     const userId = localStorage.getItem('LoggedUser')
     const userID = userId.slice(1, -1)
-    alert(userID)
     API.get(`users/profile/${userID}`)
       .then((response) => {
-        this.model.firstName = response.data.firstName,
-        this.model.lastName = response.data.lastName,
-        this.model.ssn = response.data.SSN,
-        this.model.email = response.data.email,
-        this.model.phoneNumber = response.data.phoneNumber
+        ;(this.model.firstName = response.data.firstName),
+          (this.model.lastName = response.data.lastName),
+          (this.model.ssn = response.data.SSN),
+          (this.model.email = response.data.email),
+          (this.model.password = response.data.password),
+          (this.model.phoneNumber = response.data.phoneNumber),
+          this.$router.push(`/profile/${userID}`)
       })
       .catch((error) => {
         alert(error)
-        alert('catch error line 189')
-        this.users = ['nothing here']
         console.log(error)
       })
   },
 
   methods: {
-    async onSubmit() {
+    onSave() {
+      const userId = localStorage.getItem('LoggedUser')
+      const userID = userId.slice(1, -1)
       try {
-        API.post('auth/signup', {
+        API.put(`users/profile/${userID}`, {
+          userID,
           firstName: this.model.firstName,
           lastName: this.model.lastName,
-          email: this.model.email,
           SSN: this.model.ssn,
+          email: this.model.email,
           password: this.model.password,
-          confirmPassword: this.model.confirmPassword,
-          phoneNumber: this.model.phoneNumber,
+          phoneNumber: this.model.phoneNumber 
         }).then((response) => {
           const userID = response.data
-          if (userID._id != null) {
-            //TODO implement proper response in gateway/auth
-            alert('Your new account has been registered!')
-            localStorage.setItem('token', response.data.token)
-            this.$router.push('/profile')
+          if (userID != null) {
+            alert('Your profile is updated!')
+            onMounted()
           } else {
             alert('All input is required!')
           }
@@ -229,11 +212,8 @@ export default {
   background-color: #89abe3ff;
   padding-top: 2%;
 }
-.bg-oauth {
-  background-color: #cccccc;
-}
 .px-lg-5 {
-  background-color: #0f135885;
+  background-color: #363636;
 }
 .mt--8 {
   padding-top: 5%;
