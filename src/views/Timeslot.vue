@@ -83,26 +83,15 @@
         <b-col cols="1"> </b-col>
       </b-row>
     </div>
-    <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
-      <TimeslotItem v-bind:timeslot="timeslot" />
-    </b-col>
 
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
       <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
-      </b-col>
-      <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem v-bind:timeslot="timeslot" />
+        </b-col>
         <b-button pill variant="outline-dark" class="timeslot"
           >10:30-11:00
         </b-button>
@@ -128,6 +117,14 @@
           >10:00-10:30
         </b-button>
         <b-button pill variant="outline-dark" class="timeslot"
+          >10:30-11:00
+        </b-button>
+      </b-col>
+      <b-col cols="2">
+        <b-button pill variant="outline-dark" class="timeslot"
+          >10:00-10:30
+        </b-button>
+        <b-button pill variant="outline- dark" class="timeslot"
           >10:30-11:00
         </b-button>
       </b-col>
@@ -140,19 +137,28 @@
 <script>
 import TheNavigation from '../components/TheNavigation.vue'
 import TimeslotItem from '../components/TimeslotItem.vue'
+import { API } from '../config/api'
 export default {
   components: {
     TimeslotItem,
     TheNavigation,
   },
 
-  mounted() {
+  mounted: async function () {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
-    // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
+    // TODO: import timeslots from backend by using currentweek[0] and currentweek[4]
+    try {
+      const res = await API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
+      console.log(this.timeslots)
+    } catch (err) {
+      console.error(err)
+    }
   },
-
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
     getWeek(date) {
