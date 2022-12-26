@@ -48,6 +48,7 @@
 import TheNavigation from '../components/TheNavigation.vue'
 export default {
   components: { TheNavigation },
+  props: [''],
   data() {
     return {
       booking: {
@@ -67,11 +68,11 @@ export default {
       items: [
         {
           text: 'Home',
-          href: '/',
+          href: '/home',
         },
         {
           text: 'TimeSlots',
-          href: '/clinic',
+          href: `/clinic/${this.$route.params}`,
         },
         {
           text: 'Confirmation',
@@ -83,7 +84,7 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      console.log(this.$route.params.clinicId)
     },
     onCancel() {
       // Reset our form values
@@ -92,7 +93,10 @@ export default {
 
       // Trick to reset/clear native browser form validation state
       this.show = false
-      this.$router.push('/clinic')
+      this.$router.push({
+        name: 'timeslots',
+        params: { clinicId: this.$route.params.clinicId },
+      })
       this.$nextTick(() => {
         this.show = true
       })

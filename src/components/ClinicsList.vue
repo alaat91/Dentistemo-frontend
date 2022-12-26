@@ -13,7 +13,11 @@ export default {
   props: ['clinicName', 'clinicId'],
   computed: {
     clinicsTimeSlotsPage() {
-      return '/clinic/' + this.clinicId
+      //return '/clinic/' + this.clinicId
+      return {
+        name: 'timeslots',
+        params: { clinicId: this.clinicId },
+      }
     },
   },
 }
