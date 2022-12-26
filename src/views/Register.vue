@@ -136,21 +136,15 @@
                   v-model="model.phoneNumber"
                 >
                 </b-input>
-                <div class="text-center" @click.prevent="onSubmit">
-                  <b-button type="submit" variant="success" class="mt-4"
-                    >Create account</b-button
+                <div class="text-center">
+                  <b-button @click.prevent="onSubmit" type="submit" variant="success" class="signup-btn"
+                    >Sign Up</b-button
                   >
+                  <b-button class="login-btn" href="/login">Login</b-button>
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link :to="{name:'login'}" class="text-left"
-                ><small>Login</small></router-link
-              >
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
     </b-container>
@@ -223,5 +217,13 @@ export default {
 }
 .mt--8 {
   padding-top: 5%;
+}
+.signup-btn {
+  margin-left: 3%;
+  margin-top: 5%  
+}
+.login-btn {
+  margin-left: 6%;
+  margin-top: 5%
 }
 </style>
