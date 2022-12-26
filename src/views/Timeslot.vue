@@ -79,7 +79,11 @@
       <b-col cols="1"> </b-col>
       <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2" class="timeslotCol">
-        <b-button pill variant="outline-dark" class="timeslot"
+        <b-button
+          @click="confirmAppointement"
+          pill
+          variant="outline-dark"
+          class="timeslot"
           >10:00-10:30
         </b-button>
         <b-button pill variant="outline-dark" class="timeslot"
@@ -195,6 +199,13 @@ export default {
       // Returns `true` if the date should be disabled   // || day === 13
       return weekday === 0 || weekday === 6
     },
+    confirmAppointement() {
+      const clinicId = this.$route.params
+      this.$router.push({
+        name: 'timeslots-confirm',
+        params: { cId: clinicId },
+      })
+    },
   },
   data() {
     return {
@@ -204,7 +215,7 @@ export default {
       items: [
         {
           text: 'Home',
-          href: '/',
+          href: '/home',
         },
         {
           text: 'TimeSlots',

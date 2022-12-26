@@ -33,20 +33,23 @@ export default new Router({
       component: Landing,
     },
     {
-      path: '/home',
       name: 'home',
+      path: '/home',
       component: HomePage,
       beforeEnter: guardMyroute,
     },
-    // {
-    //   path: '/clinic',
-    //   name: 'timeslot',
-    //   component: Timeslot,
-    // },
     {
+      name: 'timeslots',
       path: '/clinic/:clinicId',
-      name: 'timeslot',
       component: Timeslot,
+      props: true,
+      beforeEnter: guardMyroute,
+    },
+    {
+      name: 'timeslots-confirm',
+      path: '/clinic/:clinicId/confimBooking',
+      component: ConfirmBookingPage,
+      props: true,
       beforeEnter: guardMyroute,
     },
     {
@@ -69,12 +72,6 @@ export default new Router({
       path: '/profile/:userID',
       name: 'profile',
       component: Profile,
-      beforeEnter: guardMyroute
-    },
-    {
-      path: '/confimBooking',
-      name: 'confirm',
-      component: ConfirmBookingPage,
       beforeEnter: guardMyroute,
     },
     {
