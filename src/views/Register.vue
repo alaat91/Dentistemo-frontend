@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="main-div">
     <!-- Header -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">Create an account.</h1>
+              <h1 class="text-white">Sign up and the world is yours.</h1>
             </b-col>
           </b-row>
         </div>
@@ -209,8 +209,11 @@ export default {
 </script>
 <style scoped>
 .header {
-  background-color: #89ABE3FF;
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
+}
+.main-div{
+  background-image: url(../assets/earth.png);
 }
 .bg-oauth {
   background-color: #ccf381;

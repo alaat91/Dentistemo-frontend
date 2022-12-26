@@ -122,6 +122,7 @@ export default {
 }
 .main-div {
   background-image: url(../assets/neon-city.png);
+  padding: 1%;
 }
 .mt--8 {
   padding-top: 10%;
