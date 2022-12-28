@@ -50,23 +50,19 @@
                   v-model="model.password"
                 >
                 </b-input>
-                <div class="text-center" @click.prevent="onSubmit">
-                  <b-button
+                <div class="text-center">
+                  <b-button @click.prevent="onSubmit"
                     variant="outline-primary"
                     native-type="submit"
-                    class="my-4"
+                    class="login-btn"
                     >Login</b-button
                   >
+                  <b-button class="register-btn" href="/register">Register</b-button>
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
           <b-row class="mt-3">
-            <b-col cols="12" class="text-right">
-              <router-link to="/register" class="text-right"
-                ><small>Create new account</small></router-link
-              >
-            </b-col>
             <b-col cols="12" class="text-right">
               <router-link :to="{ name: 'home' }" class="text-right"
                 ><small>Home</small></router-link
@@ -122,6 +118,7 @@ export default {
 }
 .main-div {
   background-image: url(../assets/neon-city.png);
+  padding: 4%;
 }
 .mt--8 {
   padding-top: 10%;
@@ -129,6 +126,12 @@ export default {
 .bg-signin {
   background-color: #2f3c7e;
   border-style: solid;
+}
+.login-btn {
+  margin-left: 3%;
+}
+.register-btn {
+  margin-left: 6%;
 }
 .px-lg-5 {
   background-color: #fbeaeb;

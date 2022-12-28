@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="main-div">
     <!-- Header -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">Create an account.</h1>
+              <h1 class="text-white">Sign up and the world is yours.</h1>
             </b-col>
           </b-row>
         </div>
@@ -136,21 +136,15 @@
                   v-model="model.phoneNumber"
                 >
                 </b-input>
-                <div class="text-center" @click.prevent="onSubmit">
-                  <b-button type="submit" variant="success" class="mt-4"
-                    >Create account</b-button
+                <div class="text-center">
+                  <b-button @click.prevent="onSubmit" type="submit" variant="success" class="signup-btn"
+                    >Sign Up</b-button
                   >
+                  <b-button class="login-btn" href="/login">Login</b-button>
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link :to="{name:'login'}" class="text-left"
-                ><small>Login</small></router-link
-              >
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
     </b-container>
@@ -209,8 +203,11 @@ export default {
 </script>
 <style scoped>
 .header {
-  background-color: #89ABE3FF;
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
+}
+.main-div{
+  background-image: url(../assets/earth.png);
 }
 .bg-oauth {
   background-color: #ccf381;
@@ -220,5 +217,13 @@ export default {
 }
 .mt--8 {
   padding-top: 5%;
+}
+.signup-btn {
+  margin-left: 3%;
+  margin-top: 5%  
+}
+.login-btn {
+  margin-left: 6%;
+  margin-top: 5%
 }
 </style>
