@@ -201,6 +201,22 @@ export default {
         console.log(error)
       }
     },
+
+    onDelete() {
+    const userId = localStorage.getItem('LoggedUser')
+    const userID = userId.slice(1, -1)
+    API.delete(`users/profile/${userID}`)
+      .then((response) => {
+        const userID = response.data
+        if (userID === 'User has been deleted') {
+          alert('User has been deleted')
+          localStorage.clear()
+          this.$router.push('/logout')
+        } else {
+          alert('User ID not found')
+        }
+      })
+    },
   },
 }
 </script>
@@ -209,6 +225,12 @@ export default {
 .header {
   background-color: #89abe3ff;
   padding-top: 2%;
+}
+.btn-save {
+  margin-left: 3%;
+}
+.btn-delete {
+  margin-left: 6%;
 }
 .px-sm-5 {
   background-image: url(../assets/perfect-smile2.png);

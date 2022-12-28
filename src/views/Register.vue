@@ -186,7 +186,7 @@ export default {
             //TODO implement proper response in gateway/auth
             alert('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
-            this.$router.push('/profile')
+            this.$router.push('/home')
           } else if (userID === 'Email is already taken') {
             alert('Email is already taken!')
           } else {
