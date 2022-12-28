@@ -33,20 +33,7 @@ export default {
   data() {
     return {
       clinics: [],
-      items: [
-        // {
-        //   text: 'Home',
-        //   active: true,
-        // },
-        // {
-        //   text: 'TimeSlots',
-        //   href: '/clinic',
-        // },
-        // {
-        //   text: 'Confirmation',
-        //   href: '/confimBooking',
-        // },
-      ],
+      items: [],
     }
   },
   provide() {

@@ -81,6 +81,7 @@
       <b-col cols="2" class="timeslotCol">
         <b-button
           @click="confirmAppointement"
+          ref="chosenTime"
           pill
           variant="outline-dark"
           class="timeslot"
@@ -200,10 +201,13 @@ export default {
       return weekday === 0 || weekday === 6
     },
     confirmAppointement() {
+      const button = this.$refs.chosenTime
+      const buttonTime = button.textContent
       const clinicId = this.$route.params
       this.$router.push({
         name: 'timeslots-confirm',
         params: { cId: clinicId },
+        query: { time: buttonTime, date: this.calendarDate.toDateString() },
       })
     },
   },
