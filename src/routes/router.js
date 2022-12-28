@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Timeslot from '../views/Timeslot.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
+import Logout from '../views/Logout.vue'
 import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
@@ -61,6 +62,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login,
+    },
+    {
+      path: '/logout',
+      name: 'logout',
+      component: Logout,
     },
     {
       path: '/profile',
