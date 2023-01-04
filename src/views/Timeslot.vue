@@ -90,43 +90,55 @@
       <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
-          <TimeslotItem v-bind:timeslot="timeslot" />
+          <TimeslotItem
+            v-if="timeslot.start < currentWeek[0].getTime()"
+            v-bind:timeslot="timeslot"
+          />
         </b-col>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            v-if="
+              timeslot.start > currentWeek[0].getTime() &&
+              timeslot.start < currentWeek[1].getTime()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            v-if="
+              timeslot.start > currentWeek[1].getTime() &&
+              timeslot.start < currentWeek[2].getTime()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            v-if="
+              timeslot.start > currentWeek[2].getTime() &&
+              timeslot.start < currentWeek[3].getTime()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
       <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline- dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            v-if="
+              timeslot.start > currentWeek[3].getTime() &&
+              timeslot.start < currentWeek[4].getTime()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
