@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-button> </b-button>
+    <b-button> {{ timeslot.start }}</b-button>
   </div>
 </template>
 
 <script>
 export default {
-  setup() {},
+  props: ['timeslot'],
 }
 </script>
 

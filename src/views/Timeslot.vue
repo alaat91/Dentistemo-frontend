@@ -159,6 +159,9 @@ export default {
       console.error(err)
     }
   },
+  computed: {
+    weekday() {},
+  },
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
     getWeek(date) {
