@@ -8,6 +8,8 @@
     <h4>Please select a booking date and time from below-</h4>
     <!-- Month view -->
     <div>
+      {{ clinicName }}
+
       <label>Choose a date</label>
       <b-form-datepicker
         class="mb-2"
@@ -156,6 +158,20 @@ export default {
     TheNavigation,
   },
 
+  created: async function () {
+    const clinincId = this.$route.params.clinicId
+
+    try {
+      const res = await API.get('/clinics')
+      this.clinics = res.data
+      const chosenClininc = this.clinics.find(
+        (clininc) => clininc.id === clinincId
+      )
+      this.clinicName = chosenClininc.name
+    } catch (err) {
+      console.error(err)
+    }
+  },
   mounted: async function () {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
@@ -198,6 +214,15 @@ export default {
         )
       }
       this.currentWeek = dates
+      try {
+        const res = API.get(
+          `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        )
+        this.timeslots = res.data
+        console.log(this.timeslots)
+      } catch (err) {
+        console.error(err)
+      }
     },
 
     lastWeek() {
@@ -210,6 +235,15 @@ export default {
         )
       }
       this.currentWeek = dates
+      try {
+        const res = API.get(
+          `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        )
+        this.timeslots = res.data
+        console.log(this.timeslots)
+      } catch (err) {
+        console.error(err)
+      }
     },
     calendarChange(date) {
       const firstDay = new Date(
@@ -232,6 +266,8 @@ export default {
   },
   data() {
     return {
+      clinicName: '',
+
       currentWeek: [],
       timeslots: [],
       calendarDate: new Date(),
@@ -277,9 +313,6 @@ label {
   max-width: 220px;
   /* Setting the size + Setting the max size means all
   timeslots are the same size and not relative to it's content */
-}
-.Daylabel {
-  font-weight: bold;
 }
 input,
 label {
