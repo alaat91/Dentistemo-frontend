@@ -10,15 +10,18 @@
           alt="Responsive image"
         ></b-img>
       </div>
+       <Footer></Footer>
     </b-container>
   </body>
 </template>
 
 <script>
 import LandingItem from '../components/LandingItem.vue'
+import Footer from '../components/Footer.vue'
 export default {
   components: {
     LandingItem,
+    Footer,
   },
 }
 </script>
