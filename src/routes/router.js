@@ -81,9 +81,9 @@ export default new Router({
       beforeEnter: guardMyroute,
     },
     {
-      path: '/notification',
-      name: 'notification',
-      component: Notification,
+      path: '/myBooking',
+      name: 'myBooking',
+      component: MyBooking,
       beforeEnter: guardMyroute,
     },
   ],
