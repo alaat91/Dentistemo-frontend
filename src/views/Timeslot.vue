@@ -175,13 +175,6 @@ export default {
       const res = await API.get(
         `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
-
-      const newDate = res.data.map((date) => {
-        const milliesecondToDate = new Date(date.start)
-        const dateInHoures = milliesecondToDate.getHours()
-        const dateInMinutes = milliesecondToDate.getMinutes()
-        console.log(`${dateInHoures}: ${dateInMinutes}`)
-      })
       this.timeslots = res.data
     } catch (err) {
       console.error(err)
