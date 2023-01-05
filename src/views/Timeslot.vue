@@ -186,7 +186,7 @@ export default {
       }
       return dates
     },
-    // TODO: Improve logic of nextWeek, lastWeek and calendarChange
+    // TODO: Improve logic of calendarChange
     // as there are unnecessary steps that can be removed
     nextWeek() {
       const dates = []
