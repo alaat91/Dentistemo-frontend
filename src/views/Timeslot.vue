@@ -21,68 +21,52 @@
       ></b-form-datepicker>
     </div>
     <b-row>
+      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <div id="dateRange">
         {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}-{{
           currentWeek[4] ? currentWeek[4].getDate() : 0
         }}
       </div>
     </b-row>
+
     <div>
-      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <b-row cols="12" id="toprow">
         <b-col cols="1">
           <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Monday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Tuesday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Wednesday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Thursday</div>
-        </b-col>
-        <b-col cols="2">
-          <div class="Daylabel">Friday</div>
-        </b-col>
-        <b-col cols="1">
-          <b-button @click="nextWeek()">&rsaquo;</b-button>
-        </b-col>
-      </b-row>
-    </div>
-
-    <div>
-      <b-row cols="12" id="toprow">
-        <b-col cols="1"> </b-col>
-        <b-col cols="2">
           <div class="Daylabel">
             {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Tuesday</div>
           <div class="Daylabel">
             {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Wednesday</div>
           <div class="Daylabel">
             {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Thursday</div>
           <div class="Daylabel">
             {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
+          <div class="Daylabel">Friday</div>
           <div class="Daylabel">
             {{ currentWeek[4] ? currentWeek[4].getDate() : 0 }}
           </div>
         </b-col>
-        <b-col cols="1"> </b-col>
+        <b-col cols="1">
+          <b-button @click="nextWeek()">&rsaquo;</b-button>
+        </b-col>
       </b-row>
     </div>
 
@@ -93,6 +77,7 @@
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
+            class="timeslot"
             v-if="timeslot.start < currentWeek[0].getTime()"
             v-bind:timeslot="timeslot"
           />
@@ -101,6 +86,7 @@
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
+            class="timeslot"
             v-if="
               timeslot.start > currentWeek[0].getTime() &&
               timeslot.start < currentWeek[1].getTime()
@@ -112,6 +98,7 @@
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
+            class="timeslot"
             v-if="
               timeslot.start > currentWeek[1].getTime() &&
               timeslot.start < currentWeek[2].getTime()
@@ -123,6 +110,7 @@
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
+            class="timeslot"
             v-if="
               timeslot.start > currentWeek[2].getTime() &&
               timeslot.start < currentWeek[3].getTime()
@@ -134,6 +122,7 @@
       <b-col cols="2">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
+            class="timeslot"
             v-if="
               timeslot.start > currentWeek[3].getTime() &&
               timeslot.start < currentWeek[4].getTime()
@@ -235,15 +224,11 @@ export default {
         )
       }
       this.currentWeek = dates
-      try {
-        const res = API.get(
-          `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
-        )
-        this.timeslots = res.data
-        console.log(this.timeslots)
-      } catch (err) {
-        console.error(err)
-      }
+      const res = API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
+      console.log(this.timeslots)
     },
     calendarChange(date) {
       const firstDay = new Date(
