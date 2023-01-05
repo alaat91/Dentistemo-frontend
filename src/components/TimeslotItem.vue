@@ -1,12 +1,28 @@
 <template>
   <div>
-    <b-button id="time"> {{ timeslot.start }}</b-button>
+    <b-button id="time"> {{ millescenondToHoursAndMinutes }}</b-button>
   </div>
 </template>
 
 <script>
 export default {
   props: ['timeslot'],
+  computed: {
+    millescenondToHoursAndMinutes() {
+      const milliesecondToDate = new Date(this.timeslot.start)
+
+      const dateInHoures = milliesecondToDate
+        .getHours()
+        .toString()
+        .padStart(2, '0')
+
+      const dateInMinutes = milliesecondToDate
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')
+      return `${dateInHoures}:${dateInMinutes}`
+    },
+  },
 }
 </script>
 

@@ -78,18 +78,9 @@
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
-            v-if="timeslot.start < currentWeek[0].getTime()"
-            v-bind:timeslot="timeslot"
-          />
-        </b-col>
-      </b-col>
-      <b-col cols="2" class="daycolumn">
-        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
-          <TimeslotItem
-            class="timeslot"
             v-if="
-              timeslot.start > currentWeek[0].getTime() &&
-              timeslot.start < currentWeek[1].getTime()
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[0].toDateString()
             "
             v-bind:timeslot="timeslot"
           />
@@ -100,8 +91,8 @@
           <TimeslotItem
             class="timeslot"
             v-if="
-              timeslot.start > currentWeek[1].getTime() &&
-              timeslot.start < currentWeek[2].getTime()
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[1].toDateString()
             "
             v-bind:timeslot="timeslot"
           />
@@ -112,8 +103,8 @@
           <TimeslotItem
             class="timeslot"
             v-if="
-              timeslot.start > currentWeek[2].getTime() &&
-              timeslot.start < currentWeek[3].getTime()
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[2].toDateString()
             "
             v-bind:timeslot="timeslot"
           />
@@ -124,8 +115,20 @@
           <TimeslotItem
             class="timeslot"
             v-if="
-              timeslot.start > currentWeek[3].getTime() &&
-              timeslot.start < currentWeek[4].getTime()
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[3].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
+      </b-col>
+      <b-col cols="2" class="daycolumn">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[4].toDateString()
             "
             v-bind:timeslot="timeslot"
           />
@@ -146,7 +149,7 @@ export default {
     TimeslotItem,
     TheNavigation,
   },
-
+  /*
   created: async function () {
     const clinincId = this.$route.params.clinicId
 
@@ -160,7 +163,9 @@ export default {
     } catch (err) {
       console.error(err)
     }
+    
   },
+  */
   mounted: async function () {
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
@@ -170,8 +175,14 @@ export default {
       const res = await API.get(
         `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
+
+      const newDate = res.data.map((date) => {
+        const milliesecondToDate = new Date(date.start)
+        const dateInHoures = milliesecondToDate.getHours()
+        const dateInMinutes = milliesecondToDate.getMinutes()
+        console.log(`${dateInHoures}: ${dateInMinutes}`)
+      })
       this.timeslots = res.data
-      console.log(this.timeslots)
     } catch (err) {
       console.error(err)
     }
