@@ -8,7 +8,7 @@ import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
 import Landing from '../views/Landing.vue'
-import Notification from '../views/Notification.vue'
+import MyBooking from '../views/MyBooking.vue'
 
 Vue.use(Router)
 
@@ -34,21 +34,21 @@ export default new Router({
       component: Landing,
     },
     {
-      name: 'home',
       path: '/home',
+      name: 'home',
       component: HomePage,
       beforeEnter: guardMyroute,
     },
     {
-      name: 'timeslots',
       path: '/clinic/:clinicId',
+      name: 'timeslots',
       component: Timeslot,
       props: true,
       beforeEnter: guardMyroute,
     },
     {
-      name: 'timeslots-confirm',
       path: '/clinic/:clinicId/confimBooking',
+      name: 'timeslots-confirm',
       component: ConfirmBookingPage,
       props: true,
       beforeEnter: guardMyroute,
@@ -81,9 +81,9 @@ export default new Router({
       beforeEnter: guardMyroute,
     },
     {
-      path: '/notification',
-      name: 'notification',
-      component: Notification,
+      path: '/myBooking',
+      name: 'myBooking',
+      component: MyBooking,
       beforeEnter: guardMyroute,
     },
   ],
