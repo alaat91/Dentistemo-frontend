@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button> {{ timeslot.start }}</b-button>
+    <b-button id="time"> {{ timeslot.start }}</b-button>
   </div>
 </template>
 
@@ -10,4 +10,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#time {
+  font-family: 'Courier New', Courier, monospace;
+}
+</style>
