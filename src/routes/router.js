@@ -8,7 +8,7 @@ import HomePage from '../views/HomePage.vue'
 import Profile from '../views/Profile.vue'
 import ConfirmBookingPage from '../views/ConfirmBookingPage.vue'
 import Landing from '../views/Landing.vue'
-import Notification from '../views/Notification.vue'
+import MyBooking from '../views/MyBooking.vue'
 
 Vue.use(Router)
 
