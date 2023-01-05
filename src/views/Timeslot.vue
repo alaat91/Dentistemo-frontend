@@ -329,4 +329,55 @@ input,
 label {
   margin: 0.4rem 0;
 }
+
+#dateRange {
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
+.mb-2 {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 1500px) {
+  .timeslot {
+    width: 220px;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .timeslot {
+    width: 160px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .timeslot {
+    width: 115px;
+  }
+}
+.timeslot {
+  margin-top: 10px;
+  margin-bottom: 1px;
+  max-width: 215px;
+  position: relative;
+
+  /* Setting the size + Setting the max size means all
+  timeslots are the same size and not relative to it's content */
+}
+.timeslotCol {
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColRight {
+  border-right-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColLeft {
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.Daylabel {
+  font-weight: bold;
+  text-align: center;
+}
 </style>
