@@ -74,7 +74,7 @@
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
       <!-- TODO: Remove dummy data and show timeslots from backend-->
-      <b-col cols="2">
+      <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -83,7 +83,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -95,7 +95,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -107,7 +107,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -119,7 +119,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2">
+      <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -291,14 +291,6 @@ label {
   text-align: center;
   font-weight: bold;
 }
-.timeslot {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  width: 220px;
-  max-width: 220px;
-  /* Setting the size + Setting the max size means all
-  timeslots are the same size and not relative to it's content */
-}
 input,
 label {
   margin: 0.4rem 0;
@@ -363,6 +355,9 @@ label {
 }
 .Daylabel {
   font-weight: bold;
+  text-align: center;
+}
+.daycolumn {
   text-align: center;
 }
 </style>
