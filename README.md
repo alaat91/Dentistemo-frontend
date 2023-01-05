@@ -12,6 +12,9 @@ The register page allows the user to provide their detailed information which th
 # Profile page: 
 The profile page stores the user information. It also lets the user change theur profile information such as name, email, telephone etc. 
 
+# My Booking page:
+The my-booking page shows the user the history of their previous booking. It also shows the user the a list of their upcoming bookings.
+
 
 # Home Page:
 
