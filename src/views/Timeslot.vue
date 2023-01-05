@@ -189,13 +189,12 @@ export default {
     // TODO: Improve logic of nextWeek, lastWeek and calendarChange
     // as there are unnecessary steps that can be removed
     nextWeek() {
-      const firstDay = new Date(
-        this.currentWeek[0].getTime() -
-          (this.currentWeek[0].getDay() - 8) * 24 * 60 * 60 * 1000
-      )
-      const dates = [firstDay]
-      for (let i = 1; i < 5; i++) {
-        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      for (let i = 0; i < 5; i++) {
+        dates.push(
+          new Date(
+            this.currentWeek[i].getTime() + 0 * 24 * 60 * 60 * 1000 + 604800000
+          )
+        )
       }
       this.currentWeek = dates
     },
