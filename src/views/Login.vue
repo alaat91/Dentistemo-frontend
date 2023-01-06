@@ -92,11 +92,11 @@ export default {
             localStorage.setItem('LoggedUser', JSON.stringify(userID))
             this.$router.push('/home')
           } else {
-            alert('Invalid Credentials!')
+            this.$vToastify.error('Something went wrong')
           }
         })
       } catch (error) {
-        alert('catching dem errors')
+        alert('catching the errors')
         console.log(error)
       }
     },
