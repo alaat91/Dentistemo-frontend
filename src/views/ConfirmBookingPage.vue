@@ -5,10 +5,10 @@
     <h2>Your booking details:</h2>
     <div>
       <p>
-        You are making an appointment at {{ booking.clinic }} at
-        {{ booking.address }}
+        You are making an appointment at {{ clinicName }} at
+        {{ clinincAdress }}
       </p>
-      <p>Welcome to us at {{ booking.data }} at {{ booking.time }}</p>
+      <p>Welcome to us at {{ chosenDate }} at {{ chosenTime }}</p>
     </div>
     <div>
       <b-form @submit="onSubmit" @reset="onCancel" v-if="show">
@@ -19,7 +19,7 @@
         >
           <b-form-input
             id="input-1"
-            v-model="booking.email"
+            v-model="form.email"
             type="email"
             placeholder="Your email"
             disabled="disabled"
@@ -30,7 +30,7 @@
         <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
           <b-form-input
             id="input-2"
-            v-model="booking.name"
+            v-model="form.name"
             disabled="disabled"
             placeholder="Your name"
             required
@@ -45,18 +45,21 @@
 </template>
 
 <script>
+import { API } from '../config/api'
 import TheNavigation from '../components/TheNavigation.vue'
 export default {
   components: { TheNavigation },
+  props: [''],
   data() {
     return {
+      clinics: [],
+      clinicName: '',
+      clinincAdress: '',
+      chosenTime: '',
+      chosenDate: '',
+      userData: {},
       booking: {
-        name: 'Alaa',
-        email: 'alaa@taleb.com',
-        clinic: 'Dentistemo',
-        address: 'Andra long gatan 3b',
         data: '2022-12-12, fri',
-        time: '9:30 - 10:00',
       },
       form: {
         email: '',
@@ -67,11 +70,11 @@ export default {
       items: [
         {
           text: 'Home',
-          href: '/',
+          href: '/home',
         },
         {
           text: 'TimeSlots',
-          href: '/clinic',
+          href: `/clinic/${this.$route.params.clinicId}`,
         },
         {
           text: 'Confirmation',
@@ -80,10 +83,52 @@ export default {
       ],
     }
   },
+  created: async function () {
+    const clinincId = this.$route.params.clinicId
+    const appointmentData = this.$route.query
+
+    try {
+      const res = await API.get('/clinics')
+      this.clinics = res.data
+      const chosenClininc = this.clinics.find(
+        (clininc) => clininc.id === clinincId
+      )
+      this.clinicName = chosenClininc.name
+      this.clinincAdress = chosenClininc.address
+      this.chosenTime = appointmentData.time
+      this.chosenDate = appointmentData.date
+    } catch (err) {
+      console.error(err)
+    }
+  },
+  mounted: async function () {
+    const userId = localStorage.getItem('LoggedUser')
+    const userID = userId.slice(1, -1)
+    try {
+      const res = await API.get(`/users/userInfo/${userID}`)
+      this.userData = res.data
+      this.form.name = res.data.firstName
+      this.form.email = res.data.email
+
+      console.log(userId)
+      console.log(res.data)
+    } catch (err) {
+      console.error(err)
+    }
+  },
   methods: {
     onSubmit(event) {
       event.preventDefault()
-      alert(JSON.stringify(this.form))
+      // const userId = localStorage.getItem('LoggedUser')
+      // const userID = userId.slice(1, -1)
+      // const choosenDate = { date: this.$route.query.date }
+      // console.log(this.$route.params.clinicId)
+      // console.log(this.clinics)
+      // console.log(this.$route.query)
+      // console.log(userId)
+      // console.log(userID)
+      // console.log(this.form.firstName)
+      // console.log(this.userData)
     },
     onCancel() {
       // Reset our form values
@@ -92,7 +137,10 @@ export default {
 
       // Trick to reset/clear native browser form validation state
       this.show = false
-      this.$router.push('/clinic')
+      this.$router.push({
+        name: 'timeslots',
+        params: { clinicId: this.$route.params.clinicId },
+      })
       this.$nextTick(() => {
         this.show = true
       })

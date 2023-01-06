@@ -1,12 +1,12 @@
 <template>
   <nav>
     <div class="topnav" id="myTopnav">
-      <router-link to="/profile">Profile</router-link>
+      <router-link :to="{name:'profile'}">Profile</router-link>
       <a href="#notification">Notification</a>
       <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
-      <h1>Dentistemo</h1>
+      <h1>Dentistimo</h1>
     </div>
 
     <div style="padding-left: 16px"></div>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './config/router'
+import router from './routes/router'
 import { BootstrapVue } from 'bootstrap-vue'
 
 // Import Bootstrap and BootstrapVue CSS files (order is important)

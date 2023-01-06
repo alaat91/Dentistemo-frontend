@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="main-div">
     <!-- Header -->
     <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
       <b-container class="container">
         <div class="header-body text-center mb-7">
           <b-row class="justify-content-center">
             <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-black">Your Profile.</h1>
+              <h1 class="text-white">Sign up and the world is yours.</h1>
             </b-col>
           </b-row>
         </div>
@@ -28,13 +28,33 @@
       </div>
     </div>
     <!-- Page content -->
-    <b-overlay class="mt--8">
+    <b-container class="mt--8 pb-5">
+      <!-- Table -->
       <b-row class="justify-content-center">
         <b-col lg="6" md="8">
           <b-card no-body class="bg-secondary border-0">
-            <b-card-body class="px-sm-5 py-lg-5">
-              <div class="text-center text-black mb-4">
-                <small>Edit your profile here.</small>
+            <b-card-header class="bg-oauth pb-5">
+              <div class="text-black text-center mt-2 mb-4">
+                <small>Sign up with</small>
+              </div>
+              <div class="text-center">
+                <a href="#" class="btn btn-neutral btn-icon mr-4">
+                  <span class="btn-inner--icon"
+                    ><img src="../assets/github.svg"
+                  /></span>
+                  <span class="btn-inner--text">Github</span>
+                </a>
+                <a href="#" class="btn btn-neutral btn-icon">
+                  <span class="btn-inner--icon"
+                    ><img src="../assets/google.svg"
+                  /></span>
+                  <span class="btn-inner--text">Google</span>
+                </a>
+              </div>
+            </b-card-header>
+            <b-card-body class="px-lg-5 py-lg-5">
+              <div class="text-center text-white mb-4">
+                <small>Or sign up with credentials</small>
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
@@ -97,6 +117,18 @@
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
+                  placeholder="Confirm Password"
+                  type="password"
+                  name="confirmPassword"
+                  :rules="{ required: true, min: 6 }"
+                  v-model="model.confirmPassword"
+                >
+                </b-input>
+
+                <b-input
+                  alternative
+                  class="mb-3"
+                  prepend-icon="ni ni-lock-circle-open"
                   placeholder="Phone Number"
                   type="phoneNumber"
                   name="phoneNumber"
@@ -105,43 +137,25 @@
                 >
                 </b-input>
                 <div class="text-center">
-                  <b-button
-                    class="btn-save"
-                    @click.prevent="onSave"
-                    type="submit"
-                    variant="success"
-                    >Save</b-button
+                  <b-button @click.prevent="onSubmit" type="submit" variant="success" class="signup-btn"
+                    >Sign Up</b-button
                   >
-                  <b-button
-                    class="btn-delete"
-                    @click.prevent="onDelete"
-                    type="delete"
-                    variant="danger"
-                    >Delete</b-button
-                  >
+                  <b-button class="login-btn" href="/login">Login</b-button>
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link :to="{ name: 'home' }" class="text-left"
-                ><small>Home</small></router-link
-              >
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
-    </b-overlay>
+    </b-container>
   </div>
 </template>
 
 <script>
-import { onMounted } from 'vue'
 import { API } from '../config/api'
 
 export default {
-  name: 'users',
+  name: 'register',
   data() {
     return {
       model: {
@@ -150,48 +164,31 @@ export default {
         ssn: '',
         email: '',
         password: '',
+        confirmPassword: '',
         phoneNumber: '',
       },
     }
   },
-
-  mounted() {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
-    API.get(`users/profile/${userID}`)
-      .then((response) => {
-        ;(this.model.firstName = response.data.firstName),
-          (this.model.lastName = response.data.lastName),
-          (this.model.ssn = response.data.SSN),
-          (this.model.email = response.data.email),
-          (this.model.password = response.data.password),
-          (this.model.phoneNumber = response.data.phoneNumber),
-          this.$router.push(`/profile/${userID}`)
-      })
-      .catch((error) => {
-        alert(error)
-        console.log(error)
-      })
-  },
-
   methods: {
-    onSave() {
-      const userId = localStorage.getItem('LoggedUser')
-      const userID = userId.slice(1, -1)
+    async onSubmit() {
       try {
-        API.put(`users/profile/${userID}`, {
-          userID,
+        API.post('auth/signup', {
           firstName: this.model.firstName,
           lastName: this.model.lastName,
-          SSN: this.model.ssn,
           email: this.model.email,
+          SSN: this.model.ssn,
           password: this.model.password,
+          confirmPassword: this.model.confirmPassword,
           phoneNumber: this.model.phoneNumber,
         }).then((response) => {
           const userID = response.data
-          if (userID != null) {
-            alert('Your profile is updated!')
-            onMounted()
+          if (userID._id != null ) {
+            //TODO implement proper response in gateway/auth
+            alert('Your new account has been registered!')
+            localStorage.setItem('token', response.data.token)
+            this.$router.push('/home')
+          } else if (userID === 'Email is already taken') {
+            alert('Email is already taken!')
           } else {
             alert('All input is required!')
           }
@@ -201,43 +198,32 @@ export default {
         console.log(error)
       }
     },
-
-    onDelete() {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
-    API.delete(`users/profile/${userID}`)
-      .then((response) => {
-        const userID = response.data
-        if (userID === 'User has been deleted') {
-          alert('User has been deleted')
-          localStorage.clear()
-          this.$router.push('/logout')
-        } else {
-          alert('User ID not found')
-        }
-      })
-    },
   },
 }
 </script>
-
 <style scoped>
 .header {
-  background-color: #89abe3ff;
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
 }
-.btn-save {
-  margin-left: 3%;
+.main-div{
+  background-image: url(../assets/earth.png);
 }
-.btn-delete {
-  margin-left: 6%;
+.bg-oauth {
+  background-color: #ccf381;
 }
-.px-sm-5 {
-  background-image: url(../assets/perfect-smile2.png);
+.px-lg-5 {
+  background-color: #4831d4;
 }
 .mt--8 {
-  background-image: url(../assets/neon.png);
   padding-top: 5%;
-  opacity: 25;
+}
+.signup-btn {
+  margin-left: 3%;
+  margin-top: 5%  
+}
+.login-btn {
+  margin-left: 6%;
+  margin-top: 5%
 }
 </style>

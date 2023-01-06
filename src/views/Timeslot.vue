@@ -10,11 +10,15 @@
     <div>
       <label>Choose a date</label>
       <b-form-datepicker
+        dropright
+        header-tag=""
+        size="sm"
         class="mb-2"
         value-as-date
         @input="calendarChange(calendarDate)"
         v-model="calendarDate"
         :date-disabled-fn="dateDisabled"
+        start-weekday="1"
         locale="en"
       ></b-form-datepicker>
     </div>
@@ -47,13 +51,13 @@
         <b-col cols="2">
           <div class="Daylabel">Wednesday</div>
           <div class="Daylabel">
-            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
+            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Thursday</div>
           <div class="Daylabel">
-            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
+            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
@@ -251,6 +255,16 @@ export default {
       // Returns `true` if the date should be disabled   // || day === 13
       return weekday === 0 || weekday === 6
     },
+    confirmAppointement() {
+      const button = this.$refs.chosenTime
+      const buttonTime = button.textContent
+      const clinicId = this.$route.params
+      this.$router.push({
+        name: 'timeslots-confirm',
+        params: { cId: clinicId },
+        query: { time: buttonTime, date: this.calendarDate.toDateString() },
+      })
+    },
   },
 
   data() {
@@ -262,16 +276,16 @@ export default {
       items: [
         {
           text: 'Home',
-          href: '/',
+          href: '/home',
         },
         {
           text: 'TimeSlots',
           active: true,
         },
-        {
-          text: 'Confirmation',
-          href: '/confimBooking',
-        },
+        // {
+        //   text: 'Confirmation',
+        //   href: '/confimBooking',
+        // },
       ],
       value: '',
     }
@@ -286,13 +300,61 @@ label {
   font: 1rem 'Fira Sans', sans-serif;
 }
 
-#toprow {
+.toprow {
   background-color: lightblue;
+}
+.mb-2 {
+  font-size: 13px;
+}
+#lowertop {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #dateRange {
   background-color: lightblue;
   text-align: center;
   font-weight: bold;
+}
+@media screen and (max-width: 1500px) {
+  .timeslot {
+    width: 220px;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .timeslot {
+    width: 160px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .timeslot {
+    width: 115px;
+  }
+}
+
+.timeslot {
+  margin-top: 10px;
+  margin-bottom: 1px;
+  max-width: 215px;
+  position: relative;
+
+  /* Setting the size + Setting the max size means all
+  timeslots are the same size and not relative to it's content */
+}
+.timeslotCol {
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColRight {
+  border-right-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColLeft {
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.Daylabel {
+  font-weight: bold;
+  text-align: center;
 }
 input,
 label {
