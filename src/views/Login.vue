@@ -101,7 +101,7 @@ export default {
           }
         })
       } catch (error) {
-        alert('catching dem errors')
+        alert('catching the errors')
         console.log(error)
       }
     },
