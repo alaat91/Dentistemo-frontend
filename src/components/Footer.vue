@@ -112,7 +112,6 @@
     font-size: 15px;
     text-transform: capitalize;
 }
-.single_footer ul li a:hover { color: white; } 
 
 .single_footer_address{}
 .single_footer_address ul{}
