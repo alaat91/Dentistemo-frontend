@@ -37,8 +37,18 @@
           ></b-form-input>
         </b-form-group>
 
-        <b-button type="submit" variant="primary">Confim</b-button>
-        <b-button type="reset" variant="danger">Cancel</b-button>
+        <div>
+          <b-button variant="success" @click="modalShow = !modalShow"
+            >Confirm</b-button
+          >
+
+          <b-modal v-model="modalShow" title="Bookings detailes" @ok="handleOk"
+            >Are you sure you want to confirm your booking at
+            {{ clinicName }} in {{ clinincAdress }} time: {{ chosenTime }} in
+            {{ chosenDate }}</b-modal
+          >
+          <b-button type="reset" variant="danger">Cancel</b-button>
+        </div>
       </b-form>
     </div>
   </div>
@@ -67,6 +77,7 @@ export default {
       },
 
       show: true,
+      modalShow: false,
       items: [
         {
           text: 'Home',
@@ -84,6 +95,8 @@ export default {
     }
   },
   created: async function () {
+    // Fetching clinics data from Clinincs component
+
     const clinincId = this.$route.params.clinicId
     const appointmentData = this.$route.query
 
@@ -102,40 +115,41 @@ export default {
     }
   },
   mounted: async function () {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
+    // fetching the the user data from auth component
+    const userId = localStorage.getItem('LoggedUser').slice(1, -1)
     try {
-      const res = await API.get(`/users/userInfo/${userID}`)
+      const res = await API.get(`/users/profile/${userId}`)
       this.userData = res.data
       this.form.name = res.data.firstName
       this.form.email = res.data.email
-
-      console.log(userId)
-      console.log(res.data)
     } catch (err) {
       console.error(err)
     }
   },
   methods: {
+    // TODO: Implement API calls to confirm booking and send it to the booking DB and send Noficaton mail to the user.
+    handleOk: async function () {
+      // Will be removed later
+      console.log('confirmed')
+      try {
+        const res = await API.post('/bookings', {
+          userId: localStorage.getItem('LoggedUser').slice(1, -1),
+        })
+        console.log(res)
+      } catch (err) {
+        const error = err.response.data.error
+        console.error(error)
+      }
+    },
     onSubmit(event) {
       event.preventDefault()
-      // const userId = localStorage.getItem('LoggedUser')
-      // const userID = userId.slice(1, -1)
-      // const choosenDate = { date: this.$route.query.date }
-      // console.log(this.$route.params.clinicId)
-      // console.log(this.clinics)
-      // console.log(this.$route.query)
-      // console.log(userId)
-      // console.log(userID)
-      // console.log(this.form.firstName)
-      // console.log(this.userData)
     },
     onCancel() {
       // Reset our form values
       this.form.email = ''
       this.form.name = ''
 
-      // Trick to reset/clear native browser form validation state
+      // Trick to reset/clear native browser form validation state and redirect to the time slots page
       this.show = false
       this.$router.push({
         name: 'timeslots',
