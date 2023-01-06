@@ -300,7 +300,7 @@ label {
   font: 1rem 'Fira Sans', sans-serif;
 }
 
-.toprow {
+#toprow {
   background-color: lightblue;
 }
 .mb-2 {
@@ -379,22 +379,6 @@ label {
 }
 .mb-2 {
   font-size: 13px;
-}
-
-@media screen and (max-width: 1500px) {
-  .timeslot {
-    width: 220px;
-  }
-}
-@media screen and (max-width: 1360px) {
-  .timeslot {
-    width: 160px;
-  }
-}
-@media screen and (max-width: 1100px) {
-  .timeslot {
-    width: 115px;
-  }
 }
 .timeslot {
   margin-top: 10px;
