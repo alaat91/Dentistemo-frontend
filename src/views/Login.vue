@@ -63,11 +63,6 @@
             </b-card-body>
           </b-card>
           <b-row class="mt-3">
-            <b-col cols="12" class="text-right">
-              <router-link :to="{ name: 'home' }" class="text-right"
-                ><small>Home</small></router-link
-              >
-            </b-col>
           </b-row>
         </b-col>
       </b-row>
@@ -118,7 +113,7 @@ export default {
 }
 .main-div {
   background-image: url(../assets/neon-city.png);
-  padding: 4%;
+  padding: 5%;
 }
 .mt--8 {
   padding-top: 10%;

@@ -183,9 +183,10 @@ export default {
         }).then((response) => {
           const userID = response.data
           if (userID._id != null ) {
-            //TODO implement proper response in gateway/auth
+            const newUserID = response.data._id
             alert('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
+            localStorage.setItem('LoggedUser', JSON.stringify(newUserID))
             this.$router.push('/home')
           } else if (userID === 'Email is already taken') {
             alert('Email is already taken!')
