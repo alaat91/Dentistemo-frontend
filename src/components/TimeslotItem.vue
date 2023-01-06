@@ -1,13 +1,35 @@
 <template>
   <div>
-    <b-dropdown
-      id="dropdown-dropright"
-      dropright
-      text="Drop-Right"
-      variant="primary"
-      class="m-2"
+    <b-button id="time" size="lg">
+      {{ millescenondToHoursAndMinutes }}</b-button
     >
-      <b-dropdown-item href="#">Book this timeslot</b-dropdown-item>
-    </b-dropdown>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['timeslot'],
+  computed: {
+    millescenondToHoursAndMinutes() {
+      const milliesecondToDate = new Date(this.timeslot.start)
+
+      const dateInHoures = milliesecondToDate
+        .getHours()
+        .toString()
+        .padStart(2, '0')
+
+      const dateInMinutes = milliesecondToDate
+        .getMinutes()
+        .toString()
+        .padStart(2, '0')
+      return `${dateInHoures}:${dateInMinutes}`
+    },
+  },
+}
+</script>
+
+<style scoped>
+#time {
+  font-family: 'Courier New', Courier, monospace;
+}
+</style>

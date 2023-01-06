@@ -23,6 +23,7 @@
       ></b-form-datepicker>
     </div>
     <b-row>
+      <!--TODO: Add the dates of the week above in this format: Dec 12-16-->
       <div id="dateRange">
         {{ currentWeek[0] ? currentWeek[0].getDate() : 0 }}-{{
           currentWeek[4] ? currentWeek[4].getDate() : 0
@@ -31,7 +32,7 @@
     </b-row>
 
     <div>
-      <b-row cols="12" class="toprow">
+      <b-row cols="12" id="toprow">
         <b-col cols="1">
           <b-button @click="lastWeek()">&lsaquo;</b-button>
         </b-col>
@@ -70,58 +71,69 @@
         </b-col>
       </b-row>
     </div>
-    <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
-      <TimeslotItem v-bind:timeslot="timeslot" />
-    </b-col>
 
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
-      <!-- TODO: Remove dummy data and show timeslots from backend-->
-      <b-col cols="2" class="timeslotCol">
-        <b-button
-          @click="confirmAppointement"
-          ref="chosenTime"
-          pill
-          variant="outline-dark"
-          class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+      <b-col cols="2" class="daycolumn">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[0].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
-      <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+      <b-col cols="2" class="daycolumn" id="timeslotCol">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[1].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
-      <b-col cols="2" class="timeslotCol">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+      <b-col cols="2" class="daycolumn">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[2].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
-      <b-col cols="2">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+      <b-col cols="2" class="daycolumn" id="timeslotCol">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[3].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
-      <b-col cols="2" class="timeslotCol">
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:00-10:30
-        </b-button>
-        <b-button pill variant="outline-dark" class="timeslot"
-          >10:30-11:00
-        </b-button>
+      <b-col cols="2" class="daycolumn">
+        <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
+          <TimeslotItem
+            class="timeslot"
+            v-if="
+              new Date(timeslot.start).toDateString() ===
+              currentWeek[4].toDateString()
+            "
+            v-bind:timeslot="timeslot"
+          />
+        </b-col>
       </b-col>
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
@@ -132,19 +144,34 @@
 <script>
 import TheNavigation from '../components/TheNavigation.vue'
 import TimeslotItem from '../components/TimeslotItem.vue'
+import { API } from '../config/api'
 export default {
   components: {
     TimeslotItem,
     TheNavigation,
   },
 
-  mounted() {
+  mounted: async function () {
+    this.clinincId = this.$route.params.clinicId
+
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
-    // TODO: import timeslots from backend by using currentweek[0] and currentweek[6]
+    try {
+      const res = await API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
+    } catch (err) {
+      console.error(err)
+    }
+    console.log(this.currentWeek)
+    console.log(this.currentWeek[0].getTime())
+    console.log(this.currentWeek[4].getTime())
   },
-
+  computed: {
+    weekday() {},
+  },
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
     getWeek(date) {
@@ -157,30 +184,58 @@ export default {
       }
       return dates
     },
-    // TODO: Improve logic of nextWeek, lastWeek and calendarChange
+    // TODO: Improve logic of calendarChange
     // as there are unnecessary steps that can be removed
     nextWeek() {
-      const firstDay = new Date(
-        this.currentWeek[0].getTime() -
-          (this.currentWeek[0].getDay() - 8) * 24 * 60 * 60 * 1000
-      )
-      const dates = [firstDay]
-      for (let i = 1; i < 5; i++) {
-        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      const dates = []
+      for (let i = 0; i < 5; i++) {
+        dates.push(
+          new Date(
+            this.currentWeek[i].getTime() + 0 * 24 * 60 * 60 * 1000 + 604800000
+          )
+        )
       }
+      /*
       this.currentWeek = dates
+      console.log(this.currentWeek)
+      console.log(this.currentWeek[0].getTime())
+      console.log(this.currentWeek[4].getTime())
+      API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      ).then((response) => {
+        this.timeslots = response.data
+        console.log(response)
+        console.log(response.data)
+        console.log(this.timeslots)
+      })
+      API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=1673264098407&end=1673609785227}`
+      ).then((response) => {
+        this.timeslots = response.data
+        console.log(response)
+        console.log(response.data)
+        console.log(this.timeslots)
+      })
+      */
     },
 
     lastWeek() {
-      const firstDay = new Date(
-        this.currentWeek[0].getTime() -
-          (this.currentWeek[0].getDay() + 6) * 24 * 60 * 60 * 1000
-      )
-      const dates = [firstDay]
-      for (let i = 1; i < 5; i++) {
-        dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
+      const dates = []
+      for (let i = 0; i < 5; i++) {
+        dates.push(
+          new Date(
+            this.currentWeek[i].getTime() + 0 * 24 * 60 * 60 * 1000 - 604800000
+          )
+        )
       }
       this.currentWeek = dates
+      /*
+      const res = API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
+      console.log(this.timeslots)
+            */
     },
     calendarChange(date) {
       const firstDay = new Date(
@@ -211,8 +266,10 @@ export default {
       })
     },
   },
+
   data() {
     return {
+      clinincId: '',
       currentWeek: [],
       timeslots: [],
       calendarDate: new Date(),
@@ -313,5 +370,59 @@ label {
 input,
 label {
   margin: 0.4rem 0;
+}
+
+#dateRange {
+  background-color: lightblue;
+  text-align: center;
+  font-weight: bold;
+}
+.mb-2 {
+  font-size: 13px;
+}
+
+@media screen and (max-width: 1500px) {
+  .timeslot {
+    width: 220px;
+  }
+}
+@media screen and (max-width: 1360px) {
+  .timeslot {
+    width: 160px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .timeslot {
+    width: 115px;
+  }
+}
+.timeslot {
+  margin-top: 10px;
+  margin-bottom: 1px;
+  max-width: 215px;
+  position: relative;
+
+  /* Setting the size + Setting the max size means all
+  timeslots are the same size and not relative to it's content */
+}
+#timeslotCol {
+  border-right-style: solid;
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColRight {
+  border-right-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.timeslotColLeft {
+  border-left-style: solid;
+  border-color: rgb(199, 199, 199);
+}
+.Daylabel {
+  font-weight: bold;
+  text-align: center;
+}
+.daycolumn {
+  text-align: center;
 }
 </style>
