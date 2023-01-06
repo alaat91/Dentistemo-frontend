@@ -8,8 +8,6 @@
     <h4>Please select a booking date and time from below-</h4>
     <!-- Month view -->
     <div>
-      {{ clinicName }}
-
       <label>Choose a date</label>
       <b-form-datepicker
         class="mb-2"
@@ -85,7 +83,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2" class="daycolumn">
+      <b-col cols="2" class="daycolumn" id="timeslotCol">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -109,7 +107,7 @@
           />
         </b-col>
       </b-col>
-      <b-col cols="2" class="daycolumn">
+      <b-col cols="2" class="daycolumn" id="timeslotCol">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
             class="timeslot"
@@ -148,28 +146,13 @@ export default {
     TimeslotItem,
     TheNavigation,
   },
-  /*
-  created: async function () {
-    const clinincId = this.$route.params.clinicId
 
-    try {
-      const res = await API.get('/clinics')
-      this.clinics = res.data
-      const chosenClininc = this.clinics.find(
-        (clininc) => clininc.id === clinincId
-      )
-      this.clinicName = chosenClininc.name
-    } catch (err) {
-      console.error(err)
-    }
-    
-  },
-  */
   mounted: async function () {
+    this.clinincId = this.$route.params.clinicId
+
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
-    // TODO: import timeslots from backend by using currentweek[0] and currentweek[4]
     try {
       const res = await API.get(
         `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
@@ -178,6 +161,9 @@ export default {
     } catch (err) {
       console.error(err)
     }
+    console.log(this.currentWeek)
+    console.log(this.currentWeek[0].getTime())
+    console.log(this.currentWeek[4].getTime())
   },
   computed: {
     weekday() {},
@@ -205,16 +191,28 @@ export default {
           )
         )
       }
+      /*
       this.currentWeek = dates
-      try {
-        const res = API.get(
-          `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
-        )
-        this.timeslots = res.data
+      console.log(this.currentWeek)
+      console.log(this.currentWeek[0].getTime())
+      console.log(this.currentWeek[4].getTime())
+      API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      ).then((response) => {
+        this.timeslots = response.data
+        console.log(response)
+        console.log(response.data)
         console.log(this.timeslots)
-      } catch (err) {
-        console.error(err)
-      }
+      })
+      API.get(
+        `/clinics/6399e6db5eeb90d26babb4f9/available?start=1673264098407&end=1673609785227}`
+      ).then((response) => {
+        this.timeslots = response.data
+        console.log(response)
+        console.log(response.data)
+        console.log(this.timeslots)
+      })
+      */
     },
 
     lastWeek() {
@@ -227,11 +225,13 @@ export default {
         )
       }
       this.currentWeek = dates
+      /*
       const res = API.get(
         `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
       console.log(this.timeslots)
+            */
     },
     calendarChange(date) {
       const firstDay = new Date(
@@ -252,10 +252,10 @@ export default {
       return weekday === 0 || weekday === 6
     },
   },
+
   data() {
     return {
-      clinicName: '',
-
+      clinincId: '',
       currentWeek: [],
       timeslots: [],
       calendarDate: new Date(),
@@ -343,7 +343,7 @@ label {
   /* Setting the size + Setting the max size means all
   timeslots are the same size and not relative to it's content */
 }
-.timeslotCol {
+#timeslotCol {
   border-right-style: solid;
   border-left-style: solid;
   border-color: rgb(199, 199, 199);
