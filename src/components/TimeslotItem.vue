@@ -1,6 +1,8 @@
 <template>
   <div>
-    <b-button id="time"> {{ millescenondToHoursAndMinutes }}</b-button>
+    <b-button id="time" size="lg">
+      {{ millescenondToHoursAndMinutes }}</b-button
+    >
   </div>
 </template>
 
