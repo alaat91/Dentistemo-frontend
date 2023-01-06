@@ -211,7 +211,7 @@ export default {
         if (userID === 'User has been deleted') {
           alert('User has been deleted')
           localStorage.clear()
-          this.$router.push('/logout')
+          this.$router.push('/')
         } else {
           alert('User ID not found')
         }
