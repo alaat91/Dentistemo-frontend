@@ -73,7 +73,6 @@
     <b-row cols="12">
       <!-- This b-col is only used to help with alignment-->
       <b-col cols="1"> </b-col>
-      <!-- TODO: Remove dummy data and show timeslots from backend-->
       <b-col cols="2" class="daycolumn">
         <b-col v-for="timeslot in timeslots" v-bind:key="timeslot._id">
           <TimeslotItem
