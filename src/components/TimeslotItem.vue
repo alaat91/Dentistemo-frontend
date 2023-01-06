@@ -31,5 +31,6 @@ export default {
 <style scoped>
 #time {
   font-family: 'Courier New', Courier, monospace;
+  width: 100%;
 }
 </style>
