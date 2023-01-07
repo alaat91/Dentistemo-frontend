@@ -1,32 +1,9 @@
 <template>
   <div class="main-div">
     <!-- Header -->
-    <div class="header bg-gradient-success py-7 py-lg-8 pt-lg-9">
-      <b-container class="container">
-        <div class="header-body text-center mb-7">
-          <b-row class="justify-content-center">
-            <b-col xl="5" lg="6" md="8" class="px-5">
-              <h1 class="text-white">Sign up and the world is yours.</h1>
-            </b-col>
-          </b-row>
-        </div>
-      </b-container>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg
-          x="0"
-          y="0"
-          viewBox="0 0 2560 100"
-          preserveAspectRatio="none"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polygon
-            class="fill-default"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-    </div>
+     <header>
+      <login-sign-nav></login-sign-nav>
+    </header>
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <!-- Table -->
@@ -153,8 +130,12 @@
 
 <script>
 import { API } from '../config/api'
+import  LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
+  components: {
+    LoginSignNav,
+  },
   name: 'register',
   data() {
     return {
