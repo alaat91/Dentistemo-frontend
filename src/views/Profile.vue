@@ -214,6 +214,7 @@ export default {
 .mt--8 {
   background-image: url(../assets/neon.png);
   padding-top: 5%;
+  padding-bottom: 5%;
   opacity: 25;
   padding-bottom: 5%;
 }
