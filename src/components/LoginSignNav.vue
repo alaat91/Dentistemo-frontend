@@ -3,8 +3,9 @@
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
     <div class="navbar">
-     <b-row class="row">
-       <b-col><router-link :to="{name:'landing'}">Landing</router-link></b-col>
+     <b-row class="row" cols="12">
+      <b-col cols="1"></b-col>
+       <b-col cols="5"><router-link :to="{name:'landing'}">Landing</router-link></b-col>
     </b-row>
     </div>
     </div>
@@ -19,9 +20,7 @@ export default{}
 h1{
     color: white;
 }
-.row{
- align-items: center;
-}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -45,7 +44,7 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #ddd;
+  
   color: black;
 }
 
@@ -58,7 +57,6 @@ body {
   display: none;
 }
 .row{
- padding-left: 178px;
 }
 
 @media screen and (max-width: 600px) {

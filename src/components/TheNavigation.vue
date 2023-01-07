@@ -22,7 +22,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
 .topnav {
   overflow: hidden;
   background-color: dodgerblue;
@@ -41,7 +40,6 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #ddd;
   color: black;
 }
 
