@@ -1,29 +1,32 @@
 <template>
   <nav>
     <div class="topnav" id="myTopnav">
-      <router-link :to="{name:'profile'}">Profile</router-link>
-      <a href="#notification">Notification</a>
-      <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-        <i class="fa fa-bars"></i>
-      </a>
       <h1>Dentistimo</h1>
+     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
+       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}">Landing</router-link></b-col>
+       <b-col><router-link :to="{name:'home'}">Home</router-link></b-col>
+       <b-col><router-link :to="{name:'profile'}">Profile</router-link></b-col>
+       <b-col><router-link :to="{name:'myBooking'}">My Booking</router-link></b-col>
+    </b-row>
     </div>
-
-    <div style="padding-left: 16px"></div>
   </nav>
 </template>
+
 <script>
 export default {}
 </script>
+
 <style scoped>
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 .topnav {
   overflow: hidden;
-  background-color: lightblue;
+  background-color: skyblue;
+  text-align: center;
 }
 
 .topnav a {
@@ -34,6 +37,7 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  font-weight: bold;
 }
 
 .topnav a:hover {
@@ -48,6 +52,12 @@ body {
 
 .topnav .icon {
   display: none;
+}
+.navbtn{
+  text-align: center;
+}
+.row{
+ padding-left: 178px;
 }
 
 @media screen and (max-width: 600px) {
