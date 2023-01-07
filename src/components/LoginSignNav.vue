@@ -18,6 +18,9 @@
 
 
 <style scoped>
+h1{
+    color: white;
+}
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -28,7 +31,8 @@ body {
 }
 .topnav {
   overflow: hidden;
-  background-color: skyblue;
+  background-color: #4831d4;
+;
   text-align: center;
 }
 
