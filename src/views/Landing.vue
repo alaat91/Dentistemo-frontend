@@ -1,6 +1,7 @@
 <template>
   <body>
     <b-container fluid class="container1">
+      <!-- Page Header -->
       <landing-item></landing-item>
       <div>
         <b-img

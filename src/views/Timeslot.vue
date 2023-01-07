@@ -1,7 +1,6 @@
-<!--TODO: Implement Grid -->
-
 <template>
   <div>
+    <!-- Page Header -->
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
     <h1>Timeslot</h1>
@@ -245,7 +244,7 @@ export default {
       // disables days that fall on the for example 13th of the month
       const weekday = date.getDay()
       const day = date.getDate()
-      // Returns `true` if the date should be disabled   // || day === 13
+      // Returns `true` if the date should be disabled 
       return weekday === 0 || weekday === 6
     },
     confirmAppointement() {

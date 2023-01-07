@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Header -->
+    <!-- Page Header -->
      <header>
       <the-navigation></the-navigation>
     </header>
@@ -100,6 +100,8 @@
               </b-form>
             </b-card-body>
           </b-card>
+          <b-row class="mt-3">
+          </b-row>
         </b-col>
       </b-row>
     </b-overlay>
@@ -214,5 +216,6 @@ export default {
   padding-top: 5%;
   padding-bottom: 5%;
   opacity: 25;
+  padding-bottom: 5%;
 }
 </style>

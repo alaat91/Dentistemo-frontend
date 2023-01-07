@@ -37,6 +37,7 @@ export default new Router({
       name: 'home',
       component: HomePage,
       beforeEnter: guardMyroute,
+
     },
     {
       path: '/clinic/:clinicId',

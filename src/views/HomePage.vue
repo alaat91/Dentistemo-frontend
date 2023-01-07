@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Page Header -->
     <header>
       <the-navigation></the-navigation>
     </header>
