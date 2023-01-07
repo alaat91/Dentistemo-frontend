@@ -23,9 +23,13 @@ export default {
           },
         ],
         Text:
-          '<h3> name of clinic </h3>' +
-          '<div> maybe some description </div>' +
-          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
+          `<h4> Your Dentist </h4>` +
+          '<h6> Adress: Spannmålsgatan 20</h6>' +
+          '<div> Monday: 9:00-17:00</div>' +
+          '<div> Tuesday: 8:00-17:00</div>' +
+          '<div> Wednesday: 7:00-16:00</div>' +
+          '<div> Thursday: 9:00-17:00</div>' +
+          '<div> Friday: 9:00-15:00 </div>',
       },
       {
         LatLng: [
@@ -35,9 +39,13 @@ export default {
           },
         ],
         Text:
-          '<h3> name of another clinic </h3>' +
-          '<div>another description</div>' +
-          '<button onclick="AFunction()">Button that takes you to the booking page of the specific clinic</button>',
+          `<h4> Tooth Fairy Dentist </h4>` +
+          '<h6> Adress: Slottskogen </h6>' +
+          '<div> Monday: 7:00-19:00</div>' +
+          '<div> Tuesday: 7:00-19:00</div>' +
+          '<div> Wednesday: 7:00-19:00</div>' +
+          '<div> Thursday: 7:00-19:00</div>' +
+          '<div> Friday: 7:00-19:00 </div>',
       },
       {
         LatLng: [
@@ -47,9 +55,13 @@ export default {
           },
         ],
         Text:
-          '<h3> name of clinic </h3>' +
-          '<div> maybe some description </div>' +
-          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
+          '<h4> The Crown </h4>' +
+          '<h6> Adress: Lindholmsallén 19 </h6>' +
+          '<div> Monday: 6:00-15:00</div>' +
+          '<div> Tuesday: 8:00-17:00</div>' +
+          '<div> Wednesday: 7:00-12:00</div>' +
+          '<div> Thursday: 7:00-17:00</div>' +
+          '<div> Friday: 8:00-16:00 </div>',
       },
       {
         LatLng: [
@@ -59,9 +71,13 @@ export default {
           },
         ],
         Text:
-          '<h3> name of clinic </h3>' +
-          '<div> maybe some description </div>' +
-          '<button onclick="AFunction()"> Button that takes you to the booking page of the specific clinic </button>',
+          '<h4> Lisebergs Dentists </h4>' +
+          '<h6> Adress: Liseberg </h6>' +
+          '<div> Monday: 10:00-18:00</div>' +
+          '<div> Tuesday: 10:00-18:00</div>' +
+          '<div> Wednesday: 10:00-18:00</div>' +
+          '<div> Thursday: 10:00-18:00</div>' +
+          '<div> Friday: 10:00-18:00 </div>',
       },
     ]
     let map = ref(null)
