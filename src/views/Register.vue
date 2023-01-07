@@ -152,7 +152,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      try {
+      
         API.post('auth/signup', {
           firstName: this.model.firstName,
           lastName: this.model.lastName,
@@ -169,18 +169,13 @@ export default {
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('LoggedUser', JSON.stringify(newUserID))
             this.$router.push('/home')
-          } else if (userID === 'Email is already taken') {
-            alert('Email is already taken!')
-          } else {
-            alert('All input is required!')
-          }
-        })
-      } catch (error) {
-        alert('catching dem errors')
+          } 
+        }).catch(error =>{
+        this.$vToastify.error(error.response.data)
         console.log(error)
+      })
       }
     },
-  },
 }
 </script>
 <style scoped>
