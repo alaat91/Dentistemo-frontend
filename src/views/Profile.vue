@@ -100,13 +100,6 @@
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-            <b-col cols="6">
-              <router-link :to="{ name: 'home' }" class="text-left"
-                ><small>Home</small></router-link
-              >
-            </b-col>
-          </b-row>
         </b-col>
       </b-row>
     </b-overlay>
@@ -219,6 +212,7 @@ export default {
 .mt--8 {
   background-image: url(../assets/neon.png);
   padding-top: 5%;
+  padding-bottom: 5%;
   opacity: 25;
 }
 </style>
