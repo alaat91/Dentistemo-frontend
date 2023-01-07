@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Header -->
+    <!-- Page Header -->
      <header>
       <the-navigation></the-navigation>
     </header>
