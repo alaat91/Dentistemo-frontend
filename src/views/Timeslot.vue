@@ -1,7 +1,6 @@
-<!--TODO: Implement Grid -->
-
 <template>
   <div>
+    <!-- Page Header -->
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
     <h1>Timeslot</h1>
@@ -157,6 +156,7 @@ export default {
   },
 
   mounted: async function () {
+    // Getss the specific clinic that the user clicked on the previous page
     this.clinincId = this.$route.params.clinicId
 
     // new Date() creates a date object that stores the date and time
@@ -172,10 +172,6 @@ export default {
     } catch (err) {
       console.error(err)
     }
-    console.log(this.currentWeek)
-    console.log(this.currentWeek[0].getTime())
-    console.log(this.currentWeek[4].getTime())
-    console.log(this.timeslots)
   },
   computed: {
     weekday() {},
@@ -194,7 +190,7 @@ export default {
     },
     // TODO: Improve logic of calendarChange
     // as there are unnecessary steps that can be removed
-    nextWeek() {
+    async nextWeek() {
       const dates = []
       for (let i = 0; i < 5; i++) {
         dates.push(
@@ -203,31 +199,16 @@ export default {
           )
         )
       }
-      /*
       this.currentWeek = dates
-      console.log(this.currentWeek)
-      console.log(this.currentWeek[0].getTime())
-      console.log(this.currentWeek[4].getTime())
-      API.get(
-        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
-      ).then((response) => {
-        this.timeslots = response.data
-        console.log(response)
-        console.log(response.data)
-        console.log(this.timeslots)
-      })
-      API.get(
-        `/clinics/6399e6db5eeb90d26babb4f9/available?start=1673264098407&end=1673609785227}`
-      ).then((response) => {
-        this.timeslots = response.data
-        console.log(response)
-        console.log(response.data)
-        console.log(this.timeslots)
-      })
-      */
+      const res = await API.get(
+        `/clinics/${
+          this.clinincId
+        }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
     },
 
-    lastWeek() {
+    async lastWeek() {
       const dates = []
       for (let i = 0; i < 5; i++) {
         dates.push(
@@ -237,15 +218,16 @@ export default {
         )
       }
       this.currentWeek = dates
-      /*
-      const res = API.get(
-        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      const res = await API.get(
+        `/clinics/${
+          this.clinincId
+        }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
       console.log(this.timeslots)
-            */
     },
-    calendarChange(date) {
+
+    async calendarChange(date) {
       const firstDay = new Date(
         date.getTime() - (date.getDay() - 1) * 24 * 60 * 60 * 1000
       )
@@ -254,13 +236,20 @@ export default {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
       }
       this.currentWeek = dates
+      const res = await API.get(
+        `/clinics/${
+          this.clinincId
+        }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+      )
+      this.timeslots = res.data
     },
+
     dateDisabled(ymd, date) {
       // Disables weekends (Sunday = `0`, Saturday = `6`) and
       // disables days that fall on the for example 13th of the month
       const weekday = date.getDay()
       const day = date.getDate()
-      // Returns `true` if the date should be disabled   // || day === 13
+      // Returns `true` if the date should be disabled
       return weekday === 0 || weekday === 6
     },
 

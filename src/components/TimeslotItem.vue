@@ -1,6 +1,11 @@
 <template>
   <div>
-    <b-button id="time" size="lg" @click="confirmBooking">
+    <b-button
+      id="time"
+      variant="outline-primary"
+      size="sm"
+      @click="confirmBooking"
+    >
       {{ millescenondToHoursAndMinutes }}</b-button
     >
   </div>
@@ -42,7 +47,6 @@ export default {
 
 <style scoped>
 #time {
-  font-family: 'Courier New', Courier, monospace;
   width: 100%;
 }
 </style>

@@ -25,12 +25,6 @@ export default {}
      text-align: center;
     
 }
-#sub-header{
-  text-align: center;
-  color: black;
-  font-style: italic;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
 
 body {
   margin: 0;

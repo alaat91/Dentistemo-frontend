@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Page Header -->
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
     <h2>Your booking details:</h2>

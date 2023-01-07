@@ -1,6 +1,6 @@
 <template>
   <div class="main-div">
-    <!-- Header -->
+    <!-- Page Header -->
     <header>
       <login-sign-nav></login-sign-nav>
     </header>
@@ -93,23 +93,18 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
-      try {
-        API.post('/auth/login', this.model).then((response) => {
+    onSubmit() {
+      API.post('/auth/login', this.model)
+        .then((response) => {
           const userID = response.data._id
-          if (userID != null) {
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('LoggedUser', JSON.stringify(userID))
-            this.$router.push('/home')
-            this.$vToastify.success('OK')
-          } else {
-            this.$vToastify.error('Something went wrong')
-          }
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('LoggedUser', JSON.stringify(userID))
+          this.$vToastify.success('Successful Login')
+          this.$router.push('/home')
         })
-      } catch (error) {
-        alert('catching the errors')
-        console.log(error)
-      }
+        .catch(() => {
+          this.$vToastify.error('Invalid Credentials!')
+        })
     },
   },
 }

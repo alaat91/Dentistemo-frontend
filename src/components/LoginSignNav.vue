@@ -2,33 +2,33 @@
   <nav>
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
-     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
-       <b-col class="navbtn"><router-link :to="{name:'landing'}">Landing</router-link></b-col>
+    <div class="navbar">
+     <b-row class="row" cols="12">
+      <b-col cols="1"></b-col>
+       <b-col cols="5"><router-link :to="{name:'landing'}"><h5>Landing</h5></router-link></b-col>
     </b-row>
+    </div>
     </div>
   </nav>
 </template>
 
-
-
 <script>
-
+export default{}
 </script>
 
-
-
 <style scoped>
+h1{
+    color: white;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbtn{
-    text-align: center;
-}
 .topnav {
   overflow: hidden;
-  background-color: skyblue;
+  background-color: #4831d4;
   text-align: center;
 }
 
@@ -44,7 +44,7 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #ddd;
+  
   color: black;
 }
 
@@ -56,11 +56,7 @@ body {
 .topnav .icon {
   display: none;
 }
-.navbtn{
-  text-align: center;
-}
 .row{
- padding-left: 178px;
 }
 
 @media screen and (max-width: 600px) {
