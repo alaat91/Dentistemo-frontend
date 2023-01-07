@@ -1,5 +1,9 @@
 <template>
   <div class="main-div">
+    <!-- Header -->
+     <header>
+      <login-sign-nav></login-sign-nav>
+    </header>
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
@@ -51,19 +55,21 @@
                 >
                 </b-input>
                 <div class="text-center">
-                  <b-button @click.prevent="onSubmit"
+                  <b-button
+                    @click.prevent="onSubmit"
                     variant="outline-primary"
                     native-type="submit"
                     class="login-btn"
                     >Login</b-button
                   >
-                  <b-button class="register-btn" href="/register">Register</b-button>
+                  <b-button class="register-btn" href="/register"
+                    >Register</b-button
+                  >
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-          </b-row>
+          <b-row class="mt-3"> </b-row>
         </b-col>
       </b-row>
     </b-container>
@@ -72,8 +78,12 @@
 
 <script>
 import { API } from '../config/api'
+import  LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
+  components: {
+    LoginSignNav,
+  },
   data() {
     return {
       model: {
@@ -83,37 +93,28 @@ export default {
     }
   },
   methods: {
-    async onSubmit() {
-      try {
-        API.post('/auth/login', this.model).then((response) => {
+    onSubmit() {
+      API.post('/auth/login', this.model)
+        .then((response) => {
           const userID = response.data._id
-          if (userID != null) {
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('LoggedUser', JSON.stringify(userID))
-            this.$router.push('/home')
-          } else {
-            this.$vToastify.error('Something went wrong')
-          }
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('LoggedUser', JSON.stringify(userID))
+          this.$vToastify.success('Successful Login')
+          this.$router.push('/home')
         })
-      } catch (error) {
-        alert('catching the errors')
-        console.log(error)
-      }
-    },
-  },
-}
+        .catch(() => {
+          this.$vToastify.error('Invalid Credentials!')
+        })}}}
 </script>
 
 <style scoped>
 .header {
+background-image: url(../assets/neon-city.png);
   padding-top: 2%;
-  background-color: #89abe3ff;
-  margin-bottom: 2%;
-  border-style: hidden;
 }
 .main-div {
   background-image: url(../assets/neon-city.png);
-  padding: 5%;
+  padding-bottom: 5%;
 }
 .mt--8 {
   padding-top: 10%;

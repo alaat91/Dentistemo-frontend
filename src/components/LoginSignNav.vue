@@ -3,29 +3,36 @@
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
      <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
-       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}">Landing</router-link></b-col>
-       <b-col><router-link :to="{name:'home'}">Home</router-link></b-col>
-       <b-col><router-link :to="{name:'profile'}">Profile</router-link></b-col>
-       <b-col><router-link :to="{name:'myBooking'}">My Booking</router-link></b-col>
+       <b-col class="navbtn"><router-link :to="{name:'landing'}">Landing</router-link></b-col>
     </b-row>
     </div>
   </nav>
 </template>
 
+
+
 <script>
-export default {}
+
 </script>
 
+
+
 <style scoped>
+h1{
+    color: white;
+}
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.navbtn{
+    text-align: center;
+}
 .topnav {
   overflow: hidden;
-  background-color: skyblue;
+  background-color: #4831d4;
+;
   text-align: center;
 }
 
