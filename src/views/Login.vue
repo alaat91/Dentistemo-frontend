@@ -1,7 +1,7 @@
 <template>
   <div class="main-div">
     <!-- Page Header -->
-     <header>
+    <header>
       <login-sign-nav></login-sign-nav>
     </header>
     <!-- Page content -->
@@ -78,7 +78,7 @@
 
 <script>
 import { API } from '../config/api'
-import  LoginSignNav from '../components/LoginSignNav.vue'
+import LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
   components: {
@@ -104,12 +104,15 @@ export default {
         })
         .catch(() => {
           this.$vToastify.error('Invalid Credentials!')
-        })}}}
+        })
+    },
+  },
+}
 </script>
 
 <style scoped>
 .header {
-background-image: url(../assets/neon-city.png);
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
 }
 .main-div {

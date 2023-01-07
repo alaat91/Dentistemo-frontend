@@ -83,6 +83,7 @@
               currentWeek[0].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -95,6 +96,7 @@
               currentWeek[1].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -107,6 +109,7 @@
               currentWeek[2].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -119,6 +122,7 @@
               currentWeek[3].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -131,6 +135,7 @@
               currentWeek[4].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -244,17 +249,24 @@ export default {
       // disables days that fall on the for example 13th of the month
       const weekday = date.getDay()
       const day = date.getDate()
-      // Returns `true` if the date should be disabled 
+      // Returns `true` if the date should be disabled
       return weekday === 0 || weekday === 6
     },
-    confirmAppointement() {
-      const button = this.$refs.chosenTime
-      const buttonTime = button.textContent
+
+    // Resiving the emitting event from timeslotItem component to send it to the confirmBooking page
+
+    confirmBookedTime(start, dentist, timeInHouresAndMins) {
       const clinicId = this.$route.params
+      const dateOfChosenAppoitmentTime = new Date(start).toDateString()
+
+      console.log(typeof start)
       this.$router.push({
         name: 'timeslots-confirm',
         params: { cId: clinicId },
-        query: { time: buttonTime, date: this.calendarDate.toDateString() },
+        query: {
+          time: timeInHouresAndMins,
+          date: dateOfChosenAppoitmentTime,
+        },
       })
     },
   },

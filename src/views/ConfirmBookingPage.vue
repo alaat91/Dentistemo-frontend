@@ -43,11 +43,12 @@
             >Confirm</b-button
           >
 
-          <b-modal v-model="modalShow" title="Bookings detailes" @ok="handleOk"
-            >Are you sure you want to confirm your booking at
-            {{ clinicName }} in {{ clinincAdress }} time: {{ chosenTime }} in
-            {{ chosenDate }}</b-modal
-          >
+          <b-modal v-model="modalShow" title="Bookings detailes" @ok="handleOk">
+            <p>Are you sure you want to confirm your booking at:</p>
+            <p><b>Clinic:</b> {{ clinicName }}</p>
+            <p><b>Time:</b> {{ chosenTime }}</p>
+            <p><b>Date:</b> {{ chosenDate }}</p>
+          </b-modal>
           <b-button type="reset" variant="danger">Cancel</b-button>
         </div>
       </b-form>
