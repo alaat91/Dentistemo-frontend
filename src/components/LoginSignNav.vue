@@ -23,7 +23,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-
+.navbtn{
+    text-align: center;
+}
 .topnav {
   overflow: hidden;
   background-color: skyblue;

@@ -1,5 +1,9 @@
 <template>
   <div class="main-div">
+    <!-- Header -->
+     <header>
+      <login-sign-nav></login-sign-nav>
+    </header>
     <!-- Page content -->
     <b-container class="mt--8 pb-5">
       <b-row class="justify-content-center">
@@ -72,8 +76,12 @@
 
 <script>
 import { API } from '../config/api'
+import  LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
+  components: {
+    LoginSignNav,
+  },
   data() {
     return {
       model: {
