@@ -36,7 +36,8 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: HomePage,
-      
+      beforeEnter: guardMyroute,
+
     },
     {
       path: '/clinic/:clinicId',
@@ -66,7 +67,7 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: Profile,
-      
+      beforeEnter: guardMyroute,
     },
     {
       path: '/profile/:userID',
