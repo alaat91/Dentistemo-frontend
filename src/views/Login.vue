@@ -104,10 +104,8 @@ export default {
         })
         .catch(() => {
           this.$vToastify.error('Invalid Credentials!')
-        })
-    },
-  },
-}
+          
+        })}}}
 </script>
 
 <style scoped>

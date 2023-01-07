@@ -14,7 +14,8 @@ Vue.use(VueToastify, {
   errorDuration: 6000,
   iconEnabled: false,
   canPause: false,
-  theme: 'light'
+  theme: 'dark',
+  position: 'top-center'
 })
 new Vue({
   router,
