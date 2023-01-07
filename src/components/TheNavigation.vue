@@ -3,10 +3,10 @@
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
      <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
-       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}">Landing</router-link></b-col>
-       <b-col><router-link :to="{name:'home'}">Home</router-link></b-col>
-       <b-col><router-link :to="{name:'profile'}">Profile</router-link></b-col>
-       <b-col><router-link :to="{name:'myBooking'}">My Booking</router-link></b-col>
+       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}"><h5>Landing</h5></router-link></b-col>
+       <b-col><router-link :to="{name:'home'}"><h5>Home</h5></router-link></b-col>
+       <b-col><router-link :to="{name:'profile'}"><h5>Profile</h5></router-link></b-col>
+       <b-col><router-link :to="{name:'myBooking'}"><h5>My Booking</h5></router-link></b-col>
     </b-row>
     </div>
   </nav>
