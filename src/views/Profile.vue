@@ -1,7 +1,9 @@
 <template>
   <div>
     <!-- Header -->
-    
+     <header>
+      <the-navigation></the-navigation>
+    </header>
     <!-- Page content -->
     <b-overlay class="mt--8">
       <b-row class="justify-content-center">
@@ -114,8 +116,12 @@
 <script>
 import { onMounted } from 'vue'
 import { API } from '../config/api'
+import TheNavigation from '../components/TheNavigation.vue'
 
 export default {
+  components: {
+    TheNavigation,
+  },
   name: 'users',
   data() {
     return {
