@@ -23,7 +23,7 @@ export default {
           },
         ],
         Text:
-          `<h2> Your Dentist </h2>` +
+          `<h4> Your Dentist </h4>` +
           '<h6> Adress: Spannmålsgatan 20</h6>' +
           '<div> Monday: 9:00-17:00</div>' +
           '<div> Tuesday: 8:00-17:00</div>' +
@@ -39,7 +39,7 @@ export default {
           },
         ],
         Text:
-          `<h2> Tooth Fairy Dentist </h2>` +
+          `<h4> Tooth Fairy Dentist </h4>` +
           '<h6> Adress: Slottskogen </h6>' +
           '<div> Monday: 7:00-19:00</div>' +
           '<div> Tuesday: 7:00-19:00</div>' +
@@ -55,7 +55,7 @@ export default {
           },
         ],
         Text:
-          '<h2> The Crown </h2>' +
+          '<h4> The Crown </h4>' +
           '<h6> Adress: Lindholmsallén 19 </h6>' +
           '<div> Monday: 6:00-15:00</div>' +
           '<div> Tuesday: 8:00-17:00</div>' +
@@ -71,7 +71,7 @@ export default {
           },
         ],
         Text:
-          '<h2> Lisebergs Dentists </h2>' +
+          '<h4> Lisebergs Dentists </h4>' +
           '<h6> Adress: Liseberg </h6>' +
           '<div> Monday: 10:00-18:00</div>' +
           '<div> Tuesday: 10:00-18:00</div>' +
