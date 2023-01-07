@@ -2,9 +2,11 @@
   <nav>
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
-     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
-       <b-col class="navbtn"><router-link :to="{name:'landing'}">Landing</router-link></b-col>
+    <div class="navbar">
+     <b-row class="row">
+       <b-col><router-link :to="{name:'landing'}">Landing</router-link></b-col>
     </b-row>
+    </div>
     </div>
   </nav>
 </template>
@@ -17,18 +19,17 @@ export default{}
 h1{
     color: white;
 }
+.row{
+ align-items: center;
+}
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.navbtn{
-    text-align: center;
-}
 .topnav {
   overflow: hidden;
   background-color: #4831d4;
-;
   text-align: center;
 }
 
@@ -55,9 +56,6 @@ body {
 
 .topnav .icon {
   display: none;
-}
-.navbtn{
-  text-align: center;
 }
 .row{
  padding-left: 178px;
