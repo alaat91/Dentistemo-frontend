@@ -231,13 +231,13 @@ export default {
       for (let i = 1; i < 5; i++) {
         dates.push(new Date(firstDay.getTime() + i * 24 * 60 * 60 * 1000))
       }
+      this.currentWeek = dates
       const res = await API.get(
         `/clinics/${
           this.clinincId
         }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
-      this.currentWeek = dates
     },
 
     dateDisabled(ymd, date) {
