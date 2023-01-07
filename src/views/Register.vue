@@ -35,6 +35,7 @@
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -46,6 +47,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -57,6 +59,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -68,6 +71,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-email-83"
@@ -79,6 +83,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
@@ -91,6 +96,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
@@ -103,6 +109,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
