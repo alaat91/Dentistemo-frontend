@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button id="time" size="lg">
+    <b-button id="time" variant="outline-primary" size="sm">
       {{ millescenondToHoursAndMinutes }}</b-button
     >
   </div>
@@ -30,7 +30,6 @@ export default {
 
 <style scoped>
 #time {
-  font-family: 'Courier New', Courier, monospace;
   width: 100%;
 }
 </style>
