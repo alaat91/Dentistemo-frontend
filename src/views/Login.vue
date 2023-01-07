@@ -1,7 +1,7 @@
 <template>
   <div class="main-div">
     <!-- Header -->
-     <header>
+    <header>
       <login-sign-nav></login-sign-nav>
     </header>
     <!-- Page content -->
@@ -55,19 +55,21 @@
                 >
                 </b-input>
                 <div class="text-center">
-                  <b-button @click.prevent="onSubmit"
+                  <b-button
+                    @click.prevent="onSubmit"
                     variant="outline-primary"
                     native-type="submit"
                     class="login-btn"
                     >Login</b-button
                   >
-                  <b-button class="register-btn" href="/register">Register</b-button>
+                  <b-button class="register-btn" href="/register"
+                    >Register</b-button
+                  >
                 </div>
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-          </b-row>
+          <b-row class="mt-3"> </b-row>
         </b-col>
       </b-row>
     </b-container>
@@ -76,7 +78,7 @@
 
 <script>
 import { API } from '../config/api'
-import  LoginSignNav from '../components/LoginSignNav.vue'
+import LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
   components: {
@@ -99,6 +101,7 @@ export default {
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('LoggedUser', JSON.stringify(userID))
             this.$router.push('/home')
+            this.$vToastify.success('OK')
           } else {
             this.$vToastify.error('Something went wrong')
           }
@@ -114,7 +117,7 @@ export default {
 
 <style scoped>
 .header {
-background-image: url(../assets/neon-city.png);
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
 }
 .main-div {

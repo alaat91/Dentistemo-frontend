@@ -84,6 +84,7 @@
               currentWeek[0].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -96,6 +97,7 @@
               currentWeek[1].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -108,6 +110,7 @@
               currentWeek[2].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -120,6 +123,7 @@
               currentWeek[3].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -132,6 +136,7 @@
               currentWeek[4].toDateString()
             "
             v-bind:timeslot="timeslot"
+            @confirmBooking="confirmBookedTime"
           />
         </b-col>
       </b-col>
@@ -159,7 +164,9 @@ export default {
     this.currentWeek = this.getWeek(new Date())
     try {
       const res = await API.get(
-        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        `/clinics/${
+          this.clinincId
+        }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
     } catch (err) {
@@ -168,6 +175,7 @@ export default {
     console.log(this.currentWeek)
     console.log(this.currentWeek[0].getTime())
     console.log(this.currentWeek[4].getTime())
+    console.log(this.timeslots)
   },
   computed: {
     weekday() {},
@@ -255,14 +263,21 @@ export default {
       // Returns `true` if the date should be disabled   // || day === 13
       return weekday === 0 || weekday === 6
     },
-    confirmAppointement() {
-      const button = this.$refs.chosenTime
-      const buttonTime = button.textContent
+
+    // Resiving the emitting event from timeslotItem component to send it to the confirmBooking page
+
+    confirmBookedTime(start, dentist, timeInHouresAndMins) {
       const clinicId = this.$route.params
+      const dateOfChosenAppoitmentTime = new Date(start).toDateString()
+
+      console.log(typeof start)
       this.$router.push({
         name: 'timeslots-confirm',
         params: { cId: clinicId },
-        query: { time: buttonTime, date: this.calendarDate.toDateString() },
+        query: {
+          time: timeInHouresAndMins,
+          date: dateOfChosenAppoitmentTime,
+        },
       })
     },
   },
