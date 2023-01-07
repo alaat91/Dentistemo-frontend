@@ -114,14 +114,12 @@ export default {
 
 <style scoped>
 .header {
+background-image: url(../assets/neon-city.png);
   padding-top: 2%;
-  background-color: #89abe3ff;
-  margin-bottom: 2%;
-  border-style: hidden;
 }
 .main-div {
   background-image: url(../assets/neon-city.png);
-  padding: 5%;
+  padding-bottom: 5%;
 }
 .mt--8 {
   padding-top: 10%;
