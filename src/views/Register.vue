@@ -35,6 +35,7 @@
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -46,6 +47,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -57,6 +59,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-hat-3"
@@ -68,6 +71,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-email-83"
@@ -79,6 +83,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
@@ -91,6 +96,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
@@ -103,6 +109,7 @@
                 </b-input>
 
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
@@ -152,7 +159,7 @@ export default {
   },
   methods: {
     async onSubmit() {
-      try {
+      
         API.post('auth/signup', {
           firstName: this.model.firstName,
           lastName: this.model.lastName,
@@ -164,23 +171,16 @@ export default {
         }).then((response) => {
           const userID = response.data
           if (userID._id != null ) {
-            const newUserID = response.data._id
-            alert('Your new account has been registered!')
+            this.$vToastify.success('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
-            localStorage.setItem('LoggedUser', JSON.stringify(newUserID))
             this.$router.push('/home')
-          } else if (userID === 'Email is already taken') {
-            alert('Email is already taken!')
-          } else {
-            alert('All input is required!')
-          }
-        })
-      } catch (error) {
-        alert('catching dem errors')
+          } 
+        }).catch(error =>{
+        this.$vToastify.error(error.response.data)
         console.log(error)
+      })
       }
     },
-  },
 }
 </script>
 <style scoped>

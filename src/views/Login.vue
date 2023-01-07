@@ -34,6 +34,7 @@
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   name="Email"
@@ -44,6 +45,7 @@
                 >
                 </b-input>
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   name="Password"
@@ -94,18 +96,16 @@ export default {
   },
   methods: {
     onSubmit() {
-      API.post('/auth/login', this.model)
-        .then((response) => {
-          const userID = response.data._id
-          localStorage.setItem('token', response.data.token)
-          localStorage.setItem('LoggedUser', JSON.stringify(userID))
-          this.$vToastify.success('Successful Login')
-          this.$router.push('/home')
-        })
-        .catch(() => {
-          this.$vToastify.error('Invalid Credentials!')
-          
-        })}}}
+        API.post('/auth/login', this.model).then((response) => {
+            localStorage.setItem('token', response.data.token)
+            this.$router.push('/home')
+        }).catch(error =>{
+        this.$vToastify.error(error.response.data)
+        console.log(error)
+      })
+    }
+  }
+  }
 </script>
 
 <style scoped>
