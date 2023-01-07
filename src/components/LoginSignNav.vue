@@ -5,7 +5,7 @@
     <div class="navbar">
      <b-row class="row" cols="12">
       <b-col cols="1"></b-col>
-       <b-col cols="5"><router-link :to="{name:'landing'}">Landing</router-link></b-col>
+       <b-col cols="5"><router-link :to="{name:'landing'}"><h5>Landing</h5></router-link></b-col>
     </b-row>
     </div>
     </div>
