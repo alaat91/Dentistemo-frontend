@@ -11,9 +11,10 @@ export default {
   setup() {
     const loader = new Loader({ apiKey: MAP_API_KEY })
     const mapDiv = ref(null)
+    let longitude = 0
+    let latitude = 0
 
-    // HTML code example and cordinates for clinics, data for clincs should come
-    // from database that should be loaded onMounted
+    // HTML code example and cordinates for clinics
     var clinics = [
       {
         LatLng: [
@@ -84,6 +85,21 @@ export default {
 
     // loads the map and puts it in the div element with ref="mapDiv"
     onMounted(async () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+          console.log(position)
+          new google.maps.Marker({
+            position: {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            },
+            map: map.value,
+            title: '',
+            icon: symbolPathMarker,
+          })
+        })
+      }
+
       await loader.load()
       map.value = new google.maps.Map(mapDiv.value, {
         center: { lat: 57.7098281, lng: 11.9776431 },
@@ -94,21 +110,13 @@ export default {
       })
       const infoWindow = new google.maps.InfoWindow()
 
-      // One of the different kinds of marker that can be found at
-      // google.maps.SymbolPath
       const symbolPathMarker = {
-        path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-        fillColor: 'blue',
+        path: google.maps.SymbolPath.CIRCLE,
+        strokeColor: '#4185F4',
         scale: 6,
       }
 
-      // creates custom markers, will be used later for showing all the different clinics
-      const marker = new google.maps.Marker({
-        position: { lat: 57.7098281, lng: 11.9776431 },
-        map: map.value,
-        title: 'ttestt',
-        icon: symbolPathMarker,
-      })
+      // creates custom markers, is used for showing all the different clinics
       for (var i = 0; i < clinics.length; i++) {
         const marker = new google.maps.Marker({
           position: clinics[i].LatLng[0],
