@@ -25,7 +25,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: skyblue;
+  background-color: dodgerblue;
   text-align: center;
 }
 
