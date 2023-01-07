@@ -1,6 +1,6 @@
 <template>
   <div class="main-div">
-    <!-- Header -->
+   <!-- Page Header -->
      <header>
       <login-sign-nav></login-sign-nav>
     </header>
