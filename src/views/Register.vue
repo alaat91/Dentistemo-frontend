@@ -165,7 +165,7 @@ export default {
           const userID = response.data
           if (userID._id != null ) {
             const newUserID = response.data._id
-            alert('Your new account has been registered!')
+            this.$vToastify.success('Your new account has been registered!')
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('LoggedUser', JSON.stringify(newUserID))
             this.$router.push('/home')
