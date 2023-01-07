@@ -50,13 +50,13 @@
         <b-col cols="2">
           <div class="Daylabel">Wednesday</div>
           <div class="Daylabel">
-            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
+            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Thursday</div>
           <div class="Daylabel">
-            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
+            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
