@@ -7,14 +7,30 @@
        <b-col><router-link :to="{name:'home'}"><h5>Home</h5></router-link></b-col>
        <b-col><router-link :to="{name:'profile'}"><h5>Profile</h5></router-link></b-col>
        <b-col><router-link :to="{name:'myBooking'}"><h5>My Booking</h5></router-link></b-col>
-       <b-col><router-link :to="{name:''}"><h5>Logout</h5></router-link></b-col>
+       <div class="text-center">
+                  <b-button
+                    @click.prevent="onSubmit"
+                    variant="danger"
+                    native-type="submit"
+                    class="login-btn"
+                    >Log Out</b-button
+                  >
+                </div>
     </b-row>
     </div>
   </nav>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    onSubmit () {
+    localStorage.clear()
+    this.$router.push('/')
+  }
+  }
+}
+
 </script>
 
 <style scoped>

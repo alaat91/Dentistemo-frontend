@@ -6,8 +6,8 @@
  <div class="single_footer">
  <h4>Contact Us</h4>
 <ul> 
-    <li><a href="">Email: dentistimo@hotmail.com</a></li>
-      <li><a href="">Phone: +467778888</a></li>
+    <li><h6>Email: dentistimo@hotmail.com</h6></li>
+      <li><h6>Phone: +467778888</h6></li>
 </ul>
  </div>
  </div>
@@ -48,7 +48,6 @@
     padding-top: 25px;
     margin-bottom: 25px;
     font-weight: 700;
-    text-transform: uppercase;
     font-size: 20px;
 }
 .single_footer h4::after {
@@ -68,11 +67,8 @@
 
 .single_footer ul li a {
     color: black;
-    -webkit-transition: all 0.3s ease 0s;
-    transition: all 0.3s ease 0s;
     line-height: 36px;
     font-size: 15px;
-    text-transform: capitalize;
 }
 
 .copyright {
