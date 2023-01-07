@@ -159,7 +159,7 @@ export default {
     this.currentWeek = this.getWeek(new Date())
     try {
       const res = await API.get(
-        `/clinics/6399e6db5eeb90d26babb4f9/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        `/clinics/${clinicId}/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
     } catch (err) {
