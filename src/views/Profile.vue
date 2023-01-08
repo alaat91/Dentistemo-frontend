@@ -14,6 +14,7 @@
                 <small>Edit your profile here.</small>
               </div>
               <b-form role="form">
+                <div>First Name</div>
                 <b-input
                   alternative
                   class="mb-3"
@@ -25,6 +26,7 @@
                 >
                 </b-input>
 
+                <div>Last Name</div>
                 <b-input
                   alternative
                   class="mb-3"
@@ -36,6 +38,7 @@
                 >
                 </b-input>
 
+                <div>Social Security Number</div>
                 <b-input
                   alternative
                   class="mb-3"
@@ -47,6 +50,7 @@
                 >
                 </b-input>
 
+                <div>Email</div>
                 <b-input
                   alternative
                   class="mb-3"
@@ -58,6 +62,7 @@
                 >
                 </b-input>
 
+                <div>Phone Number</div>
                 <b-input
                   alternative
                   class="mb-3"
@@ -141,10 +146,10 @@ export default {
       })
         .then(() => {
           this.$vToastify.success(
-            'Your profile have been updated succsessfully'
+            'Your profile has been successfully updated!'
           )
         })
-        .catch(() => this.$vToastify.error('Something went wrong'))
+        .catch(() => this.$vToastify.error('Something went wrong!'))
     },
 
     onDelete() {
@@ -152,11 +157,11 @@ export default {
         .then(() => {
           localStorage.clear()
           this.$vToastify.success(
-            'Your profile have been deleted succsessfully'
+            'Your profile is deleted, ciao!'
           )
           this.$router.push('/')
         })
-        .catch(() => this.$vToastify.error('Something went wrong'))
+        .catch(() => this.$vToastify.error('Something went wrong!'))
     },
   },
 }
