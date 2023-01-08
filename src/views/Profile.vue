@@ -180,13 +180,12 @@ export default {
   margin-left: 6%;
 }
 .px-sm-5 {
-  background-image: url(../assets/perfect-smile2.png);
+  background-color: white;
 }
 .mt--8 {
-  background-image: url(../assets/neon.png);
+  background-image: url(../assets/tooth.png);
   padding-top: 5%;
-  padding-bottom: 5%;
   opacity: 25;
-  padding-bottom: 5%;
+  padding-bottom: 6%;
 }
 </style>

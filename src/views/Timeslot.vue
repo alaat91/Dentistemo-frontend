@@ -3,11 +3,9 @@
     <!-- Page Header -->
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
-    <h1>Timeslot</h1>
-    <h4>Please select a booking date and time from below-</h4>
+    <h4>Choose an available slot to book</h4>
     <!-- Month view -->
     <div>
-      <label>Choose a date</label>
       <b-form-datepicker
         dropright
         header-tag=""
@@ -19,6 +17,7 @@
         :date-disabled-fn="dateDisabled"
         start-weekday="1"
         locale="en"
+        :min="new Date().toISOString().split('T')[0]"
       ></b-form-datepicker>
     </div>
     <b-row>
@@ -33,7 +32,11 @@
     <div>
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button @click="lastWeek()">&lsaquo;</b-button>
+          <b-button
+            :disabled="Date.now() > currentWeek[0].getTime() - 2 * 86400000"
+            @click="lastWeek()"
+            >&lsaquo;</b-button
+          >
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Monday</div>
@@ -50,13 +53,13 @@
         <b-col cols="2">
           <div class="Daylabel">Wednesday</div>
           <div class="Daylabel">
-            {{ currentWeek[1] ? currentWeek[1].getDate() : 0 }}
+            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Thursday</div>
           <div class="Daylabel">
-            {{ currentWeek[2] ? currentWeek[2].getDate() : 0 }}
+            {{ currentWeek[3] ? currentWeek[3].getDate() : 0 }}
           </div>
         </b-col>
         <b-col cols="2">
@@ -80,7 +83,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[0].toDateString()
+                currentWeek[0].toDateString() &&
+              new Date().getTime() < currentWeek[0].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -93,7 +97,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[1].toDateString()
+                currentWeek[1].toDateString() &&
+              new Date().getTime() < currentWeek[1].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -106,7 +111,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[2].toDateString()
+                currentWeek[2].toDateString() &&
+              new Date().getTime() < currentWeek[2].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -119,7 +125,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[3].toDateString()
+                currentWeek[3].toDateString() &&
+              new Date().getTime() < currentWeek[3].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -132,7 +139,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[4].toDateString()
+                currentWeek[4].toDateString() &&
+              new Date().getTime() < currentWeek[4].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -159,6 +167,23 @@ export default {
     // Getss the specific clinic that the user clicked on the previous page
     this.clinincId = this.$route.params.clinicId
 
+    const eventSource = new EventSource(
+      `${
+        import.meta.env.VITE_API_ENDPOINT || 'http://localhost:3000/api/v1'
+      }/bookings/updated`
+    )
+    eventSource.onmessage = async () => {
+      try {
+        const res = await API.get(
+          `/clinics/${
+            this.clinincId
+          }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        )
+        this.timeslots = res.data
+      } catch (err) {
+        console.error(err)
+      }
+    }
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
@@ -172,9 +197,6 @@ export default {
     } catch (err) {
       console.error(err)
     }
-  },
-  computed: {
-    weekday() {},
   },
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
@@ -224,7 +246,6 @@ export default {
         }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
-      console.log(this.timeslots)
     },
 
     async calendarChange(date) {
@@ -249,6 +270,7 @@ export default {
       // disables days that fall on the for example 13th of the month
       const weekday = date.getDay()
       const day = date.getDate()
+
       // Returns `true` if the date should be disabled
       return weekday === 0 || weekday === 6
     },
@@ -299,7 +321,7 @@ label {
 }
 
 #toprow {
-  background-color: lightblue;
+  background-color: #085ed6;
 }
 .mb-2 {
   font-size: 13px;
@@ -308,9 +330,10 @@ label {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #dateRange {
-  background-color: lightblue;
+  background-color: #085ed6;
   text-align: center;
   font-weight: bold;
+  color: white;
 }
 @media screen and (max-width: 1500px) {
   .timeslot {
@@ -353,6 +376,7 @@ label {
 .Daylabel {
   font-weight: bold;
   text-align: center;
+  color: white;
 }
 input,
 label {
@@ -371,7 +395,7 @@ label {
 }
 
 #dateRange {
-  background-color: lightblue;
+  background-color: #085ed6;
   text-align: center;
   font-weight: bold;
 }
