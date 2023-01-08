@@ -22,13 +22,12 @@
 <script>
 export default {
   methods: {
-    onSubmit () {
-    localStorage.clear()
-    this.$router.push('/')
-  }
-  }
+    onSubmit() {
+      localStorage.clear()
+      this.$router.push('/')
+    },
+  },
 }
-
 </script>
 
 <style scoped>
@@ -67,11 +66,11 @@ text-align: center;
 .topnav .icon {
   display: none;
 }
-.navbtn{
+.navbtn {
   text-align: center;
 }
-.row{
- padding-left: 178px;
+.row {
+  padding-left: 178px;
 }
 
 @media screen and (max-width: 600px) {

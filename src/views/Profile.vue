@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Header -->
-     <header>
+    <header>
       <the-navigation></the-navigation>
     </header>
     <!-- Page content -->
@@ -62,18 +62,6 @@
                   alternative
                   class="mb-3"
                   prepend-icon="ni ni-lock-circle-open"
-                  placeholder="Password"
-                  type="password"
-                  name="Password"
-                  :rules="{ required: true, min: 6 }"
-                  v-model="model.password"
-                >
-                </b-input>
-
-                <b-input
-                  alternative
-                  class="mb-3"
-                  prepend-icon="ni ni-lock-circle-open"
                   placeholder="Phone Number"
                   type="phoneNumber"
                   name="phoneNumber"
@@ -100,8 +88,7 @@
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-          </b-row>
+          <b-row class="mt-3"> </b-row>
         </b-col>
       </b-row>
     </b-overlay>
@@ -109,7 +96,6 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
 import { API } from '../config/api'
 import TheNavigation from '../components/TheNavigation.vue'
 
@@ -132,9 +118,7 @@ export default {
   },
 
   mounted() {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
-    API.get(`users/profile/${userID}`)
+    API.get(`users/profile/`)
       .then((response) => {
         ;(this.model.firstName = response.data.firstName),
           (this.model.lastName = response.data.lastName),
@@ -142,7 +126,7 @@ export default {
           (this.model.email = response.data.email),
           (this.model.password = response.data.password),
           (this.model.phoneNumber = response.data.phoneNumber),
-          this.$router.push(`/profile/${userID}`)
+          this.$router.push(`/profile/`)
       })
       .catch((error) => {
         alert(error)
@@ -152,46 +136,33 @@ export default {
 
   methods: {
     onSave() {
-      const userId = localStorage.getItem('LoggedUser')
-      const userID = userId.slice(1, -1)
-      try {
-        API.put(`users/profile/${userID}`, {
-          userID,
-          firstName: this.model.firstName,
-          lastName: this.model.lastName,
-          SSN: this.model.ssn,
-          email: this.model.email,
-          password: this.model.password,
-          phoneNumber: this.model.phoneNumber,
-        }).then((response) => {
-          const userID = response.data
-          if (userID != null) {
-            alert('Your profile is updated!')
-            onMounted()
-          } else {
-            alert('All input is required!')
-          }
+      API.put(`users/profile/`, {
+        userID,
+        firstName: this.model.firstName,
+        lastName: this.model.lastName,
+        SSN: this.model.ssn,
+        email: this.model.email,
+        password: this.model.password,
+        phoneNumber: this.model.phoneNumber,
+      })
+        .then(() => {
+          this.$vToastify.success(
+            'Your profile have been updated succsessfully'
+          )
         })
-      } catch (error) {
-        alert('catching dem errors')
-        console.log(error)
-      }
+        .catch(() => this.$vToastify.error('Something went wrong'))
     },
 
     onDelete() {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
-    API.delete(`users/profile/${userID}`)
-      .then((response) => {
-        const userID = response.data
-        if (userID === 'User has been deleted') {
-          alert('User has been deleted')
+      API.delete(`users/profile/`)
+        .then(() => {
           localStorage.clear()
+          this.$vToastify.success(
+            'Your profile have been deleted succsessfully'
+          )
           this.$router.push('/')
-        } else {
-          alert('User ID not found')
-        }
-      })
+        })
+        .catch(() => this.$vToastify.error('Something went wrong'))
     },
   },
 }
@@ -209,13 +180,12 @@ export default {
   margin-left: 6%;
 }
 .px-sm-5 {
-  background-image: url(../assets/perfect-smile2.png);
+  background-color: white;
 }
 .mt--8 {
-  background-image: url(../assets/neon.png);
+  background-image: url(../assets/tooth.png);
   padding-top: 5%;
-  padding-bottom: 5%;
   opacity: 25;
-  padding-bottom: 5%;
+  padding-bottom: 6%;
 }
 </style>

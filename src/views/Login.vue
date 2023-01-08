@@ -1,7 +1,7 @@
 <template>
   <div class="main-div">
     <!-- Page Header -->
-     <header>
+    <header>
       <login-sign-nav></login-sign-nav>
     </header>
     <!-- Page content -->
@@ -34,6 +34,7 @@
               </div>
               <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   name="Email"
@@ -44,6 +45,7 @@
                 >
                 </b-input>
                 <b-input
+                  required
                   alternative
                   class="mb-3"
                   name="Password"
@@ -78,7 +80,7 @@
 
 <script>
 import { API } from '../config/api'
-import  LoginSignNav from '../components/LoginSignNav.vue'
+import LoginSignNav from '../components/LoginSignNav.vue'
 
 export default {
   components: {
@@ -96,20 +98,23 @@ export default {
     onSubmit() {
       API.post('/auth/login', this.model)
         .then((response) => {
-          const userID = response.data._id
+          const userId = response.data._id
           localStorage.setItem('token', response.data.token)
-          localStorage.setItem('LoggedUser', JSON.stringify(userID))
-          this.$vToastify.success('Successful Login')
+          localStorage.setItem('LoggedUser', JSON.stringify(userId))
           this.$router.push('/home')
         })
-        .catch(() => {
-          this.$vToastify.error('Invalid Credentials!')
-        })}}}
+        .catch((error) => {
+          this.$vToastify.error(error.response.data)
+          console.log(error)
+        })
+    },
+  },
+}
 </script>
 
 <style scoped>
 .header {
-background-image: url(../assets/neon-city.png);
+  background-image: url(../assets/neon-city.png);
   padding-top: 2%;
 }
 .main-div {
