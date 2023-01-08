@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Page Header -->
-     <header>
+    <header>
       <the-navigation></the-navigation>
     </header>
     <!-- Page content -->
@@ -100,8 +100,7 @@
               </b-form>
             </b-card-body>
           </b-card>
-          <b-row class="mt-3">
-          </b-row>
+          <b-row class="mt-3"> </b-row>
         </b-col>
       </b-row>
     </b-overlay>
@@ -179,10 +178,9 @@ export default {
     },
 
     onDelete() {
-    const userId = localStorage.getItem('LoggedUser')
-    const userID = userId.slice(1, -1)
-    API.delete(`users/profile/${userID}`)
-      .then((response) => {
+      const userId = localStorage.getItem('LoggedUser')
+      const userID = userId.slice(1, -1)
+      API.delete(`users/profile/${userID}`).then((response) => {
         const userID = response.data
         if (userID === 'User has been deleted') {
           alert('User has been deleted')
@@ -209,10 +207,10 @@ export default {
   margin-left: 6%;
 }
 .px-sm-5 {
-  background-image: url(../assets/perfect-smile2.png);
+  background-color: white;
 }
 .mt--8 {
-  background-image: url(../assets/neon.png);
+  background-image: url(../assets/tooth.png);
   padding-top: 5%;
   padding-bottom: 5%;
   opacity: 25;
