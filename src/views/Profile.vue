@@ -186,6 +186,6 @@ export default {
   background-image: url(../assets/tooth.png);
   padding-top: 5%;
   opacity: 25;
-  padding-bottom: 6%;
+  padding-bottom: 10%;
 }
 </style>
