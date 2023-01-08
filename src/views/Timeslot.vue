@@ -78,7 +78,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[0].toDateString()
+                currentWeek[0].toDateString() &&
+              new Date().getTime() < currentWeek[0].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -91,7 +92,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[1].toDateString()
+                currentWeek[1].toDateString() &&
+              new Date().getTime() < currentWeek[1].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -104,7 +106,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[2].toDateString()
+                currentWeek[2].toDateString() &&
+              new Date().getTime() < currentWeek[2].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -117,7 +120,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[3].toDateString()
+                currentWeek[3].toDateString() &&
+              new Date().getTime() < currentWeek[3].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -130,7 +134,8 @@
             class="timeslot"
             v-if="
               new Date(timeslot.start).toDateString() ===
-              currentWeek[4].toDateString()
+                currentWeek[4].toDateString() &&
+              new Date().getTime() < currentWeek[4].getTime()
             "
             v-bind:timeslot="timeslot"
             @confirmBooking="confirmBookedTime"
@@ -236,7 +241,6 @@ export default {
         }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
       )
       this.timeslots = res.data
-      console.log(this.timeslots)
     },
 
     async calendarChange(date) {
