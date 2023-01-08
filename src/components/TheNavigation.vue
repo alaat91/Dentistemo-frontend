@@ -2,20 +2,18 @@
   <nav>
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
-     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="5">
-       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}"><h5>Landing</h5></router-link></b-col>
+     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="4">
        <b-col><router-link :to="{name:'home'}"><h5>Home</h5></router-link></b-col>
+       <b-col><router-link :to="{name:'myBookings'}"><h5>My Bookings</h5></router-link></b-col>
        <b-col><router-link :to="{name:'profile'}"><h5>Profile</h5></router-link></b-col>
-       <b-col><router-link :to="{name:'myBooking'}"><h5>My Booking</h5></router-link></b-col>
-       <div class="text-center">
+       <b-col class="logout-button"> 
                   <b-button
                     @click.prevent="onSubmit"
-                    variant="danger"
                     native-type="submit"
                     class="login-btn"
                     >Log Out</b-button
                   >
-                </div>
+       </b-col>
     </b-row>
     </div>
   </nav>
@@ -38,11 +36,12 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
-
+h1{
+text-align: center;
+}
 .topnav {
   overflow: hidden;
   background-color: dodgerblue;
-  text-align: center;
 }
 
 .topnav a {
@@ -79,10 +78,6 @@ body {
   .topnav a:not(:first-child) {
     display: none;
   }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
 }
 
 @media screen and (max-width: 600px) {
@@ -99,5 +94,6 @@ body {
     display: block;
     text-align: left;
   }
+ 
 }
 </style>
