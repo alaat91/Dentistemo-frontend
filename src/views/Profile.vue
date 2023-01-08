@@ -13,7 +13,7 @@
               <div class="text-center text-black mb-4">
                 <small>Edit your profile here.</small>
               </div>
-              <b-form role="form" @submit.prevent="handleSubmit(onSubmit)">
+              <b-form role="form">
                 <b-input
                   alternative
                   class="mb-3"
@@ -73,14 +73,12 @@
                   <b-button
                     class="btn-save"
                     @click.prevent="onSave"
-                    type="submit"
                     variant="success"
                     >Save</b-button
                   >
                   <b-button
                     class="btn-delete"
                     @click.prevent="onDelete"
-                    type="delete"
                     variant="danger"
                     >Delete</b-button
                   >
@@ -111,7 +109,6 @@ export default {
         lastName: '',
         ssn: '',
         email: '',
-        password: '',
         phoneNumber: '',
       },
     }
@@ -124,7 +121,6 @@ export default {
           (this.model.lastName = response.data.lastName),
           (this.model.ssn = response.data.SSN),
           (this.model.email = response.data.email),
-          (this.model.password = response.data.password),
           (this.model.phoneNumber = response.data.phoneNumber),
           this.$router.push(`/profile/`)
       })
@@ -137,12 +133,10 @@ export default {
   methods: {
     onSave() {
       API.put(`users/profile/`, {
-        userID,
         firstName: this.model.firstName,
         lastName: this.model.lastName,
         SSN: this.model.ssn,
         email: this.model.email,
-        password: this.model.password,
         phoneNumber: this.model.phoneNumber,
       })
         .then(() => {
