@@ -2,21 +2,37 @@
   <nav>
     <div class="topnav" id="myTopnav">
       <h1>Dentistimo</h1>
-     <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="5">
-       <b-col class="navbtn"><router-link class="navbtn" :to="{name:'landing'}"><h5>Landing</h5></router-link></b-col>
-       <b-col><router-link :to="{name:'home'}"><h5>Home</h5></router-link></b-col>
-       <b-col><router-link :to="{name:'profile'}"><h5>Profile</h5></router-link></b-col>
-       <b-col><router-link :to="{name:'myBooking'}"><h5>My Booking</h5></router-link></b-col>
-       <div class="text-center">
-                  <b-button
-                    @click.prevent="onSubmit"
-                    variant="danger"
-                    native-type="submit"
-                    class="login-btn"
-                    >Log Out</b-button
-                  >
-                </div>
-    </b-row>
+      <b-row class="row" cols="1" cols-sm="2" cols-md="3" cols-lg="5">
+        <b-col class="navbtn"
+          ><router-link class="navbtn" :to="{ name: 'landing' }"
+            ><h5>Landing</h5></router-link
+          ></b-col
+        >
+        <b-col
+          ><router-link :to="{ name: 'home' }"
+            ><h5>Home</h5></router-link
+          ></b-col
+        >
+        <b-col
+          ><router-link :to="{ name: 'profile' }"
+            ><h5>Profile</h5></router-link
+          ></b-col
+        >
+        <b-col
+          ><router-link :to="{ name: 'myBooking' }"
+            ><h5>My Booking</h5></router-link
+          ></b-col
+        >
+        <div class="text-center">
+          <b-button
+            @click.prevent="onSubmit"
+            variant="danger"
+            native-type="submit"
+            class="login-btn"
+            >Log Out</b-button
+          >
+        </div>
+      </b-row>
     </div>
   </nav>
 </template>
@@ -24,13 +40,12 @@
 <script>
 export default {
   methods: {
-    onSubmit () {
-    localStorage.clear()
-    this.$router.push('/')
-  }
-  }
+    onSubmit() {
+      localStorage.clear()
+      this.$router.push('/')
+    },
+  },
 }
-
 </script>
 
 <style scoped>
@@ -41,7 +56,7 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: dodgerblue;
+  background-color: #085ed6;
   text-align: center;
 }
 
@@ -68,11 +83,11 @@ body {
 .topnav .icon {
   display: none;
 }
-.navbtn{
+.navbtn {
   text-align: center;
 }
-.row{
- padding-left: 178px;
+.row {
+  padding-left: 178px;
 }
 
 @media screen and (max-width: 600px) {
