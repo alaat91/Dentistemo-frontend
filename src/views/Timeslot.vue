@@ -17,6 +17,7 @@
         :date-disabled-fn="dateDisabled"
         start-weekday="1"
         locale="en"
+        :min="new Date().toISOString().split('T')[0]"
       ></b-form-datepicker>
     </div>
     <b-row>
@@ -31,7 +32,11 @@
     <div>
       <b-row cols="12" id="toprow">
         <b-col cols="1">
-          <b-button @click="lastWeek()">&lsaquo;</b-button>
+          <b-button
+            :disabled="Date.now() > currentWeek[0].getTime() - 2 * 86400000"
+            @click="lastWeek()"
+            >&lsaquo;</b-button
+          >
         </b-col>
         <b-col cols="2">
           <div class="Daylabel">Monday</div>
@@ -265,6 +270,7 @@ export default {
       // disables days that fall on the for example 13th of the month
       const weekday = date.getDay()
       const day = date.getDate()
+
       // Returns `true` if the date should be disabled
       return weekday === 0 || weekday === 6
     },
