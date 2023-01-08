@@ -3,11 +3,9 @@
     <!-- Page Header -->
     <the-navigation></the-navigation>
     <b-breadcrumb :items="items"></b-breadcrumb>
-    <h1>Timeslot</h1>
-    <h4>Please select a booking date and time from below-</h4>
+    <h4>Choose an available slot to book</h4>
     <!-- Month view -->
     <div>
-      <label>Choose a date</label>
       <b-form-datepicker
         dropright
         header-tag=""
@@ -190,9 +188,6 @@ export default {
       console.error(err)
     }
   },
-  computed: {
-    weekday() {},
-  },
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
     getWeek(date) {
@@ -322,7 +317,7 @@ label {
 }
 
 #toprow {
-  background-color: lightblue;
+  background-color: #085ed6;
 }
 .mb-2 {
   font-size: 13px;
@@ -331,9 +326,10 @@ label {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 #dateRange {
-  background-color: lightblue;
+  background-color: #085ed6;
   text-align: center;
   font-weight: bold;
+  color: white;
 }
 @media screen and (max-width: 1500px) {
   .timeslot {
@@ -376,6 +372,7 @@ label {
 .Daylabel {
   font-weight: bold;
   text-align: center;
+  color: white;
 }
 input,
 label {
@@ -394,7 +391,7 @@ label {
 }
 
 #dateRange {
-  background-color: lightblue;
+  background-color: #085ed6;
   text-align: center;
   font-weight: bold;
 }
