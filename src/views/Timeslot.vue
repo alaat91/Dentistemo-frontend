@@ -167,12 +167,12 @@ export default {
     // Getss the specific clinic that the user clicked on the previous page
     this.clinincId = this.$route.params.clinicId
 
-    const eventSource = new EventSource(
+    this.eventSource = new EventSource(
       `${
         import.meta.env.VITE_API_ENDPOINT || 'http://localhost:3000/api/v1'
       }/bookings/updated`
     )
-    eventSource.onmessage = async () => {
+    this.eventSource.onmessage = async () => {
       try {
         const res = await API.get(
           `/clinics/${
@@ -197,6 +197,9 @@ export default {
     } catch (err) {
       console.error(err)
     }
+  },
+  umounted: function () {
+    this.eventSource.close()
   },
   methods: {
     // getWeek gets the dates of the 5 days (mon-fri) of the parameter date
@@ -308,6 +311,7 @@ export default {
         },
       ],
       value: '',
+      eventSource: null,
     }
   },
 }
