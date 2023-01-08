@@ -10,7 +10,6 @@
         {{ clinincAdress }}
       </p>
       <p>Welcome to us at {{ chosenDate }} at {{ chosenTime }}</p>
-      <p>your dentist id is {{ dentistId }}</p>
     </div>
     <div>
       <b-form @submit="onSubmit" @reset="onCancel" v-if="show">
