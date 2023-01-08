@@ -96,16 +96,20 @@ export default {
   },
   methods: {
     onSubmit() {
-        API.post('/auth/login', this.model).then((response) => {
-            localStorage.setItem('token', response.data.token)
-            this.$router.push('/home')
-        }).catch(error =>{
-        this.$vToastify.error(error.response.data)
-        console.log(error)
-      })
-    }
-  }
-  }
+      API.post('/auth/login', this.model)
+        .then((response) => {
+          const userId = response.data._id
+          localStorage.setItem('token', response.data.token)
+          localStorage.setItem('LoggedUser', JSON.stringify(userId))
+          this.$router.push('/home')
+        })
+        .catch((error) => {
+          this.$vToastify.error(error.response.data)
+          console.log(error)
+        })
+    },
+  },
+}
 </script>
 
 <style scoped>

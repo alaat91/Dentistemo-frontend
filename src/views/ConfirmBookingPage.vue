@@ -10,6 +10,7 @@
         {{ clinincAdress }}
       </p>
       <p>Welcome to us at {{ chosenDate }} at {{ chosenTime }}</p>
+      <p>your dentist id is {{ dentistId }}</p>
     </div>
     <div>
       <b-form @submit="onSubmit" @reset="onCancel" v-if="show">
@@ -44,7 +45,7 @@
           >
 
           <b-modal v-model="modalShow" title="Bookings detailes" @ok="handleOk">
-            <p>Are you sure you want to confirm your booking at:</p>
+            <p><b>Are you sure you want to confirm your booking at:</b></p>
             <p><b>Clinic:</b> {{ clinicName }}</p>
             <p><b>Time:</b> {{ chosenTime }}</p>
             <p><b>Date:</b> {{ chosenDate }}</p>
@@ -65,14 +66,16 @@ export default {
   data() {
     return {
       clinics: [],
+
       clinicName: '',
       clinincAdress: '',
       chosenTime: '',
+      chosenTimeInMilleseconds: '',
       chosenDate: '',
+      dentistId: '',
+
       userData: {},
-      booking: {
-        data: '2022-12-12, fri',
-      },
+
       form: {
         email: '',
         name: '',
@@ -80,6 +83,7 @@ export default {
 
       show: true,
       modalShow: false,
+
       items: [
         {
           text: 'Home',
@@ -98,10 +102,14 @@ export default {
   },
   created: async function () {
     // Fetching clinics data from Clinincs component
-
+    this.dentistId = this.$route.query.dentist
+    this.chosenTimeInMilleseconds = this.$route.query.time
     const clinincId = this.$route.params.clinicId
-    const appointmentData = this.$route.query
-
+    const appointmentData = new Date(this.$route.query.time)
+    const properlyFormatedChosenDate = appointmentData.toDateString('EN-US')
+    const hours = appointmentData.getHours().toString().padStart(2, '0')
+    const mintues = appointmentData.getMinutes().toString().padStart(2, '0')
+    const properlyFormatedChosenTime = `${hours}:${mintues}`
     try {
       const res = await API.get('/clinics')
       this.clinics = res.data
@@ -110,17 +118,16 @@ export default {
       )
       this.clinicName = chosenClininc.name
       this.clinincAdress = chosenClininc.address
-      this.chosenTime = appointmentData.time
-      this.chosenDate = appointmentData.date
+      this.chosenTime = properlyFormatedChosenTime
+      this.chosenDate = properlyFormatedChosenDate
     } catch (err) {
       console.error(err)
     }
   },
   mounted: async function () {
     // fetching the the user data from auth component
-    const userId = localStorage.getItem('LoggedUser').slice(1, -1)
     try {
-      const res = await API.get(`/users/profile/${userId}`)
+      const res = await API.get(`/users/profile/`)
       this.userData = res.data
       this.form.name = res.data.firstName
       this.form.email = res.data.email
@@ -131,17 +138,28 @@ export default {
   methods: {
     // TODO: Implement API calls to confirm booking and send it to the booking DB and send Noficaton mail to the user.
     handleOk: async function () {
-      // Will be removed later
-      console.log('confirmed')
       try {
-        const res = await API.post('/bookings', {
-          userId: localStorage.getItem('LoggedUser').slice(1, -1),
+        const res = await API.post('/bookings/', {
+          dentist_id: this.dentistId,
+          date: this.chosenTimeInMilleseconds,
         })
-        console.log(res)
+        console.log(res.data)
+        this.$vToastify.success('Your Booking have been made successfully!')
+        this.$router.push({ name: 'myBooking' })
+        console.log('confirmed')
       } catch (err) {
         const error = err.response.data.error
         console.error(error)
       }
+      // try {
+      //   const res = await API.post('/bookings', {
+      //     userId: localStorage.getItem('LoggedUser').slice(1, -1),
+      //   })
+      //   console.log(res)
+      // } catch (err) {
+      //   const error = err.response.data.error
+      //   console.error(error)
+      // }
     },
     onSubmit(event) {
       event.preventDefault()

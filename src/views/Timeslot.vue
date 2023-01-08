@@ -279,15 +279,13 @@ export default {
 
     confirmBookedTime(start, dentist, timeInHouresAndMins) {
       const clinicId = this.$route.params
-      const dateOfChosenAppoitmentTime = new Date(start).toDateString()
-
-      console.log(typeof start)
+      const dateOfChosenAppoitmentTime = start
       this.$router.push({
         name: 'timeslots-confirm',
         params: { cId: clinicId },
         query: {
-          time: timeInHouresAndMins,
-          date: dateOfChosenAppoitmentTime,
+          time: dateOfChosenAppoitmentTime,
+          dentist: dentist,
         },
       })
     },
@@ -308,10 +306,6 @@ export default {
           text: 'TimeSlots',
           active: true,
         },
-        // {
-        //   text: 'Confirmation',
-        //   href: '/confimBooking',
-        // },
       ],
       value: '',
     }
