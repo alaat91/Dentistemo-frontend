@@ -1,140 +1,139 @@
 <template>
-    <div>
+  <div>
     <the-navigation></the-navigation>
-    <h2 class="upcoming-appointments">Upcoming appointments:</h2>
-
-    <p>{{ test }}</p>
-    <p>
-        <ul>
-          <li v-for="appointment in upcamingAppointments" :key="appointment._id" >{{ new Date(appointment.date).toDateString() }}</li>
-            <!---<li v-if="new Date(appo.date).toDateString() < nowDate">{{ new Date(appo.date).toDateString()  }} </li>-->
-        </ul>
-    </p>
-    <h2 class="past-appointments">appointment history:</h2>
-    <p>
-        <ul>
-            <li v-for="appointment in pastAppointments" :key="appointment._id" >{{ new Date(appointment.date).toDateString() }}</li>   
-        </ul>
-    </p>
-
-</div>
+    <div class="appointments-container">
+      <h2>Upcoming appointments</h2>
+      <table v-if="upcomingAppointments.length > 0">
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Clinic</th>
+          <th>Address</th>
+        </tr>
+        <tr v-for="appointment in upcomingAppointments" :key="appointment._id">
+          <td>
+            {{ format(new Date(appointment.date), "iiii, do 'of' LLLL, y") }}
+          </td>
+          <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
+          <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
+          <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
+        </tr>
+      </table>
+      <p v-else>You do not have any upcoming appointments</p>
+    </div>
+    <div class="appointments-container">
+      <h2>Previous appointments</h2>
+      <table v-if="pastAppointments.length > 0">
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Clinic</th>
+          <th>Address</th>
+        </tr>
+        <tr v-for="appointment in pastAppointments" :key="appointment._id">
+          <td>{{ format(new Date(appointment.date), "do 'of' LLLL") }}</td>
+          <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
+          <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
+          <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
+          <td></td>
+        </tr>
+      </table>
+      <p v-else>You do not have any previous appointments</p>
+    </div>
+  </div>
 </template>
 
 <script>
 import { API } from '../config/api'
 import TheNavigation from '../components/TheNavigation.vue'
-export default{
+import { format } from 'date-fns'
+export default {
   components: { TheNavigation },
-    data() {
-        return {
-          appointments: [],
-          nowDate: '',
-          test: '',
-          
-
-        }
-    },
+  data() {
+    return {
+      appointments: [],
+      dentists: [],
+      format,
+      API,
+    }
+  },
   created: async function () {
-    this.nowDate = new Date()
-    
     try {
-        const res = await API.get('/bookings')
-        
-        this.appointments = res.data
-
-        console.log(res.data);
-    } catch(err) {
-        console.error(err)
+      const res = await API.get('/bookings')
+      this.appointments = res.data
+      this.fetchDentists()
+    } catch (err) {
+      console.error(err)
     }
   },
   methods: {
-    hello(){
-      console.log(this.appointments);
-      console.log(this.filteredDate);
-      console.log(this.test.date);
-    }
-
+    async fetchDentists() {
+      for (let i = 0; i < this.appointments.length; i++) {
+        const appointment = this.appointments[i]
+        try {
+          const res = await API.get(
+            `clinics/dentists/${appointment.dentist_id}`
+          )
+          this.dentists.push(res.data)
+        } catch (err) {
+          console.error(err)
+        }
+      }
+    },
   },
   computed: {
-    upcamingAppointments() {
-      return this.appointments.filter((appointment) => appointment.date > Date.now())
-      
+    upcomingAppointments() {
+      return this.appointments.filter(
+        (appointment) => appointment.date > Date.now()
+      )
     },
     pastAppointments() {
-      return this.appointments.filter((appointment) => appointment.date < Date.now())
-    }
-  }
+      return this.appointments.filter(
+        (appointment) => appointment.date < Date.now()
+      )
+    },
+    dentistInfo() {
+      const map = new Map()
+      this.appointments.forEach((a) => {
+        const dentist = this.dentists.filter((d) => d._id == a.dentist_id)[0]
+        map.set(a.dentist_id, dentist)
+      })
+      return map
+    },
+  },
 }
 </script>
 
 <style scoped>
-body {
-  font-family: Arial, sans-serif;
+.appointments-container {
+  width: 50%;
+  padding: 2rem 4rem;
 }
 
-/* Set the background color for the header and footer */
-header, footer {
-  background-color: #333;
-  color: white;
-  padding: 20px;
+.appointments-container h2 {
+  margin-bottom: 2rem;
 }
 
-/* Set the style for the appointments section */
-.appointments {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 20px;
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-/* Set the style for the upcoming appointments section */
-.upcoming-appointments {
-  width: 45%;
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
 
-/* Set the style for the past appointments section */
-.past-appointments {
-  width: 45%;
+tr:nth-child(even) {
+  background-color: #b7c9e2;
 }
 
-/* Set the style for the individual appointments */
-.appointment {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-/* Set the style for the date of the appointment */
-.appointment .date {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-/* Set the style for the description of the appointment */
-.appointment .description {
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-/* Set the style for the location of the appointment */
-.appointment .location {
-  font-size: 12px;
-  font-style: italic;
-}
-
-/* Set the style for the "Upcoming Appointments" heading */
-.upcoming-appointments h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-/* Set the style for the "Past Appointments" heading */
-.past-appointments h2 {
-  color: #333;
-  font-size: 24px;
-  margin-bottom: 10px;
+@media screen and (max-width: 960px) {
+  .appointments-container {
+    width: 100%;
+  }
 }
 </style>

@@ -24,6 +24,7 @@
     "axios": "^1.2.0",
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
+    "date-fns": "^2.29.3",
     "vue": "^2.7.14",
     "vue-router": "^3.5.2",
     "vue-toastify": "^1.8.1"
