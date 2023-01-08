@@ -37,7 +37,6 @@ export default new Router({
       name: 'home',
       component: HomePage,
       beforeEnter: guardMyroute,
-
     },
     {
       path: '/clinic/:clinicId',
@@ -47,7 +46,7 @@ export default new Router({
       beforeEnter: guardMyroute,
     },
     {
-      path: '/clinic/:clinicId/confimBooking',
+      path: '/clinic/:clinicId/confirm-booking',
       name: 'timeslots-confirm',
       component: ConfirmBookingPage,
       props: true,
@@ -70,14 +69,8 @@ export default new Router({
       beforeEnter: guardMyroute,
     },
     {
-      path: '/profile/:userID',
-      name: 'profile',
-      component: Profile,
-      beforeEnter: guardMyroute,
-    },
-    {
-      path: '/myBooking',
-      name: 'myBooking',
+      path: '/my-bookings',
+      name: 'my-bookings',
       component: MyBooking,
       beforeEnter: guardMyroute,
     },

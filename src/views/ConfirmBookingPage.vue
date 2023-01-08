@@ -144,8 +144,7 @@ export default {
         })
         console.log(res.data)
         this.$vToastify.success('Your Booking have been made successfully!')
-        this.$router.push({ name: 'myBooking' })
-        console.log('confirmed')
+        this.$router.push({ name: 'my-bookings' })
       } catch (err) {
         const error = err.response.data.error
         console.error(error)
