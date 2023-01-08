@@ -26,9 +26,3 @@ The my-booking page shows the user the history of their previous booking. It als
 
 # Home Page:
 The home page shows the location of the different clinics via an integrated google maps. The list of clinics is clickable to allow the user to pick a specific clinic where they want to book their dentist appointment
-
-
-
-
-
-
