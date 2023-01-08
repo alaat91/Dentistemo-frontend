@@ -159,6 +159,23 @@ export default {
     // Getss the specific clinic that the user clicked on the previous page
     this.clinincId = this.$route.params.clinicId
 
+    const eventSource = new EventSource(
+      `${
+        import.meta.env.VITE_API_ENDPOINT || 'http://localhost:3000/api/v1'
+      }/bookings/updated`
+    )
+    eventSource.onmessage = async () => {
+      try {
+        const res = await API.get(
+          `/clinics/${
+            this.clinincId
+          }/available?start=${this.currentWeek[0].getTime()}&end=${this.currentWeek[4].getTime()}`
+        )
+        this.timeslots = res.data
+      } catch (err) {
+        console.error(err)
+      }
+    }
     // new Date() creates a date object that stores the date and time
     // of the moment the Date object was created
     this.currentWeek = this.getWeek(new Date())
