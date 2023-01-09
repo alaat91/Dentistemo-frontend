@@ -9,6 +9,7 @@
           <th>Time</th>
           <th>Clinic</th>
           <th>Address</th>
+          <th>Cancel</th>
         </tr>
         <tr v-for="appointment in upcomingAppointments" :key="appointment._id">
           <td>
@@ -17,6 +18,14 @@
           <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
+          <td>
+            <b-button
+              @click="cancelBooking(appointment)"
+              type="reset"
+              variant="danger"
+              >Cancel</b-button
+            >
+          </td>
         </tr>
       </table>
       <p v-else>You do not have any upcoming appointments</p>
@@ -35,7 +44,6 @@
           <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
-          <td></td>
         </tr>
       </table>
       <p v-else>You do not have any previous appointments</p>
@@ -55,6 +63,7 @@ export default {
       dentists: [],
       format,
       API,
+      denger: '',
     }
   },
   created: async function () {
@@ -78,6 +87,18 @@ export default {
         } catch (err) {
           console.error(err)
         }
+      }
+    },
+    async cancelBooking(appointment) {
+      console.log(appointment.request_id)
+      const reqID = appointment.request_id
+      try {
+        const res = await API.delete(`bookings/${appointment.request_id}`, {
+          request_id: reqID,
+        })
+        console.log(res)
+      } catch (err) {
+        this.$vToastify.error('Something went wrong')
       }
     },
   },
