@@ -1,6 +1,7 @@
 <template>
   <div>
     <the-navigation></the-navigation>
+
     <div class="appointments-container">
       <h2>Upcoming appointments</h2>
       <table v-if="upcomingAppointments.length > 0">
@@ -19,12 +20,23 @@
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
           <td>
-            <b-button
-              @click="cancelBooking(appointment)"
-              type="reset"
-              variant="danger"
-              >Cancel</b-button
-            >
+            <div v-if="appointment.date - dayInMilleSecond < Date.now()">
+              <b-button
+                type="reset"
+                v-b-tooltip.hover.right="
+                  'Booking can not be canceled since you have less then 24 hours to your appointment'
+                "
+                >Cancel</b-button
+              >
+            </div>
+            <div v-else>
+              <b-button
+                @click="cancelBooking(appointment)"
+                type="reset"
+                variant="danger"
+                >Cancel</b-button
+              >
+            </div>
           </td>
         </tr>
       </table>
@@ -61,9 +73,9 @@ export default {
     return {
       appointments: [],
       dentists: [],
+      dayInMilleSecond: 86400000,
       format,
       API,
-      denger: '',
     }
   },
   mounted: async function () {
@@ -88,16 +100,17 @@ export default {
         const res = await API.get('/bookings')
         this.appointments = res.data
         this.fetchDentists()
+        this.$vToastify.success(`Your booking have been successfully canceled`)
       } catch (err) {
         console.error(err)
       }
     },
     async cancelBooking(appointment) {
-      console.log(typeof appointment._id)
       const bookingID = appointment._id
       try {
         const res = await API.delete(`/bookings/${bookingID}`)
         this.fetchBookings()
+        this.$
       } catch (err) {
         this.$vToastify.error('Something went wrong')
       }
