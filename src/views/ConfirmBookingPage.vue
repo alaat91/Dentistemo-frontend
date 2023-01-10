@@ -135,7 +135,6 @@ export default {
     }
   },
   methods: {
-    // TODO: Implement API calls to confirm booking and send it to the booking DB and send Noficaton mail to the user.
     handleOk: async function () {
       try {
         const res = await API.post('/bookings/', {
@@ -149,15 +148,6 @@ export default {
         const error = err.response.data.error
         console.error(error)
       }
-      // try {
-      //   const res = await API.post('/bookings', {
-      //     userId: localStorage.getItem('LoggedUser').slice(1, -1),
-      //   })
-      //   console.log(res)
-      // } catch (err) {
-      //   const error = err.response.data.error
-      //   console.error(error)
-      // }
     },
     onSubmit(event) {
       event.preventDefault()

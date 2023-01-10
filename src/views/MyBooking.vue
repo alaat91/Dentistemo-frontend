@@ -9,7 +9,7 @@
           <th>Time</th>
           <th>Clinic</th>
           <th>Address</th>
-          <th>Cancel</th>
+          <th>Cancel Appointment</th>
         </tr>
         <tr v-for="appointment in upcomingAppointments" :key="appointment._id">
           <td>
@@ -66,14 +66,8 @@ export default {
       denger: '',
     }
   },
-  created: async function () {
-    try {
-      const res = await API.get('/bookings')
-      this.appointments = res.data
-      this.fetchDentists()
-    } catch (err) {
-      console.error(err)
-    }
+  mounted: async function () {
+    this.fetchBookings()
   },
   methods: {
     async fetchDentists() {
@@ -89,14 +83,21 @@ export default {
         }
       }
     },
-    async cancelBooking(appointment) {
-      console.log(appointment.request_id)
-      const reqID = appointment.request_id
+    async fetchBookings() {
       try {
-        const res = await API.delete(`bookings/${appointment.request_id}`, {
-          request_id: reqID,
-        })
-        console.log(res)
+        const res = await API.get('/bookings')
+        this.appointments = res.data
+        this.fetchDentists()
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async cancelBooking(appointment) {
+      console.log(typeof appointment._id)
+      const bookingID = appointment._id
+      try {
+        const res = await API.delete(`/bookings/${bookingID}`)
+        this.fetchBookings()
       } catch (err) {
         this.$vToastify.error('Something went wrong')
       }
