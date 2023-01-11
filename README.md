@@ -10,19 +10,19 @@ The login page allows the system to authenticate the user. The user can type the
 The register page allows the user to provide their detailed information which the system stores for different purposes such as login & profile.
 
 # Home Page:
-The home page shows the location of the different clinics via an integrated google maps. The list of clinics is clickable to allow the user to pick a specific clinic where they want to book their dentist appointment
+The home page shows the location of the different clinics via an integrated Google maps. The list of clinics is clickable to allow the user to pick a specific clinic where they want to book their dentist appointment.
 
 # Timeslot page:
-The timeslot page shows avaiable timeslot of the selected clinic. There are no selectable timeslots for times that  are either already booked or occur during a fika break or lunch break.
+The timeslot page shows avaiable timeslot of the selected clinic. There are no selectable timeslots for times that are either already booked or occur during a fika break or lunch break.
 
 # Booking page:
 The booking page gives users confirmation on their chosen booking time.
 
 # Profile page: 
-The profile page stores the user information. It also lets the user change theur profile information such as name, email, telephone etc. 
+The profile page stores the user information. It also lets the user change their profile information such as name, email, telephone etc. 
 
 # My Booking page:
 The my-booking page shows the user the history of their previous booking. It also shows the user the a list of their upcoming bookings.
 
 # Home Page:
-The home page shows the location of the different clinics via an integrated google maps. The list of clinics is clickable to allow the user to pick a specific clinic where they want to book their dentist appointment
+The home page shows the location of the different clinics via an integrated google maps. The list of clinics is clickable to allow the user to pick a specific clinic where they want to book their dentist appointment.
