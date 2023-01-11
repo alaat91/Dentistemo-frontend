@@ -100,7 +100,6 @@ export default {
         const res = await API.get('/bookings')
         this.appointments = res.data
         this.fetchDentists()
-        this.$vToastify.success(`Your booking have been successfully canceled`)
       } catch (err) {
         console.error(err)
       }
