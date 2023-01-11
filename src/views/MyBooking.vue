@@ -1,6 +1,7 @@
 <template>
   <div>
     <the-navigation></the-navigation>
+
     <div class="appointments-container">
       <h2>Upcoming appointments</h2>
       <table v-if="upcomingAppointments.length > 0">
@@ -9,6 +10,7 @@
           <th>Time</th>
           <th>Clinic</th>
           <th>Address</th>
+          <th>Cancel Appointment</th>
         </tr>
         <tr v-for="appointment in upcomingAppointments" :key="appointment._id">
           <td>
@@ -17,6 +19,25 @@
           <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
+          <td>
+            <div v-if="appointment.date - dayInMilleSecond < Date.now()">
+              <b-button
+                type="reset"
+                v-b-tooltip.hover.right="
+                  'Booking can not be canceled since you have less then 24 hours to your appointment'
+                "
+                >Cancel</b-button
+              >
+            </div>
+            <div v-else>
+              <b-button
+                @click="cancelBooking(appointment)"
+                type="reset"
+                variant="danger"
+                >Cancel</b-button
+              >
+            </div>
+          </td>
         </tr>
       </table>
       <p v-else>You do not have any upcoming appointments</p>
@@ -35,7 +56,6 @@
           <td>{{ format(new Date(appointment.date), 'kk:mm') }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.name }}</td>
           <td>{{ dentistInfo.get(appointment.dentist_id).clinic.address }}</td>
-          <td></td>
         </tr>
       </table>
       <p v-else>You do not have any previous appointments</p>
@@ -53,18 +73,13 @@ export default {
     return {
       appointments: [],
       dentists: [],
+      dayInMilleSecond: 86400000,
       format,
       API,
     }
   },
-  created: async function () {
-    try {
-      const res = await API.get('/bookings')
-      this.appointments = res.data
-      this.fetchDentists()
-    } catch (err) {
-      console.error(err)
-    }
+  mounted: async function () {
+    this.fetchBookings()
   },
   methods: {
     async fetchDentists() {
@@ -78,6 +93,26 @@ export default {
         } catch (err) {
           console.error(err)
         }
+      }
+    },
+    async fetchBookings() {
+      try {
+        const res = await API.get('/bookings')
+        this.appointments = res.data
+        this.fetchDentists()
+        this.$vToastify.success(`Your booking have been successfully canceled`)
+      } catch (err) {
+        console.error(err)
+      }
+    },
+    async cancelBooking(appointment) {
+      const bookingID = appointment._id
+      try {
+        const res = await API.delete(`/bookings/${bookingID}`)
+        this.fetchBookings()
+        this.$
+      } catch (err) {
+        this.$vToastify.error('Something went wrong')
       }
     },
   },
